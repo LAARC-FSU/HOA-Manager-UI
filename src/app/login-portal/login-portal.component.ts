@@ -24,4 +24,4 @@ export class LoginPortalComponent {
   protected readonly Mode = Mode;
 }
 
-enum Mode { login, signup, forgotEmail, forgotPassword};
+enum Mode { login, signup, forgotEmail, forgotPassword}

@@ -2,17 +2,17 @@
 <div class="main" style="background-image: url(assets/loginBackground.jpg);">
 
     <div class="ftCard" [hidden]="mode!= Mode.login">
-      <form form form-control>
+      <form form-control>
         <img src="assets/loginLogo.svg" class="rounded mx-auto my-5 d-block "  alt="HOA Manager Logo">
         <div class="input-group">
-          <input class="form-control shadow ms-4" type="email" name="email" id="email" placeholder="Email" required="">
+          <input class="form-control shadow ms-4" type="email" name="email" id="email" placeholder="Email" required="true">
           <span class="input-group-text me-4" id="emailIcon"><img src="assets/userIcon.svg" alt="user icon" style="height: 20px"></span>
         </div>
         <div class="clkText">
           <button  id="fEmail">Forgot Email</button>
         </div>
         <div class="input-group">
-          <input class="form-control shadow ms-4" type="password" name="password" id="password" placeholder="Password" required="">
+          <input class="form-control shadow ms-4" type="password" name="password" id="password" placeholder="Password" required="true">
           <span class="input-group-text me-4" id="passIcon"><img src="assets/lockIcon.svg" alt="user icon" style="height: 20px"></span>
         </div>
         <div class="clkText">
@@ -24,7 +24,7 @@
             <label class="form-check-label" for="employeeCheck" >Employee</label>
           </div>
           <div class="form-check">
-            <input  class="form-check-input" type="radio" name="selector" id="memberCheck" checked acvtive>
+            <input  class="form-check-input" type="radio" name="selector" id="memberCheck" checked>
             <label class="form-check-label" for="memberCheck">Member</label>
           </div>
         </div>
@@ -37,7 +37,7 @@
 </div>
 
   <div class="ftCard" [hidden]="mode!= Mode.signup">
-    <form form id="signUpForm">
+    <form id="signUpForm">
       <img src="assets/loginLogo.svg" class="rounded mx-auto my-4 d-block "  alt="HOA Manager Logo">
         <h1>Sign Up</h1>
         <input class="form-control shadow" type="text" placeholder="Member ID">
