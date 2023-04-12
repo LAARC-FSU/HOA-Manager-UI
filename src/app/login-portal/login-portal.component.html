@@ -1,0 +1,104 @@
+<!--Background image-->
+<div class="main" style="background-image: url(assets/loginBackground.jpg);">
+
+    <div class="ftCard" [hidden]="mode!= Mode.login">
+      <form form form-control>
+        <img src="assets/loginLogo.svg" class="rounded mx-auto my-5 d-block "  alt="HOA Manager Logo">
+        <div class="input-group">
+          <input class="form-control shadow ms-4" type="email" name="email" id="email" placeholder="Email" required="">
+          <span class="input-group-text me-4" id="emailIcon"><img src="assets/userIcon.svg" alt="user icon" style="height: 20px"></span>
+        </div>
+        <div class="clkText">
+          <button  id="fEmail">Forgot Email</button>
+        </div>
+        <div class="input-group">
+          <input class="form-control shadow ms-4" type="password" name="password" id="password" placeholder="Password" required="">
+          <span class="input-group-text me-4" id="passIcon"><img src="assets/lockIcon.svg" alt="user icon" style="height: 20px"></span>
+        </div>
+        <div class="clkText">
+        <button id="fPassword">Forgot Password</button>
+        </div>
+        <div class="card">
+          <div class="form-check ">
+            <input  class="form-check-input" type="radio" name="selector" id="employeeCheck">
+            <label class="form-check-label" for="employeeCheck" >Employee</label>
+          </div>
+          <div class="form-check">
+            <input  class="form-check-input" type="radio" name="selector" id="memberCheck" checked acvtive>
+            <label class="form-check-label" for="memberCheck">Member</label>
+          </div>
+        </div>
+        <div class="row row-cols-1">
+          <button (click)="mode=Mode.signup" class="btn shadow" id="signUpBtn">Sign up</button>
+          <button class="btn shadow" id="signInBtn">Sign In</button>
+          <button class="btn shadow" id="exitBtn">Exit</button>
+        </div>
+      </form>
+</div>
+
+  <div class="ftCard" [hidden]="mode!= Mode.signup">
+    <form form id="signUpForm">
+      <img src="assets/loginLogo.svg" class="rounded mx-auto my-4 d-block "  alt="HOA Manager Logo">
+        <h1>Sign Up</h1>
+        <input class="form-control shadow" type="text" placeholder="Member ID">
+        <input class="form-control shadow" type="email" placeholder="Email">
+        <input class="form-control shadow" type="password" placeholder="Create password">
+        <input class="form-control shadow" type="password" placeholder="Re-type password">
+      <button class="btn" id="signUpBtn1">Sign Up</button>
+    </form>
+  </div>
+
+<!--  &lt;!&ndash;Floating card&ndash;&gt;-->
+<!--  <div class="form-floating shadow rounded-4 position-absolute top-50 start-50 translate-middle" style="background-color: #E1EBF6; width: 350px; height: 600px;">-->
+<!--    &lt;!&ndash;Logo&ndash;&gt;-->
+<!--    <div class="row my-5 mx-auto" style="width: 60%;">-->
+<!--      <img src="assets/loginLogo.svg" alt="HOA Manager Logo">-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash;Email field&ndash;&gt;-->
+<!--    <div class="ps-4 my-4">-->
+<!--      <div class="input-group">-->
+<!--        <input [(ngModel)]="user.email" (keyup.enter)="submit()"  ngmodel name="email" #email="ngModel" id="emailInput" type="email" class="form-control shadow" placeholder="Email" style="border-color: #828FA0;">-->
+<!--        <span class="input-group-text me-4" id="emailIcon" style="border-color: #828FA0;"><img src="assets/userIcon.svg" alt="user icon" style="height: 20px;"></span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;Password field&ndash;&gt;-->
+<!--    <div class="ps-4 my-4">-->
+<!--      <div class="input-group">-->
+<!--        <input [(ngModel)]="user.password" (keyup.enter)="submit()" ngmodel name="password" id="passwordInput" type="password" class="form-control shadow" placeholder="Password" style="border-color: #828FA0;">-->
+<!--        <span class="input-group-text me-4" id="passwordIcon" style="border-color: #828FA0;"><img src="assets/lockIcon.svg" alt="lock icon" style="height: 20px; "></span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;    Link forgot password&ndash;&gt;-->
+<!--    <div>-->
+<!--      <a href=""></a>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;Employee/member checkmarks&ndash;&gt;-->
+<!--    <div class=" card my-3 mx-auto" style="background-color: #E1EBF6; border-color: #828FA0; padding-top: 3%; padding-bottom: 3%; width: fit-content">-->
+<!--      <div class="form-check mx-5">-->
+<!--        <input  [(ngModel)]="user.type" value="employee" class="form-check-input" type="radio" ngModel name= "selector" id="employeeCheck" style="background-color: #828FA0">-->
+<!--        <label class="form-check-label" for="employeeCheck" style="margin-left:10px">Employee</label>-->
+<!--      </div>-->
+<!--      <div class="form-check mx-5">-->
+<!--        <input  [(ngModel)]="user.type" value="member" class="form-check-input" checked type="radio" ngModel name= "selector" id="memberCheck" style="background-color: #828FA0;">-->
+<!--        <label class="form-check-label" for="memberCheck" style="margin-left:10px">Member</label>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;Sign in button&ndash;&gt;-->
+<!--    <div class="text-center my-4">-->
+<!--      <button (click)="submit()"  class=" btn shadow rounded-2"  type="button" style="background-color: #828FA0; color: white; width: 60%; height: 35px;">Sign In</button>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;Exit button&ndash;&gt;-->
+<!--    <div class="text-center mb-5">-->
+<!--      <button (click)="exit()"  class="bnt shadow rounded-2" type="button" style="background-color: #A73E40; border-color: #A73E40; color: white; width: 60%; height: 35px;">Exit</button>-->
+    </div>
+
+<!--  </div>-->
+<!--&lt;!&ndash;  test&ndash;&gt;-->
+<!--  <div class="text-center">-->
+<!--    <p>Email= {{user.email}}</p>-->
+<!--    <p>Password={{user.password}} </p>-->
+<!--    <p>userType= {{user.type}}</p>-->
+<!--  </div>-->
+
+<!--</div>-->
