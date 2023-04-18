@@ -1,16 +1,16 @@
 <div class="bg-image" style="background-image: url(assets/loginBackground.jpg); height: 100%; width: 100%; position: fixed">
-<div class="container" style="font-family: montserrat">
+<div class="container" style="font-family: montserrat,serif">
   <div class="row">
     <div class="col position-absolute top-50 start-50 translate-middle" style="width: 450px">
-      <div class="card p-5 text-center" *ngIf="getMode()== Mode.login || Mode.signup" [@fadeInOut] style="background-color: #E1EBF6; border-radius: 20px">
+      <div class="card p-5 text-center" style="background-color: #E1EBF6; border-radius: 20px">
 
         <div class="row justify-content-center">
           <div>
-            <img src="assets/loginLogo.svg" class="card-img-top h-75">
+            <img src="assets/loginLogo.svg" class="card-img-top h-75" alt="">
           </div>
         </div>
 
-        <div class="signIn" *ngIf="getMode()== Mode.login" [@fadeInOut]>
+        <div class="signIn" *ngIf="getMode()== Mode.login" [@fadeInOut]="">
           <div class="card-body">
             <div class="row-cols-10">
               <div class="row">
@@ -66,7 +66,7 @@
         </div>
       </div>
 
-        <div class="signUp" *ngIf="getMode()== Mode.signup" [@fadeInOut]>
+        <div class="signUp" *ngIf="getMode()== Mode.signup" [@fadeInOut]="">
           <div class="card-body">
             <div class="row-cols-10">
               <div class="row pb-4">
@@ -75,23 +75,23 @@
             <div class="row-col">
               <form class="row gy-4">
                 <div class="input-group">
-                  <input [(ngModel)]="user.memberId" class="form-control shadow" type="text"placeholder="Member ID" style="background-color: #F5F5F5">
-                  <span class="input-group-text shadow"><img src="assets/userIcon.svg" style="height: 28px"></span>
+                  <input [(ngModel)]="user.memberId" class="form-control shadow" type="text" placeholder="Member ID" style="background-color: #F5F5F5">
+                  <span class="input-group-text shadow"><img src="assets/userIcon.svg" style="height: 28px" alt=""></span>
                 </div>
 
                 <div class="input-group">
-                  <input [(ngModel)]="user.email" class="form-control shadow" type="email"placeholder="Email" style="background-color: #F5F5F5">
-                  <span class="input-group-text shadow"><img src="assets/emailIcon.svg" style="height: 28px"></span>
+                  <input [(ngModel)]="user.email" class="form-control shadow" type="email" placeholder="Email" style="background-color: #F5F5F5">
+                  <span class="input-group-text shadow"><img src="assets/emailIcon.svg" style="height: 28px" alt=""></span>
                 </div>
 
                 <div class="input-group">
-                  <input class="form-control shadow" type="password"placeholder="Password" style="background-color: #F5F5F5">
-                  <span [(ngModel)]="user.password" class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 28px"></span>
+                  <input class="form-control shadow" type="password" placeholder="Password" style="background-color: #F5F5F5">
+                  <span [(ngModel)]="user.password" class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 28px" alt=""></span>
                 </div>
 
                 <div class="input-group">
-                  <input class="form-control shadow" type="password"placeholder="Re-type Password" style="background-color: #F5F5F5">
-                  <span class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 28px"></span>
+                  <input class="form-control shadow" type="password" placeholder="Re-type Password" style="background-color: #F5F5F5">
+                  <span class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 28px" alt=""></span>
                 </div>
 
                 <div class="row pt-5 gy-3">
@@ -107,7 +107,7 @@
         </div>
     </div>
 
-        <div class="forgotEmail" *ngIf="getMode()== Mode.forgotEmail" [@fadeInOut]>
+        <div class="forgotEmail" *ngIf="getMode()== Mode.forgotEmail" [@fadeInOut]="">
           <div class="card-body">
             <div class="row-cols-10">
               <div class="row pb-4">
@@ -118,8 +118,8 @@
 
                   <div class="input-group">
                     <label class="form-label">Please enter your HOA member Id</label>
-                    <input [(ngModel)]="user.memberId" class="form-control shadow" type="text"placeholder="Member ID" style="background-color: #F5F5F5">
-                    <span class="input-group-text shadow"><img src="assets/userIcon.svg" style="height: 28px"></span>
+                    <input [(ngModel)]="user.memberId" class="form-control shadow" type="text" placeholder="Member ID" style="background-color: #F5F5F5">
+                    <span class="input-group-text shadow"><img src="assets/userIcon.svg" style="height: 28px" alt=""></span>
                   </div>
 
                   <div class="result my-5">
@@ -144,7 +144,7 @@
           </div>
         </div>
 
-        <div class="forgotPassword" *ngIf="getMode()==Mode.forgotPassword" [@fadeInOut]>
+        <div class="forgotPassword" *ngIf="getMode()==Mode.forgotPassword" [@fadeInOut]="">
           <div class="card-body">
             <div class="row-cols-10">
               <div class="row pb-4">
@@ -154,23 +154,23 @@
                 <form class="row gy-4">
 
                   <div class="input-group ">
-                    <input class="form-control shadow" type="text"placeholder="Member ID"  style="background-color: #F5F5F5">
-                    <span class="input-group-text shadow"><img src="assets/userIcon.svg" style="height: 28px"></span>
+                    <input class="form-control shadow" type="text" placeholder="Member ID"  style="background-color: #F5F5F5">
+                    <span class="input-group-text shadow"><img src="assets/userIcon.svg" style="height: 28px" alt=""></span>
                   </div>
 
                   <div class="input-group ">
-                    <input class="form-control shadow" type="email"placeholder="Email" style="background-color: #F5F5F5">
-                    <span class="input-group-text shadow"><img src="assets/emailIcon.svg" style="height: 28px"></span>
+                    <input class="form-control shadow" type="email" placeholder="Email" style="background-color: #F5F5F5">
+                    <span class="input-group-text shadow"><img src="assets/emailIcon.svg" style="height: 28px" alt=""></span>
                   </div>
 
                   <div class="input-group">
-                    <input class="form-control shadow" type="password"placeholder="New Password" style="background-color: #F5F5F5">
-                    <span class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 28px"></span>
+                    <input class="form-control shadow" type="password" placeholder="New Password" style="background-color: #F5F5F5">
+                    <span class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 28px" alt=""></span>
                   </div>
 
                   <div class="input-group">
-                    <input class="form-control shadow" type="password"placeholder="Re-type Password" style="background-color: #F5F5F5">
-                    <span class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 28px"></span>
+                    <input class="form-control shadow" type="password" placeholder="Re-type Password" style="background-color: #F5F5F5">
+                    <span class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 28px" alt=""></span>
                   </div>
 
                   <div class="row gy-4">
