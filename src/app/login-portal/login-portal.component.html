@@ -1,8 +1,9 @@
-<div class="bg-image" style="background-image: url(assets/loginBackground.jpg); height: 100vh">
+<div class="bg-image" style="background-image: url(assets/loginBackground.jpg); height: 100%; width: 100%; position: fixed">
 <div class="container" style="font-family: montserrat">
   <div class="row">
-    <div class="col-xxl-3 col-xl-4 col-lg-5 col-md-6 col-sm-8 position-absolute top-50 start-50 translate-middle">
+    <div class="col position-absolute top-50 start-50 translate-middle" style="width: 450px">
       <div class="card p-5 text-center" *ngIf="getMode()== Mode.login || Mode.signup" [@fadeInOut] style="background-color: #E1EBF6; border-radius: 20px">
+
         <div class="row justify-content-center">
           <div>
             <img src="assets/loginLogo.svg" class="card-img-top h-75">
@@ -15,54 +16,52 @@
               <div class="row">
                 <h1 class="card-title">Sign In</h1>
               </div>
-              <div class="row pt-4 pb-4">
-
-                <div class="input-group">
-                  <input class="form-control shadow" type="email"placeholder="Email" style="background-color: #F5F5F5">
-                  <span class="input-group-text shadow"><img src="assets/userIcon.svg" style="height: 30px"></span>
-                </div>
-
-              </div>
-
-
-              <div class="row">
-                <div class="input-group">
-                  <input class="form-control shadow" type="password"placeholder="Password">
-                  <span class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 30px"></span>
-                </div>
-              </div>
-
-              <div class="row-cols-10 pt-4 pb-2">
-                <button class="btn" style="border-color: transparent">Forgot Email</button>
-              </div>
-
-              <div class="row-cols-10 pb-4">
-                <button class="btn" style="border-color: transparent">Forgot Password</button>
-              </div>
-
-              <div class="row justify-content-center pb-5">
-                <div class="card col-6 py-3" style="background-color: transparent">
-                  <div class="form-check">
-                    <input  class="form-check-input" type="radio" name="selector" id="employeeCheck">
-                    <label class="form-check-label" for="employeeCheck" >Employee</label>
+<!--              you are working on validation-->
+              <form class="row">
+                  <div class="input-group my-4">
+                    <input [(ngModel)]="user.email" class="form-control shadow" type="email" placeholder="Email" style="background-color: #F5F5F5">
+                    <span class="input-group-text shadow"><img src="assets/userIcon.svg" style="height: 30px" alt=""></span>
                   </div>
-                  <div class="form-check">
-                    <input  class="form-check-input" type="radio" name="selector" id="memberCheck" checked>
-                    <label class="form-check-label" for="memberCheck">Member</label>
+
+                  <div class="input-group">
+                    <input class="form-control shadow" type="password" placeholder="Password" style="background-color: #F5F5F5">
+                    <span [(ngModel)]="user.password" class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 30px" alt=""></span>
+                  </div>
+              </form>
+
+                <div class="row-cols-10 pt-4 pb-2">
+                  <button (click)="toForgotEmail()" class="btn" style="border-color: transparent">Forgot Email</button>
+                </div>
+
+                <div class="row-cols-10 pb-4">
+                  <button (click)="toForgotPassword()" class="btn" style="border-color: transparent">Forgot Password</button>
+                </div>
+
+                <div class="row justify-content-center pb-5">
+                  <div class="card col-6 py-3" style="background-color: transparent">
+                    <div class="form-check">
+                      <input  class="form-check-input" type="radio" name="selector" id="employeeCheck">
+                      <label class="form-check-label" for="employeeCheck" >Employee</label>
+                    </div>
+                    <div class="form-check">
+                      <input  class="form-check-input" type="radio" name="selector" id="memberCheck" checked>
+                      <label class="form-check-label" for="memberCheck">Member</label>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row-col">
-                <div class="row pb-4">
-                  <button class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Sign In</button>
+                <div class="row-col">
+                  <div class="row pb-4">
+                    <button (click)="signIn()" type="submit" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Sign In</button>
+                  </div>
+                  <div class="row pb-4">
+                    <button (click)="toSignUp()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Sign Up</button>
+                  </div>
+                  <div class="row">
+                    <button class="btn btn-primary btn-lg" style="background-color: #A73E40; border-color: #828FA0">Exit</button>
+                  </div>
                 </div>
-                <div class="row pb-4">
-                  <button (click)="toSignUp()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Sign Up</button>
-                </div>
-                <div class="row">
-                  <button class="btn btn-primary btn-lg" style="background-color: #A73E40; border-color: #828FA0">Exit</button>
-                </div>
-              </div>
+
+
             </div>
         </div>
       </div>
@@ -76,18 +75,18 @@
             <div class="row-col">
               <form class="row gy-4">
                 <div class="input-group">
-                  <input class="form-control shadow" type="text"placeholder="Member ID" style="background-color: #F5F5F5">
+                  <input [(ngModel)]="user.memberId" class="form-control shadow" type="text"placeholder="Member ID" style="background-color: #F5F5F5">
                   <span class="input-group-text shadow"><img src="assets/userIcon.svg" style="height: 28px"></span>
                 </div>
 
                 <div class="input-group">
-                  <input class="form-control shadow" type="email"placeholder="Email" style="background-color: #F5F5F5">
+                  <input [(ngModel)]="user.email" class="form-control shadow" type="email"placeholder="Email" style="background-color: #F5F5F5">
                   <span class="input-group-text shadow"><img src="assets/emailIcon.svg" style="height: 28px"></span>
                 </div>
 
                 <div class="input-group">
                   <input class="form-control shadow" type="password"placeholder="Password" style="background-color: #F5F5F5">
-                  <span class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 28px"></span>
+                  <span [(ngModel)]="user.password" class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 28px"></span>
                 </div>
 
                 <div class="input-group">
@@ -115,16 +114,15 @@
                 <h1 class="card-title">Forgot Email</h1>
               </div>
               <div class="row-col">
-                <form class="row gy-4">
+                <form class="row">
+
                   <div class="input-group">
-                    <input class="form-control shadow" type="text"placeholder="Member ID" style="background-color: #F5F5F5">
+                    <label class="form-label">Please enter your HOA member Id</label>
+                    <input [(ngModel)]="user.memberId" class="form-control shadow" type="text"placeholder="Member ID" style="background-color: #F5F5F5">
                     <span class="input-group-text shadow"><img src="assets/userIcon.svg" style="height: 28px"></span>
                   </div>
-                  <div class="row pt-3">
-                    <p>Please enter your HOA member Id</p>
-                  </div>
 
-                  <div class="result">
+                  <div class="result my-5">
                     <div class="row" *ngIf="getEmailFound()!=''; then found else notFound"></div>
                     <ng-template #found>
                       <p>Here is the email linked to your account:</p>
@@ -136,11 +134,49 @@
                     </ng-template>
                   </div>
 
-                  <div class="row pt-5 gy-3">
-                    <button (click)="signUp()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Find my Email</button>
+                  <div class="row">
+                    <button (click)="findEmail()" class="btn btn-primary btn-lg mb-4" style="background-color: #828FA0; border-color: #828FA0">Find my Email</button>
                     <button (click)="back()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Back</button>
                   </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <div class="forgotPassword" *ngIf="getMode()==Mode.forgotPassword" [@fadeInOut]>
+          <div class="card-body">
+            <div class="row-cols-10">
+              <div class="row pb-4">
+                <h1 class="card-title">Forgot Password</h1>
+              </div>
+              <div class="row-col">
+                <form class="row gy-4">
+
+                  <div class="input-group ">
+                    <input class="form-control shadow" type="text"placeholder="Member ID"  style="background-color: #F5F5F5">
+                    <span class="input-group-text shadow"><img src="assets/userIcon.svg" style="height: 28px"></span>
+                  </div>
+
+                  <div class="input-group ">
+                    <input class="form-control shadow" type="email"placeholder="Email" style="background-color: #F5F5F5">
+                    <span class="input-group-text shadow"><img src="assets/emailIcon.svg" style="height: 28px"></span>
+                  </div>
+
+                  <div class="input-group">
+                    <input class="form-control shadow" type="password"placeholder="New Password" style="background-color: #F5F5F5">
+                    <span class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 28px"></span>
+                  </div>
+
+                  <div class="input-group">
+                    <input class="form-control shadow" type="password"placeholder="Re-type Password" style="background-color: #F5F5F5">
+                    <span class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 28px"></span>
+                  </div>
+
+                  <div class="row gy-4">
+                    <button (click)="signUp()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Change my password</button>
+                    <button (click)="back()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Back</button>
+                  </div>
                 </form>
               </div>
             </div>
