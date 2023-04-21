@@ -13,20 +13,69 @@
         <div class="signIn" *ngIf="getMode()== Mode.login" [@fadeInOut]="">
           <div class="card-body">
             <div class="row-cols-10">
-              <div class="row">
+              <div class="row mb-5">
                 <h1 class="card-title">Sign In</h1>
               </div>
-<!--              you are working on validation-->
-              <form class="row">
-                  <div class="input-group my-4">
-                    <input [(ngModel)]="user.email" class="form-control shadow" type="email" placeholder="Email" style="background-color: #F5F5F5">
-                    <span class="input-group-text shadow"><img src="assets/userIcon.svg" style="height: 30px" alt=""></span>
+
+              <div *ngIf="login.errors" class="valErrMessage mb-5">
+                The email or password is invalid.
+              </div>
+              <form [formGroup]="login" class="row" (ngSubmit)="signIn()">
+
+                <div *ngIf="email?.touched && email?.invalid">
+                  <div *ngIf="email && email.errors && email.errors['required']"
+                       class="valErrMessage">
+                    Email is required.
+                  </div>
+                  <div *ngIf="email && email.errors && email.errors['pattern']"
+                       class="valErrMessage">
+                    It needs to be a valid email.
+                  </div>
+                </div>
+
+                  <div class="input-group mb-4">
+                    <input
+                      formControlName="email"
+                      type="email"
+                      placeholder="Email"
+                      class="form-control shadow"
+                      style="background-color: #F5F5F5">
+                    <span *ngIf="email?.touched && email?.invalid"
+                          class="input-group-text shadow "
+                          style="border-width: 1px; border-color: #A73E40">
+                      <img src="assets/userIcon.svg" style="height: 30px" alt="">
+                    </span>
+                    <span *ngIf="!email?.touched || !email?.invalid"
+                          class="input-group-text shadow">
+                      <img src="assets/userIcon.svg" style="height: 30px" alt="">
+                    </span>
                   </div>
 
-                  <div class="input-group">
-                    <input class="form-control shadow" type="password" placeholder="Password" style="background-color: #F5F5F5">
-                    <span [(ngModel)]="user.password" class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 30px" alt=""></span>
+                <div *ngIf="password?.touched && password?.invalid">
+                  <div *ngIf="email && email.errors && email.errors['required']"
+                       class="valErrMessage">
+                    Password is required.
                   </div>
+                </div>
+
+                  <div class="input-group">
+                    <input
+                      formControlName="password"
+                      type="password"
+                      placeholder="Password"
+                      class="form-control shadow"
+                      style="background-color: #F5F5F5">
+                    <span *ngIf="password?.touched && password?.invalid"
+                          class="input-group-text shadow" style="border-width: 1px; border-color: #A73E40">
+                      <img src="assets/lockIcon.svg" style="height: 30px" alt="">
+                    </span>
+                    <span *ngIf="!password?.touched || !password?.invalid"
+                          class="input-group-text shadow">
+                      <img src="assets/lockIcon.svg" style="height: 30px" alt="">
+                    </span>
+                  </div>
+
+
               </form>
 
                 <div class="row-cols-10 pt-4 pb-2">
@@ -51,7 +100,10 @@
                 </div>
                 <div class="row-col">
                   <div class="row pb-4">
-                    <button (click)="signIn()" type="submit" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Sign In</button>
+                    <button (click)="signIn()"
+                            type="submit"
+                            class="btn btn-primary btn-lg"
+                            style="background-color: #828FA0; border-color: #828FA0">Sign In</button>
                   </div>
                   <div class="row pb-4">
                     <button (click)="toSignUp()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Sign Up</button>
@@ -73,33 +125,118 @@
                 <h1 class="card-title">Sign Up</h1>
               </div>
             <div class="row-col">
-              <form class="row gy-4">
-                <div class="input-group">
-                  <input [(ngModel)]="user.memberId" class="form-control shadow" type="text" placeholder="Member ID" style="background-color: #F5F5F5">
-                  <span class="input-group-text shadow"><img src="assets/userIcon.svg" style="height: 28px" alt=""></span>
+              <form [formGroup]="signUp" class="row">
+
+                <div *ngIf="memberId?.touched && memberId?.invalid">
+                  <div *ngIf="memberId && memberId.errors && memberId.errors['required']"
+                       class="valErrMessage">
+                    Member Id is required.
+                  </div>
+                </div>
+                <div class="input-group mb-4">
+                  <input
+                    formControlName="memberId"
+                    class="form-control shadow"
+                    type="text"
+                    placeholder="Member ID"
+                    style="background-color: #F5F5F5">
+
+                  <span *ngIf="!memberId?.touched || !memberId?.invalid"
+                        class="input-group-text shadow">
+                    <img src="assets/userIcon.svg" style="height: 28px" alt="">
+                  </span>
+                  <span *ngIf="memberId?.touched && memberId?.invalid"
+                        class="input-group-text shadow "
+                        style="border-width: 1px; border-color: #A73E40">
+                    <img src="assets/userIcon.svg" style="height: 28px" alt="">
+                  </span>
                 </div>
 
-                <div class="input-group">
-                  <input [(ngModel)]="user.email" class="form-control shadow" type="email" placeholder="Email" style="background-color: #F5F5F5">
-                  <span class="input-group-text shadow"><img src="assets/emailIcon.svg" style="height: 28px" alt=""></span>
+                <div *ngIf="newEmail?.touched && newEmail?.invalid">
+                  <div *ngIf="newEmail && newEmail.errors && newEmail.errors['required']"
+                       class="valErrMessage">
+                    Email is required.
+                  </div>
+                  <div *ngIf="newEmail && newEmail.errors && newEmail.errors['pattern']"
+                       class="valErrMessage">
+                    It needs to be a valid email.
+                  </div>
+                </div>
+                <div class="input-group mb-4">
+                  <input
+                    formControlName="newEmail"
+                    class="form-control shadow"
+                    type="email"
+                    placeholder="Email"
+                    style="background-color: #F5F5F5">
+                  <span *ngIf="!newEmail?.touched || !newEmail?.invalid"
+                        class="input-group-text shadow">
+                    <img src="assets/emailIcon.svg" style="height: 28px" alt="">
+                  </span>
+                  <span *ngIf="newEmail?.touched && newEmail?.invalid"
+                        class="input-group-text shadow "
+                        style="border-width: 1px; border-color: #A73E40">
+                    <img src="assets/emailIcon.svg" style="height: 28px" alt="">
+                  </span>
                 </div>
 
-                <div class="input-group">
-                  <input class="form-control shadow" type="password" placeholder="Password" style="background-color: #F5F5F5">
-                  <span [(ngModel)]="user.password" class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 28px" alt=""></span>
+                <div *ngIf="newPassword?.touched && newPassword?.invalid">
+                  <div *ngIf="newPassword && newPassword.errors && newPassword.errors['required']"
+                       class="valErrMessage">
+                    New Password is required.
+                  </div>
+                </div>
+                <div class="input-group mb-4">
+                  <input
+                    formControlName="newPassword"
+                    class="form-control shadow"
+                    type="password"
+                    placeholder="Password"
+                    style="background-color: #F5F5F5">
+
+                  <span *ngIf="!newPassword?.touched || !newPassword?.invalid"
+                        class="input-group-text shadow">
+                    <img src="assets/lockIcon.svg" style="height: 28px" alt="">
+                  </span>
+                  <span *ngIf="newPassword?.touched && newPassword?.invalid"
+                        class="input-group-text shadow "
+                        style="border-width: 1px; border-color: #A73E40">
+                    <img src="assets/lockIcon.svg" style="height: 28px" alt="">
+                  </span>
                 </div>
 
-                <div class="input-group">
-                  <input class="form-control shadow" type="password" placeholder="Re-type Password" style="background-color: #F5F5F5">
-                  <span class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 28px" alt=""></span>
+                <div *ngIf="confirmPassword?.touched && confirmPassword?.invalid">
+                  <div *ngIf="confirmPassword && confirmPassword.errors && confirmPassword.errors['required']"
+                       class="valErrMessage">
+                    Please Re-type password.
+                  </div>
                 </div>
+                <div class="input-group mb-4">
+                  <input
+                    formControlName="confirmPassword"
+                    (change)="passwordMissmatch()"
+                    class="form-control shadow"
+                    type="password"
+                    placeholder="Re-type Password"
+                    style="background-color: #F5F5F5">
+
+                  <span *ngIf="!confirmPassword?.touched || !confirmPassword?.invalid"
+                        class="input-group-text shadow">
+                    <img src="assets/lockIcon.svg" style="height: 28px" alt="">
+                  </span>
+                  <span *ngIf="confirmPassword?.touched && confirmPassword?.invalid"
+                        class="input-group-text shadow "
+                        style="border-width: 1px; border-color: #A73E40">
+                    <img src="assets/lockIcon.svg" style="height: 28px" alt="">
+                  </span>
+                </div>
+
+                <div *ngIf="[dontMatch]" class="valErrMessage">Passwords don't match.</div>
 
                 <div class="row pt-5 gy-3">
-                  <button (click)="signUp()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Sign Up</button>
+                  <button (click)="signUpUser()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Sign Up</button>
                   <button (click)="back()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Back</button>
                 </div>
-
-
 
               </form>
             </div>
@@ -118,7 +255,7 @@
 
                   <div class="input-group">
                     <label class="form-label">Please enter your HOA member Id</label>
-                    <input [(ngModel)]="user.memberId" class="form-control shadow" type="text" placeholder="Member ID" style="background-color: #F5F5F5">
+                    <input class="form-control shadow" type="text" placeholder="Member ID" style="background-color: #F5F5F5">
                     <span class="input-group-text shadow"><img src="assets/userIcon.svg" style="height: 28px" alt=""></span>
                   </div>
 
@@ -151,7 +288,7 @@
                 <h1 class="card-title">Forgot Password</h1>
               </div>
               <div class="row-col">
-                <form class="row gy-4">
+                <form [formGroup]="signUp" class="row gy-4">
 
                   <div class="input-group ">
                     <input class="form-control shadow" type="text" placeholder="Member ID"  style="background-color: #F5F5F5">
@@ -174,7 +311,7 @@
                   </div>
 
                   <div class="row gy-4">
-                    <button (click)="signUp()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Change my password</button>
+                    <button (click)="signUpUser()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Change my password</button>
                     <button (click)="back()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Back</button>
                   </div>
                 </form>
