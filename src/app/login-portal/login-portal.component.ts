@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {FormGroup, FormControl, Validators, ValidatorFn, AbstractControl} from '@angular/forms';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {fadeInOutAnimation} from "./animations";
-import {LoginPortalValidators} from './login-portal-validators'
+
 
 @Component({
   animations: [fadeInOutAnimation],
