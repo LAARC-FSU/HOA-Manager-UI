@@ -189,7 +189,7 @@
                 <div class="input-group mb-4">
                   <input
                     formControlName="newPassword"
-                    (change)="passwordMissmatch($event)"
+                    (change)="passwordMissmatch()"
                     class="form-control shadow"
                     type="password"
                     placeholder="Password"
@@ -215,7 +215,7 @@
                 <div class="input-group mb-4">
                   <input
                     formControlName="confirmPassword"
-                    (change)="passwordMissmatch($event)"
+                    (change)="passwordMissmatch()"
                     class="form-control shadow"
                     type="password"
                     placeholder="Re-type Password"
@@ -232,7 +232,7 @@
                   </span>
                 </div>
 
-                <div *ngIf = dontMatch class="valErrMessage">Passwords don't match.</div>
+                <div *ngIf = getMatchingValidator() class="valErrMessage">Passwords don't match.</div>
 
                 <div class="row pt-5 gy-3">
                   <button (click)="signUpUser()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Sign Up</button>

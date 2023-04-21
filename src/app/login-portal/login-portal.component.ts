@@ -50,15 +50,18 @@ export class LoginPortalComponent {
   private emailFound = '';
   private userFound = false;
   private users: any[] = [];
-  dontMatch: boolean = false;
+  private dontMatch: boolean = false;
 
   user= {
     memberId: '',
     email: '',
     password: ''
   };
-  passwordMissmatch(event:any){
+  passwordMissmatch(){
     this.dontMatch = this.signUp.get('newPassword')?.value !== this.signUp.get('confirmPassword')?.value;
+  }
+  getMatchingValidator(){
+    return this.dontMatch
   }
   getMode(){
     return this.mode
