@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, ValidationErrors} from '@angular/forms';
 import {fadeInOutAnimation} from "./animations";
 
 
@@ -21,17 +21,21 @@ export class LoginPortalComponent {
 
 
 
-
+  passwordMatchVerifier: ValidatorFn = (control:AbstractControl): ValidationErrors | null =>
+  {
+    const newPassword = control.get('newPassword');
+    const confirmPassword = control.get('confirmPassword');
+    return newPassword && confirmPassword && newPassword.value === confirmPassword.value ? { dontMatch: true } : null;
+  }
 
   signUp = new FormGroup({
     memberId: new FormControl('', Validators.required),
     newEmail: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/)]),
     newPassword: new FormControl('', [Validators.required]),
     confirmPassword: new FormControl('', [Validators.required])
-  });
-  // passwordMatchVerifier(form: FormGroup){
-  //   return form.get('newPassword')?.value === form.get('confirmPassword')?.value ? null : {'missMatch':true};
-  // }
+  }, this.passwordMatchVerifier);
+
+
 
 
 
@@ -46,17 +50,15 @@ export class LoginPortalComponent {
   private emailFound = '';
   private userFound = false;
   private users: any[] = [];
-  dontMatch: boolean = true;
+  dontMatch: boolean = false;
 
   user= {
     memberId: '',
     email: '',
     password: ''
   };
-  passwordMissmatch(){
-    if (this.signUp.get('newPassword') !== this.signUp.get('confirmPassword'))
-      this.dontMatch = true;
-    this.dontMatch = false;
+  passwordMissmatch(event:any){
+    this.dontMatch = this.signUp.get('newPassword')?.value !== this.signUp.get('confirmPassword')?.value;
   }
   getMode(){
     return this.mode
@@ -110,7 +112,10 @@ export class LoginPortalComponent {
     form.setErrors(null, { emitEvent: false });
     form.reset();
   }
-  log(x:any){console.log(x);}
+  log(x:any){
+    console.log(x);
+    console.log(this.dontMatch)
+  }
 
   protected readonly Mode = Mode;
 }
