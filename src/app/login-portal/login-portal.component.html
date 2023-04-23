@@ -132,10 +132,15 @@
                        class="valErrMessage">
                     Member Id is required.
                   </div>
+                  <div *ngIf="memberId && memberId.errors && memberId.errors['__zone_symbol__value']" class="valErrMessage">
+                    Member Id not found.
+                  </div>
                 </div>
+                
                 <div class="input-group mb-4">
                   <input
                     formControlName="memberId"
+                    (change)="log(memberId)"
                     class="form-control shadow"
                     type="text"
                     placeholder="Member ID"

@@ -1,6 +1,16 @@
 import { Component } from '@angular/core';
-import {FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, ValidationErrors} from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  AbstractControl,
+  ValidatorFn,
+  ValidationErrors,
+  AsyncValidatorFn
+} from '@angular/forms';
 import {fadeInOutAnimation} from "./animations";
+import {Observable, of} from "rxjs";
+import {LoginPortalValidators} from "./login-portal-validators";
 
 
 @Component({
@@ -19,27 +29,12 @@ export class LoginPortalComponent {
   get email() { return this.login.get('email');}
   get password() {return this.login.get('password');}
 
-
-
-  passwordMatchVerifier: ValidatorFn = (control:AbstractControl): ValidationErrors | null =>
-  {
-    const newPassword = control.get('newPassword');
-    const confirmPassword = control.get('confirmPassword');
-    return newPassword && confirmPassword && newPassword.value === confirmPassword.value ? { dontMatch: true } : null;
-  }
-
   signUp = new FormGroup({
-    memberId: new FormControl('', Validators.required),
+    memberId: new FormControl('', [Validators.required, LoginPortalValidators.validMemberId]),
     newEmail: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/)]),
     newPassword: new FormControl('', [Validators.required]),
     confirmPassword: new FormControl('', [Validators.required])
-  }, this.passwordMatchVerifier);
-
-
-
-
-
-
+  }, LoginPortalValidators.passwordMatchVerifier);
 
   get memberId(){return this.signUp.get('memberId');}
   get newEmail(){return this.signUp.get('newEmail');}
@@ -47,16 +42,19 @@ export class LoginPortalComponent {
   get confirmPassword(){return this.signUp.get('confirmPassword');}
 
   private mode = Mode.login;
+  private dontMatch: boolean = false;
+
+  // Testing elements----------------------------------------------------------------------------------------
   private emailFound = '';
   private userFound = false;
   private users: any[] = [];
-  private dontMatch: boolean = false;
 
   user= {
     memberId: '',
     email: '',
     password: ''
   };
+
   passwordMissmatch(){
     this.dontMatch = this.signUp.get('newPassword')?.value !== this.signUp.get('confirmPassword')?.value;
   }
@@ -96,6 +94,7 @@ export class LoginPortalComponent {
   back(){
     this.clearUser()
     this.mode = Mode.login;
+    this.formReset(this.signUp);
   }
   clearUser(){
     this.user.memberId = '';
@@ -114,10 +113,10 @@ export class LoginPortalComponent {
     form.markAsUntouched();
     form.setErrors(null, { emitEvent: false });
     form.reset();
+    this.dontMatch = false;
   }
   log(x:any){
     console.log(x);
-    console.log(this.dontMatch)
   }
 
   protected readonly Mode = Mode;
