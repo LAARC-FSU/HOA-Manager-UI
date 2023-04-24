@@ -1,63 +1,77 @@
-import {AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn} from "@angular/forms";
-import {Observable, of} from "rxjs";
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  ValidationErrors,
+  ValidatorFn,
+  FormControl
+} from "@angular/forms";
 
 export class LoginPortalValidators{
 
-   static passwordMatchVerifier: ValidatorFn = (control:AbstractControl): ValidationErrors | null =>
-  {
-    const newPassword = control.get('newPassword');
-    const confirmPassword = control.get('confirmPassword');
-    return newPassword && confirmPassword && newPassword.value === confirmPassword.value ? { dontMatch: true } : null;
-  }
+   static passwordMatchVerifier(field1: string, field2: string): ValidatorFn{
+     return(form:AbstractControl): ValidationErrors | null =>{
 
-  // static validMemberId: ValidatorFn = (control:AbstractControl): ValidationErrors | null =>
-  // {
-  //   let idPool = ['1111', '2222', '3333', '4444'];
-  //   const memberId = control.get('memberId');
-  //   for (let id in idPool){
-  //     if (memberId?.value === id)
-  //       return({idFound: true})
-  //   }
-  //   return(null);
-  // }
-  // static validMemberId(): ValidatorFn {
-  //    return (control: AbstractControl): {[key: string]: any} | null =>{
-  //      const value = control.value;
-  //      let idPool = ['1111', '2222', '3333', '4444'];
-  //      for (let id in idPool){
-  //            if (value === id)
-  //              console.log('found');
-  //              return null;
-  //          }
-  //          return {invalidId: true};
-  //    }
-  // }
+       const newPassword = form.get(field1)
+       const confirmPassword = form.get(field2)
 
-
-
-
+       if (newPassword?.value !== confirmPassword?.value){
+         const err = {noMatch: true};
+         form.setErrors(err);
+         return err;
+       }else{
+         const noMatchError = form.hasError('noMatch');
+         if(noMatchError && form.errors){
+           delete form.errors['noMatch'];
+           form.updateValueAndValidity();
+         }
+       }
+       return null;
+     }
+   }
 
 
   static validMemberId(array: string[]): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
-      const value = control.value;
-      if (!value || array.indexOf(value) === -1) {
-        return of(null);
-      }
-      return of({ 'valueInArray': true });
-    };
+    return (control: AbstractControl): Promise<ValidationErrors  | null> => {
+
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const id = control.value;
+          if (!array.includes(id) && id !== '') {
+            const err = { idNotFound: true };
+            control.setErrors(err);
+            resolve(err);
+          } else {
+            const noMatchError = control.hasError('idNotFound');
+            if (control.errors) {
+              delete control.errors['idNotFound'];
+              control.updateValueAndValidity();
+            }
+            resolve(null);
+          }
+        }, 2000);
+      });
+    }
   }
 
-  // idPool = ['1111', '2222', '3333', '4444'];
-  // static   = (control: AbstractControl) => {
-  //   return new Promise((resolve) => {
-  //     setTimeout(()=> {
-  //       for (let id in ['1111', '2222', '3333', '4444']){
-  //         if (id === control.value)
-  //           resolve( null)
+  // static validMemberId(control: AbstractControl): Promise<ValidationErrors | null> {
+  //   const id = control.value;
+  //   return new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //       if (id !== '1111' && id !== '') {
+  //         const err = { idNotFound: true };
+  //         control.setErrors(err);
+  //         resolve(err);
+  //       } else {
+  //         const noMatchError = control.hasError('idNotFound');
+  //         if (control.errors) {
+  //           delete control.errors['idNotFound'];
+  //           control.updateValueAndValidity();
+  //         }
+  //         resolve(null);
   //       }
-  //       resolve({invalidId: true})
   //     }, 2000);
   //   });
   // }
+
+
 }

@@ -15,7 +15,17 @@ import {LoginPortalValidators} from "./login-portal-validators";
   templateUrl: './login-portal.component.html'
 })
 export class LoginPortalComponent {
+  // Testing elements----------------------------------------------------------------------------------------
+  validIds: string[] = ['1111','2222','3333','44444']
+  private emailFound = null;
+  private userFound = false;
+  private users: any[] = [];
 
+  user= {
+    memberId: '',
+    email: '',
+    password: ''
+  };
 
   login = new FormGroup({
     email: new  FormControl('',[Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/)]),
@@ -26,11 +36,11 @@ export class LoginPortalComponent {
 
 
   signUp = new FormGroup({
-    memberId: new FormControl('', [Validators.required, LoginPortalValidators.validMemberId(['1111', '2222', '3333', '4444'])]),
+    memberId: new FormControl('', [Validators.required], [LoginPortalValidators.validMemberId(this.validIds)]),
     newEmail: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/)]),
     newPassword: new FormControl('', [Validators.required]),
     confirmPassword: new FormControl('', [Validators.required])
-  }, LoginPortalValidators.passwordMatchVerifier);
+  }, LoginPortalValidators.passwordMatchVerifier('newPassword', 'confirmPassword'));
 
   get memberId(){return this.signUp.get('memberId');}
   get newEmail(){return this.signUp.get('newEmail');}
@@ -44,11 +54,11 @@ export class LoginPortalComponent {
   get memberIdForgotEmail() { return this.forgotEmail.get('memberId');}
 
   forgotPassword = new FormGroup({
-    memberIdForgotPass: new FormControl('', [Validators.required, LoginPortalValidators.validMemberId(['1111', '2222', '3333', '4444'])]),
+    memberIdForgotPass: new FormControl('', [Validators.required], [LoginPortalValidators.validMemberId(this.validIds)]),
     emailForgotPass: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/)]),
     newPasswordForgotPass: new FormControl('', [Validators.required]),
     confirmPasswordForgotPass: new FormControl('', [Validators.required])
-  }, LoginPortalValidators.passwordMatchVerifier);
+  }, LoginPortalValidators.passwordMatchVerifier('newPasswordForgotPass', 'confirmPasswordForgotPass'));
 
   get memberIdForgotPass(){return this.forgotPassword.get('memberIdForgotPass');}
   get emailForgotPass(){return this.forgotPassword.get('emailForgotPass');}
@@ -64,21 +74,7 @@ export class LoginPortalComponent {
   private mode = Mode.login;
   private dontMatch: boolean = false;
 
-  // Testing elements----------------------------------------------------------------------------------------
-  private emailFound = null;
-  private userFound = false;
-  private users: any[] = [];
 
-  user= {
-    memberId: '',
-    email: '',
-    password: ''
-  };
-
-  passwordMissmatch(){
-    this.dontMatch = this.signUp.get('newPassword')?.value !== this.signUp.get('confirmPassword')?.value ||
-      this.forgotPassword.get('newPasswordForgotPass')?.value !== this.forgotPassword.get('confirmPasswordForgotPass')?.value;
-  }
   getMatchingValidator(){
     return this.dontMatch
   }
@@ -108,28 +104,12 @@ export class LoginPortalComponent {
   exit(){
   //ToDo
   }
-  signUpUser(){
-    this.users.push(this.user);
-    this.clearUser();
-  }
   back(){
     this.clearUser()
     this.mode = Mode.login;
     this.formReset(this.forgotEmail);
     this.formReset(this.forgotPassword);
     this.formReset(this.signUp);
-  }
-  clearUser(){
-    this.user.memberId = '';
-    this.user.email = '';
-    this.user.password = '';
-  }
-  findEmail(){
-    for( let user of this.users) {
-      if (user.id == this.user.memberId) {
-        this.emailFound = user.email;
-      }
-    }
   }
 
   formReset(form:FormGroup){
@@ -140,6 +120,28 @@ export class LoginPortalComponent {
   }
   log(x:any){
     console.log(x);
+  }
+
+  // testing functions
+  findEmail(){
+    for( let user of this.users) {
+      if (user.id == this.user.memberId) {
+        this.emailFound = user.email;
+      }
+    }
+  }
+  signUpUser(){
+    // this.user.email = this.newEmail!?.value;
+    // this.user.memberId = <string>this.memberId?.value;
+    // this.user.password = <string>this.newPassword?.value;
+    // this.users.push(this.user);
+    // this.clearUser();
+    // this.log(this.users[0]);
+  }
+  clearUser(){
+    this.user.memberId = '';
+    this.user.email = '';
+    this.user.password = '';
   }
 
   protected readonly Mode = Mode;

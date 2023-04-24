@@ -125,15 +125,16 @@
                 <h1 class="card-title">Sign Up</h1>
               </div>
             <div class="row-col">
-              <form [formGroup]="signUp" (change)="log(signUp)" class="row">
+              <form [formGroup]="signUp" class="row">
+
+                <div *ngIf="memberId?.pending && memberId?.touched">Searching for user id...</div>
 
                 <div *ngIf="memberId?.touched && memberId?.invalid">
                   <div *ngIf="memberId && memberId.errors && memberId.errors['required']"
                        class="valErrMessage">
                     Member Id is required.
                   </div>
-<!--                  <div *ngIf="memberId && memberId.errors && memberId.errors['__zone_symbol__value']" class="valErrMessage">-->
-                    <div *ngIf="memberId && memberId.errors && memberId.errors['']" class="valErrMessage">
+                    <div *ngIf="memberId && memberId.errors && memberId.errors['idNotFound']" class="valErrMessage">
                     Member Id not found.
                   </div>
                 </div>
@@ -196,7 +197,6 @@
                 <div class="input-group mb-4">
                   <input
                     formControlName="newPassword"
-                    (change)="passwordMissmatch()"
                     class="form-control shadow"
                     type="password"
                     placeholder="Password"
@@ -222,7 +222,6 @@
                 <div class="input-group mb-4">
                   <input
                     formControlName="confirmPassword"
-                    (change)="passwordMissmatch()"
                     class="form-control shadow"
                     type="password"
                     placeholder="Re-type Password"
@@ -239,7 +238,7 @@
                   </span>
                 </div>
 
-                <div *ngIf = getMatchingValidator() class="valErrMessage">Passwords don't match.</div>
+                <div *ngIf = "signUp.errors && signUp.errors['noMatch']" class="valErrMessage">Passwords don't match.</div>
 
                 <div class="row pt-5 gy-3">
                   <button (click)="signUpUser()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Sign Up</button>
@@ -321,13 +320,13 @@
               <div class="row-col">
                 <form [formGroup]="forgotPassword" class="row">
 
+                  <div *ngIf="memberIdForgotPass?.pending">Searching for member id...</div>
                   <div *ngIf="memberIdForgotPass?.touched && memberIdForgotPass?.invalid">
                     <div *ngIf="memberIdForgotPass && memberIdForgotPass.errors && memberIdForgotPass.errors['required']"
                          class="valErrMessage">
                       Member Id is required.
                     </div>
-                    <!--                  <div *ngIf="memberId && memberId.errors && memberId.errors['__zone_symbol__value']" class="valErrMessage">-->
-                    <div *ngIf="memberIdForgotPass && memberIdForgotPass.errors && memberIdForgotPass.errors['']" class="valErrMessage">
+                    <div *ngIf="memberIdForgotPass && memberIdForgotPass.errors && memberIdForgotPass.errors['idNotFound']" class="valErrMessage">
                       Member Id not found.
                     </div>
                   </div>
@@ -431,7 +430,7 @@
                   </span>
                   </div>
 
-                  <div *ngIf = getMatchingValidator() class="valErrMessage">Passwords don't match.</div>
+                  <div *ngIf = "forgotPassword.errors && forgotPassword.errors['noMatch']" class="valErrMessage">Passwords don't match.</div>
 
                   <div class="row pt-5 gy-3">
                     <button (click)="signUpUser()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Change Password</button>
