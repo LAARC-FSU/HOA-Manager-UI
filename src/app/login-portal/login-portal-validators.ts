@@ -3,7 +3,6 @@ import {
   AsyncValidatorFn,
   ValidationErrors,
   ValidatorFn,
-  FormControl
 } from "@angular/forms";
 
 export class LoginPortalValidators{
@@ -32,7 +31,7 @@ export class LoginPortalValidators{
   static validMemberId(array: string[]): AsyncValidatorFn {
     return (control: AbstractControl): Promise<ValidationErrors  | null> => {
 
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         setTimeout(() => {
           const id = control.value;
           if (!array.includes(id) && id !== '') {
