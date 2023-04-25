@@ -49,9 +49,9 @@ export class LoginPortalComponent {
 
 
   forgotEmail = new FormGroup({
-    memberIdForgotEmail: new  FormControl('',Validators.required),
+    memberIdForgotEmail: new  FormControl('',[Validators.required], [LoginPortalValidators.validMemberId(this.validIds)]),
   })
-  get memberIdForgotEmail() { return this.forgotEmail.get('memberId');}
+  get memberIdForgotEmail() { return this.forgotEmail.get('memberIdForgotEmail');}
 
   forgotPassword = new FormGroup({
     memberIdForgotPass: new FormControl('', [Validators.required], [LoginPortalValidators.validMemberId(this.validIds)]),
@@ -137,6 +137,7 @@ export class LoginPortalComponent {
     // this.users.push(this.user);
     // this.clearUser();
     // this.log(this.users[0]);
+    this.mode = Mode.login;
   }
   clearUser(){
     this.user.memberId = '';

@@ -29,7 +29,6 @@ export class LoginPortalValidators{
      }
    }
 
-
   static validMemberId(array: string[]): AsyncValidatorFn {
     return (control: AbstractControl): Promise<ValidationErrors  | null> => {
 
@@ -52,26 +51,5 @@ export class LoginPortalValidators{
       });
     }
   }
-
-  // static validMemberId(control: AbstractControl): Promise<ValidationErrors | null> {
-  //   const id = control.value;
-  //   return new Promise((resolve, reject) => {
-  //     setTimeout(() => {
-  //       if (id !== '1111' && id !== '') {
-  //         const err = { idNotFound: true };
-  //         control.setErrors(err);
-  //         resolve(err);
-  //       } else {
-  //         const noMatchError = control.hasError('idNotFound');
-  //         if (control.errors) {
-  //           delete control.errors['idNotFound'];
-  //           control.updateValueAndValidity();
-  //         }
-  //         resolve(null);
-  //       }
-  //     }, 2000);
-  //   });
-  // }
-
 
 }
