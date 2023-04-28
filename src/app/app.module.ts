@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPortalComponent } from './login-portal/login-portal.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { MakeScheduleComponent } from './make-schedule/make-schedule.component';
+import { TimeFrameComponent } from './make-schedule/time-frame/time-frame.component';
 
 
 
@@ -12,6 +14,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   declarations: [
     AppComponent,
     LoginPortalComponent,
+    MakeScheduleComponent,
+    TimeFrameComponent,
   ],
     imports: [
         BrowserModule,
