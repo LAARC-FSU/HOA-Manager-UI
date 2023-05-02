@@ -1,24 +1,25 @@
 <div class="container col-3">
-  <div class="card" style="background-color: #828FA0">
-    <form class="col-10 m-auto">
+  <div class="card" style="background-color: #828FA0; min-width: 250px">
+    <form class="col-10 m-auto min">
       <div class="form-group">
         <label class="col-form-label" for="yearSelect">Select Year</label>
-        <select ngModel [(ngModel)]="selection.year" class="form-select" name="yearSelect" id="yearSelect" (ngModelChange)="log(selection)">
-          <option *ngFor="let year of yearSelect" [value]="year">{{year}}</option>
+        <select ngModel [(ngModel)]="yearSelected" (ngModelChange)= "onYearChange()" class="form-select" name="yearSelect" id="yearSelect">
+          <option *ngFor="let year of years" [value]="year">{{year}}</option>
         </select>
       </div>
       <div class="form-group">
         <label class="col-form-label" for="monthSelect">Select Month</label>
-        <select ngModel [(ngModel)]="selection.month" class="form-select" name="monthSelect" id="monthSelect" (ngModelChange)="log(selection)">
-          <option *ngFor="let month of monthSelect" [value]="month">{{month}}</option>
+        <select ngModel [(ngModel)]="monthSelected" (ngModelChange)= "onYearChange()" class="form-select" name="monthSelect" id="monthSelect">
+          <option *ngFor="let month of months" [value]="month">{{month}}</option>
         </select>
       </div>
       <div class="form-group pb-4">
         <label class="col-form-label" for="weekSelect">Select Week</label>
-        <select ngModel [(ngModel)]="selection.week" class="form-select" name="weekSelect" id="weekSelect" (ngModelChange)="log(selection)">
-          <option *ngFor="let week of weekSelect" [value]="week">{{week}}</option>
+        <select ngModel [(ngModel)]="weekSelected" class="form-select" name="weekSelect" id="weekSelect">
+          <option *ngFor="let week of weeks" [value]="week.weekText">{{ week.weekText }}</option>
         </select>
       </div>
     </form>
   </div>
 </div>
+

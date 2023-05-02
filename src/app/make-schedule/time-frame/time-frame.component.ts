@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'time-frame',
@@ -7,11 +7,16 @@ import {FormBuilder, FormGroup} from "@angular/forms";
   styleUrls: ['./time-frame.component.scss']
 })
 export class TimeFrameComponent implements OnInit{
-  yearSelect: Array<number> = [];
-  monthSelect: Array<string> = [];
-  weekSelect: Array<string> = [];
+  years: Array<string> = [];
+  months: Array<string> = [];
+  weeks: Array<any> = [];
   date: Date = new  Date();
-  months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  monthNameShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+  yearSelected =  '';
+  monthSelected = '';
+  weekSelected = '';
 
   selection = {
     year:'',
@@ -22,32 +27,85 @@ export class TimeFrameComponent implements OnInit{
   ngOnInit() {
     this.populateYear();
     this.populateMonth();
-    this.selection.year = this.yearSelect[0].toString();
-    this.selection.month = this.months[this.date.getMonth()]
+    this.populateWeek();
+    this.yearSelected =  this.years[0];
+    this.monthSelected = this.monthNames[this.date.getMonth()];
+    this.weekSelected = this.weeks[0].weekText;
   }
   populateYear(){
     let currYear = this.date.getFullYear();
-    this.yearSelect.push(currYear);
+    this.years.push(currYear.toString());
     for (let i = 0; i < 3; i++){
       currYear += 1;
-      this.yearSelect.push(currYear);
+      this.years.push(currYear.toString());
     }
   }
   populateMonth(){
     let currMonth = this.date.getMonth()
-    console.log(this.selection.year === this.date.getFullYear().toString())
-    if (this.selection.year === this.date.getFullYear().toString()){
-      this.monthSelect = this.months.splice(currMonth);
-    }else{this.monthSelect = this.months;}
+    if (this.yearSelected === this.date.getFullYear().toString() || !this.yearSelected){
+      this.months = this.monthNames.slice(currMonth);
+    }else{this.months = this.monthNames;}
   }
   populateWeek(){
-    let day = this.date.getDay();
-    let sunday = new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate() - day);
-    let saturday = new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate() - day + 6);
+    // Cleaning array
+    this.weeks = [];
+    // Variables to set date
+    let year: number;
+    let month: number;
+    // Default values
+    if (!this.yearSelected && !this.monthSelected){
+      year = this.date.getFullYear();
+      month = this.date.getMonth();
+    }
+    // User input values
+    else{
+      year = parseInt(this.yearSelected);
+      month = this.monthNames.indexOf(this.monthSelected);
+    }
+    // Variables needed to calculate sunday and saturday
+    let today= new Date();
+    let firstDayOfTheMonth = new Date(year,month);
+    let dayOfWeek = firstDayOfTheMonth.getDay();
+    // Calculating sunday
+    let sunday = new Date(firstDayOfTheMonth.setDate(firstDayOfTheMonth.getDate()-dayOfWeek))
+    // Resetting
+    firstDayOfTheMonth = new Date(year,month);
 
+    let saturday = new Date(firstDayOfTheMonth.setDate(firstDayOfTheMonth.getDate() + 6 - dayOfWeek))
+
+    for (let i = 0; i < 5; i++) {
+      let weekString = this.monthNameShort[sunday.getMonth()] + ', ' + sunday.getDate() + ' ~ ' + this.monthNameShort[saturday.getMonth()] + ', ' + saturday.getDate()
+      let week: { weekNum: number, weekText: string, weekDays: Date[] } = {
+        weekNum: i + 1,
+        weekText: weekString,
+        weekDays: []
+      };
+      week.weekDays.push(sunday);
+      let temp = new Date(sunday);
+      for (let j = 0; j < 5; j++) {
+        let day = new Date(temp.setDate(temp.getDate() + 1));
+        week.weekDays.push(day);
+      }
+      week.weekDays.push(saturday);
+
+      sunday = new Date(sunday.setDate(sunday.getDate() + 7));
+      saturday = new Date(saturday.setDate(saturday.getDate() + 7));
+
+      this.log(week.weekDays[0])
+      this.log(today)
+      if (today < week.weekDays[0]) {
+        this.weeks.push(week)
+      }
+    }
   }
+  onYearChange(){
+    this.populateMonth();
+    this.populateWeek()
+  }
+
   log(x:any){
     console.log(x);
   }
 
+  protected readonly console = console;
 }
