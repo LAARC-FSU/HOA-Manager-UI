@@ -7,7 +7,7 @@ import { LoginPortalComponent } from './login-portal/login-portal.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MakeScheduleComponent } from './make-schedule/make-schedule.component';
 import { TimeFrameComponent } from './make-schedule/time-frame/time-frame.component';
-
+import { ShiftMakerComponent } from './make-schedule/shift-maker/shift-maker.component';
 
 
 @NgModule({
@@ -16,6 +16,7 @@ import { TimeFrameComponent } from './make-schedule/time-frame/time-frame.compon
     LoginPortalComponent,
     MakeScheduleComponent,
     TimeFrameComponent,
+    ShiftMakerComponent,
   ],
     imports: [
         BrowserModule,
