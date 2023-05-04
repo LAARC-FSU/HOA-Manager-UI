@@ -1,0 +1,38 @@
+
+
+
+<div class="container">
+  <input ngModel [(ngModel)]="timeStr" name="timeView" type="text" class="form-control text-center py-2" readonly
+         style="position: relative;
+         z-index: 2">
+  <div  class="container mb-4"
+        style="position: relative;
+        top: -4px;
+        z-index: 1;
+        background-color: #E1EBF6;
+        border-radius: 0 0 10px 10px;
+        border: 1px solid #828FA0">
+    <div class="row g-1 py-2 justify-content-center">
+      <div class="col">
+        <select ngModel [(ngModel)]="timeSelected.hour" class="form-control" name="hours">
+          <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
+        </select>
+      </div>
+      <div class="col-1">
+        <label class=" col-form-label">:</label>
+      </div>
+      <div class="col">
+        <select ngModel [(ngModel)]="timeSelected.minute" class="form-control" name="minutes">
+          <option *ngFor="let minute of minutes" [value]="minute">{{minute}}</option>
+        </select>
+      </div>
+      <div class="col-4">
+        <select ngModel [(ngModel)]="timeSelected.meridian" class="form-control" name="meridian">
+          <option>am</option>
+          <option>pm</option>
+        </select>
+      </div>
+  </div>
+  </div>
+</div>
+

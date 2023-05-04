@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MakeScheduleComponent } from './make-schedule/make-schedule.component';
 import { TimeFrameComponent } from './make-schedule/time-frame/time-frame.component';
 import { ShiftMakerComponent } from './make-schedule/shift-maker/shift-maker.component';
+import { TimePickerComponent } from './make-schedule/time-picker/time-picker.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ShiftMakerComponent } from './make-schedule/shift-maker/shift-maker.com
     MakeScheduleComponent,
     TimeFrameComponent,
     ShiftMakerComponent,
+    TimePickerComponent,
   ],
     imports: [
         BrowserModule,
