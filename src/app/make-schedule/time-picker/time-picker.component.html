@@ -2,9 +2,13 @@
 
 
 <div class="container">
-  <input ngModel [(ngModel)]="timeStr" name="timeView" type="text" class="form-control text-center py-2" readonly
+  <input type="text" [value]='timeStr' class="form-control text-center py-2" readonly
          style="position: relative;
-         z-index: 2">
+         z-index: 2"
+         data-bs-toggle="collapse"
+         data-bs-target="#panel"
+         aria-expanded= "false"
+         aria-controls="panel">
   <div  class="container mb-4"
         style="position: relative;
         top: -4px;
@@ -12,9 +16,9 @@
         background-color: #E1EBF6;
         border-radius: 0 0 10px 10px;
         border: 1px solid #828FA0">
-    <div class="row g-1 py-2 justify-content-center">
+    <div class="row g-1 pt-4 pb-3 justify-content-center collapse" id="panel">
       <div class="col">
-        <select ngModel [(ngModel)]="timeSelected.hour" class="form-control" name="hours">
+        <select ngModel [(ngModel)]="timeSelected.hour" (change)="update()" #hour class="form-control" name="hours">
           <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
         </select>
       </div>
@@ -22,17 +26,17 @@
         <label class=" col-form-label">:</label>
       </div>
       <div class="col">
-        <select ngModel [(ngModel)]="timeSelected.minute" class="form-control" name="minutes">
+        <select ngModel [(ngModel)]="timeSelected.minute" (change)="update()" class="form-control" name="minutes">
           <option *ngFor="let minute of minutes" [value]="minute">{{minute}}</option>
         </select>
       </div>
       <div class="col-4">
-        <select ngModel [(ngModel)]="timeSelected.meridian" class="form-control" name="meridian">
+        <select ngModel [(ngModel)]="timeSelected.meridian" (change)="update()" class="form-control" name="meridian">
           <option>am</option>
           <option>pm</option>
         </select>
       </div>
-  </div>
+    </div>
   </div>
 </div>
 

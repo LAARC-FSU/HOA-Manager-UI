@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Time} from "@angular/common";
 
 @Component({
@@ -6,27 +6,28 @@ import { Time} from "@angular/common";
   templateUrl: './time-picker.component.html',
   styleUrls: ['./time-picker.component.scss']
 })
-export class TimePickerComponent {
-  panelOpen = false;
+export class TimePickerComponent implements OnInit {
+  panelOpen = true;
   hours=['01','02','03','04','05','06','07','08','09','10','11','12'];
   minutes = ["00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"];
+  timeStr ='';
 
   timeSelected = {
-    hour: '',
-    minute: '',
-    meridian: ''
+    hour: '09',
+    minute: '00',
+    meridian: 'am'
   };
-
-  timeStr = this.timeSelected.hour + ' : ' + this.timeSelected.minute
-    + ' ' + this.timeSelected.meridian;
-
-  setHour(hour:string){
-    this.timeSelected.hour = hour;
+  ngOnInit(){
+    this.update();
   }
-  setMinute(hour:string){
-    this.timeSelected.minute = hour;
+
+  update(){
+    this.timeStr = this.timeSelected.hour + ' : ' + this.timeSelected.minute
+      + ' ' + this.timeSelected.meridian;
   }
-  setMeridian(hour:string){
-    this.timeSelected.meridian = hour;
+
+  log(x:any){
+    console.log(x);
+    console.log(this.timeSelected.hour);
   }
 }
