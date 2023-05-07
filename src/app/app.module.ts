@@ -18,7 +18,7 @@ import { TimePickerComponent } from './make-schedule/time-picker/time-picker.com
     MakeScheduleComponent,
     TimeFrameComponent,
     ShiftMakerComponent,
-    TimePickerComponent,
+    TimePickerComponent
   ],
     imports: [
         BrowserModule,

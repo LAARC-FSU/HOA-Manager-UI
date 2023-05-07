@@ -1,16 +1,26 @@
-<div class="container col-4">
-  <div class="card" style="background-color: #F5F5F5; min-width: 260px">
-    <form class="col-10 m-auto min">
-      <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" name="shiftOff" id="shiftOff" style="background-color:#828FA0">
-      </div>
-      <div>
-        <time-picker></time-picker>
-      </div>
-      <div>
-        <time-picker></time-picker>
-      </div>
-
+<div class="container">
+  <div class="row" style="background-color: #828FA0; min-width: 300px;">
+    <div class="title my-3 text-center" style="color: white">
+      <h3>{{title}}</h3>
+    </div>
+    <div class="card mx-auto mb-4" style="background-color: #F5F5F5; max-width: 320px; border-radius: 20px">
+      <form class="col-10 m-auto my-4">
+        <div class="row">
+          <h5 class="col-9 text-end">Turn Shift On/Off</h5>
+          <div class=" col form-switch">
+            <input ngModel [(ngModel)]="_switchToggle" (input)="onSwitchToggle($event)" class="form-check-input" type="checkbox" name="onOff" id="onOff">
+          </div>
+        </div>
+        <div class="row mt-3 mb-5">
+          <label class="row-cols mb-2" for="shiftStart">Start Time</label>
+          <time-picker (time)="receiveTime($event)" [shiftIsOff]= "switchToggle" [componentId]="id + '-start'" id="shiftStart"></time-picker>
+        </div>
+        <div class="row mb-3">
+          <label class="row-cols mb-2" for="shiftEnd">End Time</label>
+          <time-picker (time)="receiveTime($event)" [shiftIsOff]="switchToggle" [componentId]="id + '-end'" id="shiftEnd"></time-picker>
+        </div>
       </form>
+    </div>
   </div>
 </div>
+
