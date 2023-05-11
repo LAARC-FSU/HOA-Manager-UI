@@ -108,7 +108,6 @@ export class TimeFrameComponent implements OnInit{
     firstDayOfTheMonth = new Date(year,month);
 
     let saturday = new Date(firstDayOfTheMonth.setDate(firstDayOfTheMonth.getDate() + 6 - dayOfWeek))
-    let weekSkip= 0;
 
     for (let i = 0; i < 5; i++) {
 
