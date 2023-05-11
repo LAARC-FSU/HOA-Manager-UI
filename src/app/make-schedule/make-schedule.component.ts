@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class MakeScheduleComponent {
   shiftTime:any[]=[];
   allShiftsTime:any=[];
+  timeFrame:any ={};
   numberOfShifts = 3;
   getShiftTime($event:any){
     this.shiftTime = $event;
@@ -15,7 +16,10 @@ export class MakeScheduleComponent {
     if (this.allShiftsTime.length < this.numberOfShifts){
       this.allShiftsTime.push(this.shiftTime);
     }
-    console.log(this.allShiftsTime)
+  }
+  getTimeFrame($event:any){
+    this.timeFrame = $event;
+    // console.log(this.timeFrame)
   }
 }
 
