@@ -9,6 +9,7 @@ import { MakeScheduleComponent } from './make-schedule/make-schedule.component';
 import { TimeFrameComponent } from './make-schedule/time-frame/time-frame.component';
 import { ShiftMakerComponent } from './make-schedule/shift-maker/shift-maker.component';
 import { TimePickerComponent } from './make-schedule/time-picker/time-picker.component';
+import { EmployeeScheduleComponent } from './make-schedule/employee-schedule/employee-schedule.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { TimePickerComponent } from './make-schedule/time-picker/time-picker.com
     MakeScheduleComponent,
     TimeFrameComponent,
     ShiftMakerComponent,
-    TimePickerComponent
+    TimePickerComponent,
+    EmployeeScheduleComponent
   ],
     imports: [
         BrowserModule,
