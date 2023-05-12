@@ -16,10 +16,14 @@
       <div class="form-group pb-4">
         <label class="col-form-label" for="weekSelect">Select Week</label>
         <select [(ngModel)]="weekSelected" (ngModelChange)= "onYearChange()" class="form-select" name="weekSelect" id="weekSelect">
-          <option *ngFor="let week of weeks" [value]="week.weekText">{{ week.weekText }}</option>
+          <option *ngFor="let week of weeks; trackBy: identify" [value]="week.weekText">{{week.weekText}}</option>
         </select>
       </div>
     </form>
   </div>
 </div>
-
+{{ weekSelected}}
+<br>
+{{monthSelected}}
+<br>
+{{yearSelected}}

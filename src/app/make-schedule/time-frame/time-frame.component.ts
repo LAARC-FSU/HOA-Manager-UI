@@ -1,16 +1,24 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
+interface Week {
+  weekNum: number;
+  weekText: string;
+  weekDays: Date[];
+}
+
 @Component({
   selector: 'time-frame',
   templateUrl: './time-frame.component.html',
   styleUrls: ['./time-frame.component.scss']
 })
+
 export class TimeFrameComponent implements OnInit{
   get weekSelected(): string {
     return this._weekSelected;
   }
 
   set weekSelected(value: string) {
+    console.log('week was set: ' + value);
     this._weekSelected = value;
   }
   get monthSelected(): string {
@@ -29,10 +37,22 @@ export class TimeFrameComponent implements OnInit{
   }
   years: Array<string> = [];
   months: Array<string> = [];
-  weeks: Array<any> = [[]];
+  weeks: Array<Week> = []
   date: Date = new  Date();
   monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   monthNameShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+
+  selection:{ year: string, month: string, week: Week } = {
+    year: '',
+    month: '',
+    week: {
+      weekNum: 0,
+      weekText: '',
+      weekDays: []
+    }
+  }
+
 
   private _yearSelected =  '';
   private _monthSelected = '';
@@ -45,16 +65,11 @@ export class TimeFrameComponent implements OnInit{
     this.populateMonth();
     this.populateWeek();
     this.timeFrame.emit(this.selection)
-
   }
 
   @Output() timeFrame = new EventEmitter<object>();
 
-  selection = {
-    year:'',
-    month:'',
-    week: []
-  }
+
   sendTimeFrame(){
     this.selection.year = this.yearSelected;
     this.selection.month = this.monthSelected;
@@ -67,7 +82,7 @@ export class TimeFrameComponent implements OnInit{
       currYear += 1;
       this.years.push(currYear.toString());
     }
-    if (!this.selection.month){
+    if (!this.selection.year){
       this.yearSelected =  this.years[0];
       this.selection.year = this.yearSelected;
     }
@@ -83,13 +98,16 @@ export class TimeFrameComponent implements OnInit{
     }
   }
   populateWeek(){
-    // Cleaning array
-    this.weeks = [];
+    console.log(this.weeks)
+    if (this.weeks.length > 0){
+      this.weeks = [];
+    }
     // Variables to set date
     let year: number;
     let month: number;
     // Default values
-    if (!this.yearSelected && !this.monthSelected){
+    if (!this.yearSelected && !this.monthSelected ||
+      this.yearSelected === this.date.getFullYear().toString() && this.monthNames.indexOf(this.monthSelected) < this.date.getMonth()){
       year = this.date.getFullYear();
       month = this.date.getMonth();
     }
@@ -114,7 +132,7 @@ export class TimeFrameComponent implements OnInit{
       let weekString = this.monthNameShort[sunday.getMonth()] + ', ' + sunday.getDate() +
         ' ~ ' + this.monthNameShort[saturday.getMonth()] + ', ' + saturday.getDate()
 
-      const week: { weekNum: number, weekText: string, weekDays: Date[] } = {
+      let week: Week = {
         weekNum: i + 1,
         weekText: weekString,
         weekDays: []
@@ -133,7 +151,10 @@ export class TimeFrameComponent implements OnInit{
 
       // this.weeks.push(week)
       if (today < week.weekDays[0]) {
-        this.weeks.push(week)
+
+        // if (this.weeks.includes(week)){
+          this.weeks.push(week)
+        // }
       }
 
       let tempSunday = new Date(sunday.getTime());
@@ -143,26 +164,29 @@ export class TimeFrameComponent implements OnInit{
       saturday = new Date(tempSaturday.setDate(tempSaturday.getDate() + 7));
 
     }
-    // when I change weeks the right values get emitted but not visually update in the dom.
-    if (!this.weekSelected){
+
+    if (!this.weekSelected || this.yearSelected !== this.selection.year || this.monthSelected !== this.selection.month){
       this.weekSelected = this.weeks[0].weekText;
       this.selection.week = this.weeks[0];
     }
     else{
       for (let week of this.weeks){
-
         if (week.weekText === this.weekSelected){
           this.selection.week = week;
-          console.log(this.selection.week)
         }
       }
     }
+
+    console.log(this.weeks)
   }
   onYearChange(){
     this.populateMonth();
+
     this.populateWeek()
 
   }
-
+  identify(index: number, item: Week) {
+    return item.weekText;
+  }
   protected readonly console = console;
 }
