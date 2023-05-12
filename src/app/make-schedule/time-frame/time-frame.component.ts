@@ -18,7 +18,6 @@ export class TimeFrameComponent implements OnInit{
   }
 
   set weekSelected(value: string) {
-    console.log('week was set: ' + value);
     this._weekSelected = value;
   }
   get monthSelected(): string {
@@ -100,7 +99,6 @@ export class TimeFrameComponent implements OnInit{
     }
   }
   populateWeek(){
-    console.log(this.weeks)
     if (this.weeks.length > 0){
       this.weeks = [];
     }
@@ -153,10 +151,7 @@ export class TimeFrameComponent implements OnInit{
 
       // this.weeks.push(week)
       if (today < week.weekDays[0]) {
-
-        // if (this.weeks.includes(week)){
           this.weeks.push(week)
-        // }
       }
 
       let tempSunday = new Date(sunday.getTime());
@@ -178,11 +173,8 @@ export class TimeFrameComponent implements OnInit{
         }
       }
     }
-
-    console.log(this.weeks)
   }
-  onYearChange(){
-    this.populateMonth();
+  onYearChange(){this.populateMonth();
     this.populateWeek()
 
   }
