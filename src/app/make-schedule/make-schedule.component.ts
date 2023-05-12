@@ -19,7 +19,7 @@ export class MakeScheduleComponent {
   }
   getTimeFrame($event:any){
     this.timeFrame = $event;
-    // console.log(this.timeFrame)
+    console.log(this.timeFrame)
   }
 }
 

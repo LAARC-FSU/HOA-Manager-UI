@@ -89,8 +89,10 @@ export class TimeFrameComponent implements OnInit{
   }
   populateMonth(){
     let currMonth = this.date.getMonth()
-    if (this.yearSelected === this.date.getFullYear().toString() || !this.yearSelected){
+    if (this.yearSelected === this.date.getFullYear().toString() && this.months.indexOf(this.monthSelected) < this.date.getMonth()|| !this.yearSelected){
       this.months = this.monthNames.slice(currMonth);
+      this.monthSelected = this.months[0];
+
     }else{this.months = this.monthNames;}
     if (!this.selection.month){
       this.monthSelected =  this.months[0];
@@ -181,12 +183,12 @@ export class TimeFrameComponent implements OnInit{
   }
   onYearChange(){
     this.populateMonth();
-
     this.populateWeek()
 
   }
-  identify(index: number, item: Week) {
+  identifyWeek(index: number, item: Week) {
     return item.weekText;
   }
+
   protected readonly console = console;
 }
