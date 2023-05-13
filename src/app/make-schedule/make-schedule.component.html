@@ -4,7 +4,7 @@
       <time-frame (timeFrame)="getTimeFrame($event)"></time-frame>
     </div>
     <div class="col-9 mt-5">
-      <div class="row flex-nowrap">
+      <div class="row flex-nowrap" (change)="buildingShiftsOptions()">
         <div class="col">
           <shift-maker (timeStamps)="getShiftTime($event)" title="First Shift" id="first"></shift-maker>
         </div>
@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="row">
-    <employee-schedule [employeeName]="'Alfredo Borroto'" [shifts]="['first shift', 'second shift', 'third shift', 'off']"></employee-schedule>
+    <employee-schedule [employeeName]="'Alfredo Borroto'" [shifts]="shifts"></employee-schedule>
   </div>
 </div>
 

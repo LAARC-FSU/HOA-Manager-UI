@@ -72,6 +72,7 @@ export class TimeFrameComponent implements OnInit{
   sendTimeFrame(){
     this.selection.year = this.yearSelected;
     this.selection.month = this.monthSelected;
+
    this.timeFrame.emit(this.selection)
   }
   populateYear(){

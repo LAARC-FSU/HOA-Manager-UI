@@ -1,4 +1,4 @@
-import {Component, OnChanges} from '@angular/core';
+import {Component, OnInit, OnChanges} from '@angular/core';
 
 interface shift {
   id: string
@@ -11,14 +11,28 @@ interface shift {
   templateUrl: './make-schedule.component.html',
   styleUrls: ['./make-schedule.component.scss']
 })
-export class MakeScheduleComponent implements OnChanges{
-  firstShiftTime: shift = {id: 'first', start: '', end: ''};
-  secondShiftTime: shift = {id: 'second', start: '', end: ''};
-  thirdShiftTime: shift = {id: 'third', start: '', end: ''};
+export class MakeScheduleComponent implements OnInit{
+  firstShiftTime: shift = {id: 'first shift', start: '', end: ''};
+  secondShiftTime: shift = {id: 'second shift', start: '', end: ''};
+  thirdShiftTime: shift = {id: 'third shift', start: '', end: ''};
   timeFrame: Date[] = [];
+  shifts: string[] = ['off'];
 
-  ngOnChanges() {
+  ngOnInit() {
+    this.buildingShiftsOptions();
+  }
+  buildingShiftsOptions(){
+    this.shifts = ['off'];
 
+    if (this.firstShiftTime.start !== 'shift is off'){
+      this.shifts.push('first shift');
+    }
+    if (this.secondShiftTime.start !== 'shift is off'){
+      this.shifts.push('second shift');
+    }
+    if (this.thirdShiftTime.start !== 'shift is off'){
+      this.shifts.push('third shift');
+    }
   }
 
   getShiftTime($event: any) {
