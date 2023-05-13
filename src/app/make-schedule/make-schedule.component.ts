@@ -17,6 +17,7 @@ export class MakeScheduleComponent implements OnInit{
   thirdShiftTime: shift = {id: 'third shift', start: '', end: ''};
   timeFrame: Date[] = [];
   shifts: string[] = ['off'];
+  schedules: {[key:string]: {}[]} = {};
 
   ngOnInit() {
     this.buildingShiftsOptions();
@@ -35,6 +36,9 @@ export class MakeScheduleComponent implements OnInit{
     }
   }
 
+  getSchedules($event:any){
+    console.log($event)
+  }
   getShiftTime($event: any) {
     switch ($event[0]) {
       case 'first-start':

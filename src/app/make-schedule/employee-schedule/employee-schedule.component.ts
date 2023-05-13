@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 
 interface empSchObj {
   empName: string;
@@ -17,8 +17,9 @@ interface empSchObj {
   templateUrl: './employee-schedule.component.html',
   styleUrls: ['./employee-schedule.component.scss']
 })
-export class EmployeeScheduleComponent implements OnInit {
+export class EmployeeScheduleComponent implements OnInit, OnChanges {
   @Input() shifts: string [] = [];
+  @Input() tempShifts: string [] = [];
   @Input() employeeName = 'test';
   @Output() sendSchedule = new EventEmitter();
 
@@ -47,11 +48,26 @@ export class EmployeeScheduleComponent implements OnInit {
       empSat: 'off',
       empVacation: false
     }
+    this.sendSchedule.emit(this.employeeScheduleObj);
+  }
+  ngOnChanges() {
+    this.onChange();
   }
 
   onChange(){
+    if (this.employeeScheduleObj.empVacation){
+      this.onVacation();
+    }else{
+      this.shifts = this.tempShifts;
+    }
     this.sendSchedule.emit(this.employeeScheduleObj);
   }
+
+  onVacation(){
+    this.shifts = [];
+    this.shifts.push('vacation');
+  }
+
   set name(value: string) {
     this.employeeScheduleObj.empName = value;
   }
