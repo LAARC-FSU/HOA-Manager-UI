@@ -1,80 +1,55 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 
 @Component({
   selector: 'time-picker',
   templateUrl: './time-picker.component.html',
   styleUrls: ['./time-picker.component.scss']
 })
-export class TimePickerComponent implements OnInit {
-  private _shiftIsOff = true;
-  @Input() componentId = '';
-  @Output() time = new EventEmitter<object>();
-  @Input()
-  set shiftIsOff(value: boolean) {
-    this._shiftIsOff = value;
-    if (this.componentId){
-      this.update();
-    }
-  }
 
-  get shiftIsOff(): boolean {
-    return this._shiftIsOff;
-  }
+export class TimePickerComponent implements OnInit, OnChanges {
+  @Input() isOn: boolean = true;
+  @Input() componentId = '';
+  @Output() sendTime = new EventEmitter<object>();
 
   hours=['01','02','03','04','05','06','07','08','09','10','11','12'];
   minutes = ["00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"];
-  timeStr ='';
-  timeSelected = {
-    hour: '09',
-    minute: '00',
-    meridian: 'am',
-    str:'09 : 00 am',
-    id:this.componentId
-  };
 
+  timeSelected = {
+    hour: '',
+    minute: '',
+    meridian: '',
+    str:'',
+    id:''
+  };
   ngOnInit(){
+    this.timeSelected = {
+      hour: '09',
+      minute: '00',
+      meridian: 'am',
+      str: '09 : 00 am',
+      id: this.componentId
+    }
+    this.sendTime.emit([this.timeSelected.id, this.timeSelected.str])
+    // this.update();
+  }
+  ngOnChanges(){
     this.update();
   }
-  get displayText(){
-    if (!this.shiftIsOff){
-      this.timeStr = 'shift is off';
-    }else{
-      this.timeStr = this.timeSelected.hour + ' : ' + this.timeSelected.minute
-        + ' ' + this.timeSelected.meridian;
-      this.timeSelected.str = this.timeStr;
-    }
-    return this.timeStr;
-  }
   update(){
-    if (this._shiftIsOff){
-      if (this.timeSelected.hour === '--'){
-        this.timeSelected.hour = '09';
-        this.timeSelected.minute = '00';
-        this.timeSelected.meridian = 'am';
-      }
-      this.timePickerReset()
-      console.log('reset')
+    this.updateScreen();
+    if (this.timeSelected.id && this.timeSelected.str){
+      this.sendTime.emit([this.timeSelected.id, this.timeSelected.str])
     }
-    else {
-      console.log('clear')
-      this.timePickerClear()
-      this.time.emit(this.timeSelected);
+  }
+  updateScreen(){
+    if(this.isOn){
+      this.buildTimeStr()
+    }else{
+      this.timeSelected.str = 'shift is off'
     }
-
   }
-  timePickerClear(){
-    this.timeStr = '-- : -- --';
-    this.timeSelected.str = this.timeStr;
-    this.timeSelected.id = this.componentId;
-    this.timeSelected.hour = '--';
-    this.timeSelected.minute = '--';
-    this.timeSelected.meridian = '--';
-  }
-  timePickerReset(){
-    this.timeStr = this.timeSelected.hour + ' : ' + this.timeSelected.minute
+  buildTimeStr(){
+    this.timeSelected.str = this.timeSelected.hour + ' : ' + this.timeSelected.minute
       + ' ' + this.timeSelected.meridian;
-    this.timeSelected.str = this.timeStr;
-    this.timeSelected.id = this.componentId;
-    this.time.emit(this.timeSelected);
   }
 }

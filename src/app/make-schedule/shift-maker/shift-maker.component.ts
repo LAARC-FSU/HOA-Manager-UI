@@ -14,32 +14,24 @@ export class ShiftMakerComponent implements OnInit{
   shiftTime:any[]=[];
 
   ngOnInit() {
-    this.sendTimeShift();
+    this.sendTimeShift(this.shiftTime);
   }
   get switchToggle(): boolean{
     return this._switchToggle;
   }
-  onSwitchToggle(event:Event){
-    this._switchToggle = (event.target as HTMLInputElement).checked;
+  onSwitchToggle($event: any){
+    this._switchToggle = ($event.target as HTMLInputElement).checked;
+    this.sendSwitchToggle();
   }
-  receiveTime($event:any){
-    let timeStamp = $event;
-    console.log(timeStamp)
-    if (this.shiftTime.length < 2){
-      this.shiftTime.push(timeStamp);
-    }
-    else{
-      for (let i = 0; i < this.shiftTime.length; i++){
+  sendSwitchToggle(){
+    return this._switchToggle;
+  }
 
-        if (this.shiftTime[i].id === timeStamp.id){
-          this.shiftTime[i] = timeStamp;
-        }
-      }
-    }
-    this.timeStamps.emit(this.shiftTime)
+  receiveTime($event:any){
+    this.sendTimeShift($event);
   }
-  sendTimeShift(){
-    this.timeStamps.emit(this.shiftTime);
+  sendTimeShift(value: any){
+    this.timeStamps.emit(value);
   }
 
 }

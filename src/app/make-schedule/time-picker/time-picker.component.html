@@ -3,7 +3,7 @@
 
 <div  class="row" style="position: relative">
 
-  <button class="form-control text-center py-2" readonly [disabled]="!shiftIsOff"
+  <button class="form-control text-center py-2" readonly [disabled]="!isOn"
           data-bs-toggle="collapse"
           data-bs-hide = "panelIsOpen"
           [attr.data-bs-target]= "'#'+componentId"
@@ -12,7 +12,7 @@
           style="position: relative;
           z-index: 1;
            border-radius: 0 0 0 0;
-           border-width: 1px">{{displayText}}</button>
+           border-width: 1px">{{timeSelected.str}}</button>
 
   <div  class="container mb-4 shadow"
         style="position: absolute;
@@ -20,7 +20,7 @@
         top: 40px;
         background-color: #E1EBF6;
         border: 1px solid #828FA0">
-    <div class="row g-1 py-2 justify-content-center collapse" (change)="update()" [attr.id]=componentId [hidden]="!shiftIsOff">
+    <div class="row g-1 py-2 justify-content-center collapse" (change)="update()" [attr.id]=componentId [hidden]="!isOn">
       <div class="col">
         <select ngModel [(ngModel)]="timeSelected.hour"  #hour class="form-control" name="hours">
           <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
