@@ -87,12 +87,17 @@ export class TimeFrameComponent implements OnInit{
     }
   }
   populateMonth(){
+
     let currMonth = this.date.getMonth()
-    if (this.yearSelected === this.date.getFullYear().toString() && this.months.indexOf(this.monthSelected) < this.date.getMonth()|| !this.yearSelected){
+    if (this.yearSelected === this.date.getFullYear().toString() && (this.monthNames.indexOf(this.monthSelected) < this.date.getMonth() || !this.yearSelected)){
       this.months = this.monthNames.slice(currMonth);
       this.monthSelected = this.months[0];
 
-    }else{this.months = this.monthNames;}
+    }
+    else if (this.yearSelected !== this.date.getFullYear().toString()){
+      this.months = this.monthNames;
+    }
+
     if (!this.selection.month){
       this.monthSelected =  this.months[0];
       this.selection.month = this.monthSelected;

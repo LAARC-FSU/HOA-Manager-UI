@@ -1,1 +1,45 @@
-<p>employee-schedule works!</p>
+<div class="container">
+  <div class="row align-items-baseline flex-nowrap" (change)="onChange()">
+    <div class="col">
+      <span style="white-space: nowrap">{{employeeScheduleObj.empName}}</span>
+    </div>
+    <div class="col">
+      <select [(ngModel)]="sun" class="form-select">
+        <option *ngFor="let shift of shifts" [value]="shift">{{shift}}</option>
+      </select>
+    </div>
+    <div class="col">
+      <select [(ngModel)]="mon" class="form-select">
+        <option *ngFor="let shift of shifts" [value]="shift">{{shift}}</option>
+      </select>
+    </div>
+    <div class="col">
+      <select [(ngModel)]="tue" class="form-select">
+        <option *ngFor="let shift of shifts" [value]="shift">{{shift}}</option>
+      </select>
+    </div>
+    <div class="col">
+      <select [(ngModel)]="wed" class="form-select">
+        <option *ngFor="let shift of shifts" [value]="shift">{{shift}}</option>
+      </select>
+    </div>
+    <div class="col">
+      <select [(ngModel)]="thu" class="form-select">
+        <option *ngFor="let shift of shifts" [value]="shift">{{shift}}</option>
+      </select>
+    </div>
+    <div class="col">
+      <select [(ngModel)]="fri" class="form-select">
+        <option *ngFor="let shift of shifts" [value]="shift">{{shift}}</option>
+      </select>
+    </div>
+    <div class="col">
+      <select [(ngModel)]="sat" class="form-select">
+        <option *ngFor="let shift of shifts" [value]="shift">{{shift}}</option>
+      </select>
+    </div>
+    <div class="col">
+      <input  class="form-check-input" type="checkbox">
+    </div>
+  </div>
+</div>
