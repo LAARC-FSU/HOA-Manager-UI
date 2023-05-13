@@ -18,6 +18,28 @@ export class MakeScheduleComponent implements OnInit{
   timeFrame: Date[] = [];
   shifts: string[] = ['off'];
   schedules: {[key:string]: {}[]} = {};
+  employees: string[] = [
+    'John Doe',
+    'Jane Smith',
+    'Michael Johnson',
+    'Emily Davis',
+    'Robert Wilson',
+    'Sarah Thompson',
+    'Daniel Anderson',
+    'Jennifer Thomas',
+    'David Martinez',
+    'Jessica Lee',
+    'Andrew Taylor',
+    'Nicole Clark',
+    'Matthew Rodriguez',
+    'Olivia Hall',
+    'William Walker',
+    'Sophia Young',
+    'James Lewis',
+    'Ava Turner',
+    'Christopher Baker',
+    'Mia Mitchell'
+  ];
 
   ngOnInit() {
     this.buildingShiftsOptions();
@@ -26,13 +48,13 @@ export class MakeScheduleComponent implements OnInit{
     this.shifts = ['off'];
 
     if (this.firstShiftTime.start !== 'shift is off'){
-      this.shifts.push('first shift');
+      this.shifts.push('1st shift');
     }
     if (this.secondShiftTime.start !== 'shift is off'){
-      this.shifts.push('second shift');
+      this.shifts.push('2nd shift');
     }
     if (this.thirdShiftTime.start !== 'shift is off'){
-      this.shifts.push('third shift');
+      this.shifts.push('3rd shift');
     }
   }
 

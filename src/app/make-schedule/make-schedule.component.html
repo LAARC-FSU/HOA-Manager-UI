@@ -17,11 +17,21 @@
       </div>
     </div>
   </div>
-<!--  <div class="row">-->
-<!--    <employee-schedule (sendSchedule)="getSchedules($event)" [employeeName]="'Alfredo Borroto'" [shifts]="shifts" [tempShifts]="shifts"></employee-schedule>-->
-<!--  </div>-->
+  <!--  <div class="row">-->
+  <!--    <employee-schedule (sendSchedule)="getSchedules($event)" [employeeName]="'Alfredo Borroto'" [shifts]="shifts" [tempShifts]="shifts"></employee-schedule>-->
+  <!--  </div>-->
+
+  <div class="row overflow-auto" style="height: 600px; width: 1320px">
+    <ul class="list-group">
+      <li *ngFor="let employee of employees; let even = even" class="list-group-item"
+          [ngClass]="{ 'list-group-item-primary': even, 'list-group-item-light': !even }"
+      style="color:#454E5C; border-radius: 0">
+        <employee-schedule (sendSchedule)="getSchedules($event)" [employeeName]="employee" [shifts]="shifts"
+                           [tempShifts]="shifts"></employee-schedule>
+      </li>
+    </ul>
+  </div>
+
 
 </div>
 
-
-{{timeFrame[0]|json}}

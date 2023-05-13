@@ -139,6 +139,4 @@ export class EmployeeScheduleComponent implements OnInit, OnChanges {
   get vacation(): boolean {
     return this.employeeScheduleObj.empVacation;
   }
-
-
 }
