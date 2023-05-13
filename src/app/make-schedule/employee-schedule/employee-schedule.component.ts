@@ -20,7 +20,7 @@ interface empSchObj {
 export class EmployeeScheduleComponent implements OnInit, OnChanges {
   @Input() shifts: string [] = [];
   @Input() tempShifts: string [] = [];
-  @Input() employeeName = 'test';
+  @Input() employeeName = '';
   @Output() sendSchedule = new EventEmitter();
 
   // employeeSchedule: FormGroup;
@@ -48,7 +48,7 @@ export class EmployeeScheduleComponent implements OnInit, OnChanges {
       empSat: 'off',
       empVacation: false
     }
-    this.sendSchedule.emit(this.employeeScheduleObj);
+    this.sendEmployeeSchedule()
   }
   ngOnChanges() {
     this.onChange();
@@ -60,9 +60,14 @@ export class EmployeeScheduleComponent implements OnInit, OnChanges {
     }else{
       this.shifts = this.tempShifts;
     }
-    this.sendSchedule.emit(this.employeeScheduleObj);
+    this.sendEmployeeSchedule()
   }
 
+  sendEmployeeSchedule(){
+    if (this.employeeScheduleObj.empName){
+      this.sendSchedule.emit(this.employeeScheduleObj);
+    }
+  }
   onVacation(){
     this.shifts = [];
     this.shifts.push('vacation');

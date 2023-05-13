@@ -1,9 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
-interface shift {
+interface Shift {
   id: string
   start: string;
   end: string;
+}
+interface Schedule {
+  timeFrame: Date[];
+  firstShiftTime: Shift;
+  secondShiftTime: Shift;
+  thirdShiftTime: Shift;
+  schedules: {[key:string]: {}[]};
 }
 
 @Component({
@@ -12,12 +19,20 @@ interface shift {
   styleUrls: ['./make-schedule.component.scss']
 })
 export class MakeScheduleComponent implements OnInit{
-  firstShiftTime: shift = {id: 'first shift', start: '', end: ''};
-  secondShiftTime: shift = {id: 'second shift', start: '', end: ''};
-  thirdShiftTime: shift = {id: 'third shift', start: '', end: ''};
-  timeFrame: Date[] = [];
+  schedule: Schedule = {
+    timeFrame: [],
+    firstShiftTime: {id: 'first shift', start: '', end: ''},
+    secondShiftTime: {id: 'second shift', start: '', end: ''},
+    thirdShiftTime: {id: 'third shift', start: '', end: ''},
+    schedules:  {}
+  };
+  @Output() sendSchedule = new EventEmitter;
+  // firstShiftTime: Shift = {id: 'first shift', start: '', end: ''};
+  // secondShiftTime: Shift = {id: 'second shift', start: '', end: ''};
+  // thirdShiftTime: Shift = {id: 'third shift', start: '', end: ''};
+  // timeFrame: Date[] = [];
+  // schedules: {[key:string]: {}[]} = {};
   shifts: string[] = ['off'];
-  schedules: {[key:string]: {}[]} = {};
   employees: string[] = [
     'John Doe',
     'Jane Smith',
@@ -47,44 +62,44 @@ export class MakeScheduleComponent implements OnInit{
   buildingShiftsOptions(){
     this.shifts = ['off'];
 
-    if (this.firstShiftTime.start !== 'shift is off'){
+    if (this.schedule.firstShiftTime.start !== 'shift is off'){
       this.shifts.push('1st shift');
     }
-    if (this.secondShiftTime.start !== 'shift is off'){
+    if (this.schedule.secondShiftTime.start !== 'shift is off'){
       this.shifts.push('2nd shift');
     }
-    if (this.thirdShiftTime.start !== 'shift is off'){
+    if (this.schedule.thirdShiftTime.start !== 'shift is off'){
       this.shifts.push('3rd shift');
     }
   }
 
   getSchedules($event:any){
-    console.log($event)
+    this.schedule.schedules[$event.empName] = $event;
   }
   getShiftTime($event: any) {
     switch ($event[0]) {
       case 'first-start':
-        this.firstShiftTime.start = $event[1];
+        this.schedule.firstShiftTime.start = $event[1];
         break;
       case 'first-end':
-        this.firstShiftTime.end = $event[1];
+        this.schedule.firstShiftTime.end = $event[1];
         break;
       case 'second-start':
-        this.secondShiftTime.start = $event[1];
+        this.schedule.secondShiftTime.start = $event[1];
         break;
       case 'second-end':
-        this.secondShiftTime.end = $event[1];
+        this.schedule.secondShiftTime.end = $event[1];
         break;
       case 'third-start':
-        this.thirdShiftTime.start = $event[1];
+        this.schedule.thirdShiftTime.start = $event[1];
         break;
       case 'third-end':
-        this.thirdShiftTime.end = $event[1];
+        this.schedule.thirdShiftTime.end = $event[1];
         break;
     }
   }
   getTimeFrame($event: any) {
-    this.timeFrame = $event.week.weekDays;
+    this.schedule.timeFrame = $event.week.weekDays;
   }
 }
 
