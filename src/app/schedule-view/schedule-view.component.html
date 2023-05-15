@@ -1,1 +1,48 @@
-<p>schedule-view works!</p>
+<make-schedule *ngIf="currState===1"></make-schedule>
+
+<div *ngIf="currState===1" class="container" style="font-family: montserrat,serif">
+  <div class="card" style="background-color: #454E5C; color: white">
+    <div class="row ms-4 mt-2">
+      <h6>Schedule</h6>
+    </div>
+    <div class="row-cols">
+      <div class="card" style="background-color: #828FA0; color: white">
+        <div class="row ms-4 my-2 text-center">
+          <div class="col-3"></div>
+          <span class="col">Date</span>
+          <span class="col">Date</span>
+          <span class="col">Date</span>
+          <span class="col">Date</span>
+          <span class="col">Date</span>
+          <span class="col">Date</span>
+          <span class="col">Date</span>
+          <div class="col"></div>
+        </div>
+        <div class="row-cols " style="background-color: #F5F5F5; height: 400px">
+         <div class="row ms-4 mt-2 text-center">
+           <div class="col-3"></div>
+           <div *ngFor="let day of weekDaysHeader" class="col" style="color: black"><span>{{day}}</span></div>
+           <div class="col"></div>
+         </div>
+          <div class="row pb-2">
+            <div class="col-3"></div>
+            <div class="col-8 line" style="border-top: 1px solid #454E5C"></div>
+          </div>
+          <div class="row">
+            <ul class="list-group">
+<!--              <li *ngFor="let employee of employees; let even = even" class="list-group-item"-->
+<!--                  [ngClass]="{ 'list-group-item-primary': even, 'list-group-item-light': !even }"-->
+<!--                  style="color:#454E5C; border-radius: 0">-->
+<!--                <employee-schedule (sendSchedule)="getSchedules($event)" [employeeName]="employee" [shifts]="shifts"-->
+<!--                                   [tempShifts]="shifts"></employee-schedule>-->
+<!--              </li>-->
+            </ul>
+            I am working on displaying the list of schedules in the view schedule component.`
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

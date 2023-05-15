@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 interface Shift {
   id: string
@@ -26,6 +26,7 @@ export class MakeScheduleComponent implements OnInit{
     thirdShiftTime: {id: 'third shift', start: '', end: ''},
     schedules:  {}
   };
+  weekDaysHeader = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   @Output() sendSchedule = new EventEmitter;
   // firstShiftTime: Shift = {id: 'first shift', start: '', end: ''};
   // secondShiftTime: Shift = {id: 'second shift', start: '', end: ''};
