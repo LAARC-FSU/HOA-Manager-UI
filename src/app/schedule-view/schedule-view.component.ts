@@ -1,10 +1,6 @@
 import {Component} from '@angular/core';
 
 
-
-
-enum state { view, make}
-
 @Component({
   selector: 'schedule-view',
   templateUrl: './schedule-view.component.html',
