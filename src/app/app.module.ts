@@ -11,6 +11,7 @@ import { ShiftMakerComponent } from './make-schedule/shift-maker/shift-maker.com
 import { TimePickerComponent } from './make-schedule/time-picker/time-picker.component';
 import { EmployeeScheduleComponent } from './make-schedule/employee-schedule/employee-schedule.component';
 import { ScheduleViewComponent } from './schedule-view/schedule-view.component';
+import { ScheduleDashboardComponent } from './schedule-dashboard/schedule-dashboard.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ScheduleViewComponent } from './schedule-view/schedule-view.component';
     ShiftMakerComponent,
     TimePickerComponent,
     EmployeeScheduleComponent,
-    ScheduleViewComponent
+    ScheduleViewComponent,
+    ScheduleDashboardComponent
   ],
     imports: [
         BrowserModule,
