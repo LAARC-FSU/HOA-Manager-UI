@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ScheduleService} from "../schedule.service";
 
 interface Shift {
   id: string
@@ -56,9 +57,14 @@ export class MakeScheduleComponent implements OnInit{
     'Christopher Baker',
     'Mia Mitchell'
   ];
-
+constructor(private data: ScheduleService) {
+}
   ngOnInit() {
     this.buildingShiftsOptions();
+    this.updateSchedule();
+  }
+  updateSchedule(){
+    this.data.updateSchedule(this.schedule);
   }
   buildingShiftsOptions(){
     this.shifts = ['off'];

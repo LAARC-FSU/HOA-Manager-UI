@@ -17,7 +17,7 @@ interface Schedule {
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class ScheduleService {
   schedule: Schedule = {
     timeFrame: [],
     firstShiftTime: {id: 'first shift', start: '', end: ''},
