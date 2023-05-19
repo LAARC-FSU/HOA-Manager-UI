@@ -1,5 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ScheduleService} from "../schedule.service";
+import {Router} from "@angular/router";
+import {ScheduleDashboardComponent} from "../schedule-dashboard/schedule-dashboard.component";
 
 interface Shift {
   id: string
@@ -57,14 +59,21 @@ export class MakeScheduleComponent implements OnInit{
     'Christopher Baker',
     'Mia Mitchell'
   ];
-constructor(private data: ScheduleService) {
+constructor(private data: ScheduleService, private router: Router) {
 }
   ngOnInit() {
     this.buildingShiftsOptions();
-    this.updateSchedule();
   }
-  updateSchedule(){
-    this.data.updateSchedule(this.schedule);
+  saveSchedule(){
+    this.router.navigateByUrl('schedule-dashboard').then(r => true);
+    this.data.saveSchedule(this.schedule);
+  }
+  postSchedule(){
+  this.data.updateSchedule(this.schedule)
+  this.saveSchedule()
+  }
+  toScheduleDash(){
+
   }
   buildingShiftsOptions(){
     this.shifts = ['off'];
