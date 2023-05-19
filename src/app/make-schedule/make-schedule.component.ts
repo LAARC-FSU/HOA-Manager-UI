@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ScheduleService} from "../schedule.service";
 import {Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {ScheduleDashboardComponent} from "../schedule-dashboard/schedule-dashboard.component";
 
 interface Shift {
@@ -65,7 +66,7 @@ constructor(private data: ScheduleService, private router: Router) {
     this.buildingShiftsOptions();
   }
   saveSchedule(){
-    this.router.navigateByUrl('schedule-dashboard').then(r => true);
+    this.router.navigateByUrl('schedule-dashboard');
     this.data.saveSchedule(this.schedule);
   }
   postSchedule(){
