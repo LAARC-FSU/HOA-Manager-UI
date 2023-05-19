@@ -12,6 +12,7 @@ import {TimePickerComponent} from './make-schedule/time-picker/time-picker.compo
 import {EmployeeScheduleComponent} from './make-schedule/employee-schedule/employee-schedule.component';
 import {ScheduleViewComponent} from './schedule-view/schedule-view.component';
 import {ScheduleDashboardComponent} from './schedule-dashboard/schedule-dashboard.component';
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import {ScheduleDashboardComponent} from './schedule-dashboard/schedule-dashboar
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,21 +1,23 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ScheduleService} from "../schedule.service";
 import {Router} from "@angular/router";
-import {Router} from "@angular/router";
 import {ScheduleDashboardComponent} from "../schedule-dashboard/schedule-dashboard.component";
+import {DatePipe} from "@angular/common";
+import {Schedule} from "../interfaces";
 
-interface Shift {
-  id: string
-  start: string;
-  end: string;
-}
-interface Schedule {
-  timeFrame: Date[];
-  firstShiftTime: Shift;
-  secondShiftTime: Shift;
-  thirdShiftTime: Shift;
-  schedules: {[key:string]: {}[]};
-}
+// interface Shift {
+//   id: string
+//   start: string;
+//   end: string;
+// }
+// interface Schedule {
+//   timeFrameStr:string;
+//   timeFrame: Date[];
+//   firstShiftTime: Shift;
+//   secondShiftTime: Shift;
+//   thirdShiftTime: Shift;
+//   schedules: {[key:string]: {}[]};
+// }
 
 @Component({
   selector: 'make-schedule',
@@ -24,6 +26,7 @@ interface Schedule {
 })
 export class MakeScheduleComponent implements OnInit{
   schedule: Schedule = {
+    timeFrameStr: '',
     timeFrame: [],
     firstShiftTime: {id: 'first shift', start: '', end: ''},
     secondShiftTime: {id: 'second shift', start: '', end: ''},
@@ -60,7 +63,7 @@ export class MakeScheduleComponent implements OnInit{
     'Christopher Baker',
     'Mia Mitchell'
   ];
-constructor(private data: ScheduleService, private router: Router) {
+constructor(private data: ScheduleService, private router: Router, private datePipe: DatePipe) {
 }
   ngOnInit() {
     this.buildingShiftsOptions();
@@ -74,7 +77,7 @@ constructor(private data: ScheduleService, private router: Router) {
   this.saveSchedule()
   }
   toScheduleDash(){
-
+    this.router.navigateByUrl('schedule-dashboard');
   }
   buildingShiftsOptions(){
     this.shifts = ['off'];
@@ -115,8 +118,14 @@ constructor(private data: ScheduleService, private router: Router) {
         break;
     }
   }
+  formatDate(date: Date):string{
+  return this.datePipe.transform(date.toDateString(), 'MMM d, y')!;
+  }
   getTimeFrame($event: any) {
     this.schedule.timeFrame = $event.week.weekDays;
+    let sunday = this.schedule.timeFrame[0];
+    let saturday = this.schedule.timeFrame[6];
+    this.schedule.timeFrameStr = this.formatDate(sunday) + ' ~ ' + this.formatDate(saturday);
   }
 }
 
