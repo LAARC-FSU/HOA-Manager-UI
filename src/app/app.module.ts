@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPortalComponent } from './login-portal/login-portal.component';
+import { AddPropertyComponent } from './add-property/add-property.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
@@ -12,6 +13,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   declarations: [
     AppComponent,
     LoginPortalComponent,
+    AddPropertyComponent,
   ],
     imports: [
         BrowserModule,
