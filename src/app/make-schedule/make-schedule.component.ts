@@ -24,14 +24,14 @@ import {Schedule} from "../interfaces";
   templateUrl: './make-schedule.component.html',
   styleUrls: ['./make-schedule.component.scss']
 })
-export class MakeScheduleComponent implements OnInit{
+export class MakeScheduleComponent implements OnInit {
   schedule: Schedule = {
     timeFrameStr: '',
     timeFrame: [],
     firstShiftTime: {id: 'first shift', start: '', end: ''},
     secondShiftTime: {id: 'second shift', start: '', end: ''},
     thirdShiftTime: {id: 'third shift', start: '', end: ''},
-    schedules:  {}
+    schedules: {}
   };
   weekDaysHeader = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   @Output() sendSchedule = new EventEmitter;
@@ -42,60 +42,52 @@ export class MakeScheduleComponent implements OnInit{
   // schedules: {[key:string]: {}[]} = {};
   shifts: string[] = ['off'];
   employees: string[] = [
-    'John Doe',
-    'Jane Smith',
-    'Michael Johnson',
-    'Emily Davis',
-    'Robert Wilson',
-    'Sarah Thompson',
-    'Daniel Anderson',
-    'Jennifer Thomas',
-    'David Martinez',
-    'Jessica Lee',
-    'Andrew Taylor',
-    'Nicole Clark',
-    'Matthew Rodriguez',
-    'Olivia Hall',
-    'William Walker',
-    'Sophia Young',
-    'James Lewis',
-    'Ava Turner',
-    'Christopher Baker',
-    'Mia Mitchell'
+    'Alfredo Borroto',
+    'Amber Xiong',
+    'Caleb Mc Coy',
+    'Ronald Robbins',
+    'Leandro Yabut',
   ];
-constructor(private data: ScheduleService, private router: Router, private datePipe: DatePipe) {
-}
+
+  constructor(private data: ScheduleService, private router: Router, private datePipe: DatePipe) {
+  }
+
   ngOnInit() {
     this.buildingShiftsOptions();
   }
-  saveSchedule(){
+
+  saveSchedule() {
     this.router.navigateByUrl('schedule-dashboard');
     this.data.saveSchedule(this.schedule);
   }
-  postSchedule(){
-  this.data.updateSchedule(this.schedule)
-  this.saveSchedule()
+
+  postSchedule() {
+    this.data.updateSchedule(this.schedule)
+    this.saveSchedule()
   }
-  toScheduleDash(){
+
+  toScheduleDash() {
     this.router.navigateByUrl('schedule-dashboard');
   }
-  buildingShiftsOptions(){
+
+  buildingShiftsOptions() {
     this.shifts = ['off'];
 
-    if (this.schedule.firstShiftTime.start !== 'shift is off'){
+    if (this.schedule.firstShiftTime.start !== 'shift is off') {
       this.shifts.push('1st shift');
     }
-    if (this.schedule.secondShiftTime.start !== 'shift is off'){
+    if (this.schedule.secondShiftTime.start !== 'shift is off') {
       this.shifts.push('2nd shift');
     }
-    if (this.schedule.thirdShiftTime.start !== 'shift is off'){
+    if (this.schedule.thirdShiftTime.start !== 'shift is off') {
       this.shifts.push('3rd shift');
     }
   }
 
-  getSchedules($event:any){
+  getSchedules($event: any) {
     this.schedule.schedules[$event.empName] = $event;
   }
+
   getShiftTime($event: any) {
     switch ($event[0]) {
       case 'first-start':
@@ -118,9 +110,11 @@ constructor(private data: ScheduleService, private router: Router, private dateP
         break;
     }
   }
-  formatDate(date: Date):string{
-  return this.datePipe.transform(date.toDateString(), 'MMM d, y')!;
+
+  formatDate(date: Date): string {
+    return this.datePipe.transform(date.toDateString(), 'MMM d, y')!;
   }
+
   getTimeFrame($event: any) {
     this.schedule.timeFrame = $event.week.weekDays;
     let sunday = this.schedule.timeFrame[0];

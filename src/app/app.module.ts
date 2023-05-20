@@ -13,7 +13,6 @@ import {EmployeeScheduleComponent} from './make-schedule/employee-schedule/emplo
 import {ScheduleViewComponent} from './schedule-view/schedule-view.component';
 import {ScheduleDashboardComponent} from './schedule-dashboard/schedule-dashboard.component';
 import {DatePipe} from "@angular/common";
-import { SavedScheduleRowComponent } from './schedule-dashboard/saved-schedule-row/saved-schedule-row.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { SavedScheduleRowComponent } from './schedule-dashboard/saved-schedule-r
     EmployeeScheduleComponent,
     ScheduleViewComponent,
     ScheduleDashboardComponent,
-    SavedScheduleRowComponent,
   ],
   imports: [
     BrowserModule,

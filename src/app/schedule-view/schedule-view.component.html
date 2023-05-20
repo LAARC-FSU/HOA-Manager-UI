@@ -1,48 +1,118 @@
-
-
-<div class="container mt-5" style="font-family: montserrat,serif">
-  <div class="card" style="background-color: #454E5C; color: white">
-    <div class="row ms-4 mt-2">
-      <h6>Schedule</h6>
+<div class="container printable mt-5" style="font-family: montserrat,serif ">
+    <div class="container d-flex justify-content-center">
+  <div class="row mb-5">
+    <div class="col-auto">
+      <button (click)="print()" type="button" class=" btn btn-secondary" style="background-color: #454E5C">Print
+        Schedule
+      </button>
+      <button (click)="toScheduleDash()" type="button" class="btn btn-secondary" style="background-color: #A73E40">Back
+      </button>
     </div>
+  </div>
+    </div>
+
+  <div class="container d-flex justify-content-center align-items-center">
     <div class="row-cols">
-      <div class="card" style="background-color: #828FA0; color: white">
-        <div class="row ms-4 my-2 text-center">
-          <div class="col-3"></div>
-          <span class="col">Date</span>
-          <span class="col">Date</span>
-          <span class="col">Date</span>
-          <span class="col">Date</span>
-          <span class="col">Date</span>
-          <span class="col">Date</span>
-          <span class="col">Date</span>
-          <div class="col"></div>
+      <div class="card" style="background-color: #454E5C; color: white; width: 1700px">
+        <div class="row ms-4 mt-2">
+          <h6>Schedule</h6>
         </div>
-        <div class="row-cols " style="background-color: #F5F5F5; height: 400px">
-         <div class="row ms-4 mt-2 text-center">
-           <div class="col-3"></div>
-           <div *ngFor="let day of weekDaysHeader" class="col" style="color: black"><span>{{day}}</span></div>
-           <div class="col"></div>
-         </div>
-          <div class="row pb-2">
-            <div class="col-3"></div>
-            <div class="col-8 line" style="border-top: 1px solid #454E5C"></div>
-          </div>
-          <div class="row">
-            <ul class="list-group">
-<!--              <li *ngFor="let employee of employees; let even = even" class="list-group-item"-->
-<!--                  [ngClass]="{ 'list-group-item-primary': even, 'list-group-item-light': !even }"-->
-<!--                  style="color:#454E5C; border-radius: 0">-->
-<!--                <employee-schedule (sendSchedule)="getSchedules($event)" [employeeName]="employee" [shifts]="shifts"-->
-<!--                                   [tempShifts]="shifts"></employee-schedule>-->
-<!--              </li>-->
-            </ul>
-            I am working on displaying the list of schedules in the view schedule component.`
+        <div class="row-cols">
+          <div class="card" style="background-color: #828FA0; color: white">
+
+            <div class="row my-2 text-center">
+              <div class="col-2"></div>
+              <span *ngFor="let date of dates" class="col">{{date}}</span>
+            </div>
+
+            <div class="row-cols" style="background-color: #F5F5F5; height: fit-content">
+              <div class="row mt-2 text-center">
+                <div class="col-2"></div>
+                <div *ngFor="let day of weekDaysHeader" class="col my-2" style="color: black"><span>{{day}}</span>
+                </div>
+
+              </div>
+
+              <div class="row pb-2">
+                <div class="col-2"></div>
+                <div class="col mx-4 mb-3 line" style="border-top: 1px solid #454E5C"></div>
+              </div>
+
+              <div class="row g-0" style="color: black">
+                <div class="col-2">
+                  <ul class="list-group">
+                    <li *ngFor="let name of names; let even = even" class="list-group-item"
+                        [ngClass]="{'list-group-item-primary': even, 'list-group-item-light': !even }"
+                        style="color:#454E5C; border-radius: 0"> {{name}}
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="col day">
+                  <ul class="list-group">
+                    <li *ngFor="let time of sun; let even = even" class="list-group-item"
+                        [ngClass]="{'list-group-item-primary': even, 'list-group-item-light': !even }"
+                        style="color:#454E5C; border-radius: 0"> {{time}}
+                    </li>
+                  </ul>
+                </div>
+                <div class="col day">
+                  <ul class="list-group">
+                    <li *ngFor="let time of mon; let even = even" class="list-group-item"
+                        [ngClass]="{'list-group-item-primary': even, 'list-group-item-light': !even }"
+                        style="color:#454E5C; border-radius: 0"> {{time}}
+                    </li>
+                  </ul>
+                </div>
+                <div class="col day">
+                  <ul class="list-group">
+                    <li *ngFor="let time of tue; let even = even" class="list-group-item"
+                        [ngClass]="{'list-group-item-primary': even, 'list-group-item-light': !even }"
+                        style="color:#454E5C; border-radius: 0"> {{time}}
+                    </li>
+                  </ul>
+                </div>
+                <div class="col day">
+                  <ul class="list-group">
+                    <li *ngFor="let time of wed; let even = even" class="list-group-item"
+                        [ngClass]="{'list-group-item-primary': even, 'list-group-item-light': !even }"
+                        style="color:#454E5C; border-radius: 0"> {{time}}
+                    </li>
+                  </ul>
+                </div>
+                <div class="col day">
+                  <ul class="list-group">
+                    <li *ngFor="let time of thu; let even = even" class="list-group-item"
+                        [ngClass]="{'list-group-item-primary': even, 'list-group-item-light': !even }"
+                        style="color:#454E5C; border-radius: 0"> {{time}}
+                    </li>
+                  </ul>
+                </div>
+                <div class="col day">
+                  <ul class="list-group">
+                    <li *ngFor="let time of fri; let even = even" class="list-group-item"
+                        [ngClass]="{'list-group-item-primary': even, 'list-group-item-light': !even }"
+                        style="color:#454E5C; border-radius: 0"> {{time}}
+                    </li>
+                  </ul>
+                </div>
+                <div class="col day">
+                  <ul class="list-group">
+                    <li *ngFor="let time of sat; let even = even" class="list-group-item"
+                        [ngClass]="{'list-group-item-primary': even, 'list-group-item-light': !even }"
+                        style="color:#454E5C; border-radius: 0"> {{time}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
-
-
   </div>
+
 </div>
+
+

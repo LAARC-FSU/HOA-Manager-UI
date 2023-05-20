@@ -8,34 +8,64 @@
         </div>
         <div class="row">
           <div class="card align-middle" style="background-color: #828FA0; width: fit-content">
-            <div class="row mx-1 my-3 text-center justify-content-center flex-column"
+            <div class="row mx-0 my-2 text-center justify-content-center flex-column"
                  style="background-color: #F5F5F5; width: 300px; height: 90px">
               <h4>{{activeScheduleStr}}</h4>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="card shadow ms-5"
-           style="background-color: #454E5C; border-radius: 10px; max-width: fit-content; max-height: fit-content">
-        <div class="row mt-2 ms-4" style="color: white">
-          <h6> Active Schedule</h6>
-        </div>
-        <div class="row">
-          <div class="card align-middle" style="background-color: #828FA0; width: fit-content">
-            <div class="row mx-1 my-3 text-center justify-content-center flex-column"
-                 style="background-color: #F5F5F5; width: 300px; height: 90px">
-              <div class="col">
-                <ul class="list-group">
-                  <li *ngFor="let schedule of savedSchedules; let even = even" class="list-group-item"
-                      [ngClass]="{ 'list-group-item-primary': even, 'list-group-item-light': !even }"
-                      style="color:#454E5C; border-radius: 0">
-                    <div class="row">
-
-                    </div>
-                  </li>
-                </ul>
+      <div class="row">
+        <div class="card shadow mt-5"
+             style="background-color: #454E5C; border-radius: 10px; max-width: fit-content; max-height: fit-content">
+          <div class="row mt-2 ms-4" style="color: white">
+            <h6>Saved Schedule</h6>
+          </div>
+          <div class="row">
+            <div class="card align-middle" style="background-color: #828FA0; width: fit-content">
+              <div class="row mx-0 my-2 text-center  flex-column overflow-auto"
+                   style="background-color: #F5F5F5; width: 1200px; height: fit-content; max-height: 300px">
+                <div class="col">
+                  <ul class="list-group">
+                    <li *ngIf="savedSchedules.length === 0" class="list-group-item">No Saved Schedules</li>
+                    <li *ngFor="let schedule of savedSchedules; let i = index ;let even = even" class="list-group-item"
+                        [ngClass]="{ 'list-group-item-primary': even, 'list-group-item-light': !even }"
+                        style="color:#454E5C; border-radius: 0">
+                      <div class="container">
+                        <div class="row align-items-baseline">
+                          <div class="col">{{schedule.timeFrameStr}}</div>
+                          <div class="col">
+                            <button (click)="postSchedule(i)" class="btn btn-secondary"
+                                    style="background-color: #454E5C;">Post Schedule
+                            </button>
+                          </div>
+                          <div class="col">
+                            <button (click)="deleteSchedule(i)" class="btn btn-danger"
+                                    style="background-color: #A73E40; color: white">Delete
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="container">
+          <div class="row justify-content-center mt-5">
+            <div class="col-auto">
+              <button (click)="toView()" type="button" class=" btn btn-secondary" style="background-color: #454E5C">View
+                Schedule
+              </button>
+              <button (click)="toMake()" type="button" class="btn btn-secondary" style="background-color: #454E5C">Make
+                Schedule
+              </button>
+              <button (click)="exit()" type="button" class="btn btn-secondary" style="background-color: #A73E40">Exit
+              </button>
             </div>
           </div>
         </div>

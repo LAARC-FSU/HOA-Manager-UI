@@ -5,7 +5,7 @@ import { MakeScheduleComponent} from "./make-schedule/make-schedule.component";
 import { ScheduleViewComponent} from "./schedule-view/schedule-view.component";
 
 const routes: Routes = [
-  {path: '', redirectTo: '/make-schedule', pathMatch:'full'},
+  {path: '', redirectTo: '/schedule-dashboard', pathMatch:'full'},
   {path: 'make-schedule', component: MakeScheduleComponent},
   {path: 'view-schedule', component: ScheduleViewComponent},
   {path: 'schedule-dashboard', component: ScheduleDashboardComponent},

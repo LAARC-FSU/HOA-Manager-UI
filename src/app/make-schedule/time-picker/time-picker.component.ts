@@ -21,12 +21,15 @@ export class TimePickerComponent implements OnInit, OnChanges {
     str:'',
     id:''
   };
+  constructor() {
+
+  }
   ngOnInit(){
     this.timeSelected = {
       hour: '09',
       minute: '00',
       meridian: 'am',
-      str: '09 : 00 am',
+      str: '09:00 am',
       id: this.componentId
     }
     this.sendTime.emit([this.timeSelected.id, this.timeSelected.str])
@@ -40,6 +43,7 @@ export class TimePickerComponent implements OnInit, OnChanges {
     if (this.timeSelected.id && this.timeSelected.str){
       this.sendTime.emit([this.timeSelected.id, this.timeSelected.str])
     }
+    localStorage.setItem(this.timeSelected.id, JSON.stringify(this.timeSelected))
   }
   updateScreen(){
     if(this.isOn){
@@ -49,7 +53,7 @@ export class TimePickerComponent implements OnInit, OnChanges {
     }
   }
   buildTimeStr(){
-    this.timeSelected.str = this.timeSelected.hour + ' : ' + this.timeSelected.minute
+    this.timeSelected.str = this.timeSelected.hour + ':' + this.timeSelected.minute
       + ' ' + this.timeSelected.meridian;
   }
 }
