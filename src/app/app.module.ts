@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPortalComponent } from './login-portal/login-portal.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FindPropertyComponent} from "./find-property/find-property.component";
 
 
 
@@ -12,6 +13,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   declarations: [
     AppComponent,
     LoginPortalComponent,
+    FindPropertyComponent,
   ],
     imports: [
         BrowserModule,
