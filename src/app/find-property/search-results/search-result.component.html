@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="container-fluid">
+  <div class="col-md-8">
+    <table class="table table-striped table-bordered table-hover">
+      <thead style="background-color: #E1EBF6; color: black">
+      <th style="text-indent: 10px">Name</th>
+      <th style="text-align: center">Address</th>
+      <th style="text-align: center">Unit</th>
+      <th style="text-align: center">Block</th>
+      <th style="text-align: center">Lot</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let result of results">
+        <td>{{result.name}}</td>
+        <td style="text-align: center">{{result.address}}</td>
+        <td style="text-align: center">{{result.unit}}</td>
+        <td style="text-align: center">{{result.block}}</td>
+        <td style="text-align: center">{{result.lot}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
