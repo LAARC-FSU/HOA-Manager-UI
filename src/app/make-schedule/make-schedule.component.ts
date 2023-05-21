@@ -1,23 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ScheduleService} from "../schedule.service";
 import {Router} from "@angular/router";
-import {ScheduleDashboardComponent} from "../schedule-dashboard/schedule-dashboard.component";
 import {DatePipe} from "@angular/common";
 import {Schedule} from "../interfaces";
-
-// interface Shift {
-//   id: string
-//   start: string;
-//   end: string;
-// }
-// interface Schedule {
-//   timeFrameStr:string;
-//   timeFrame: Date[];
-//   firstShiftTime: Shift;
-//   secondShiftTime: Shift;
-//   thirdShiftTime: Shift;
-//   schedules: {[key:string]: {}[]};
-// }
 
 @Component({
   selector: 'make-schedule',
@@ -47,6 +32,36 @@ export class MakeScheduleComponent implements OnInit {
     'Caleb Mc Coy',
     'Ronald Robbins',
     'Leandro Yabut',
+    "John Smith",
+    "Emily Johnson",
+    "Michael Davis",
+    "Sarah Anderson",
+    "David Wilson",
+    "Olivia Martinez",
+    "Daniel Taylor",
+    "Sophia Thomas",
+    "Matthew Clark",
+    "Emma Rodriguez",
+    "Andrew Lee",
+    "Isabella Hall",
+    "Christopher Lewis",
+    "Ava Hernandez",
+    "Joshua Walker",
+    "Mia Green",
+    "Joseph Harris",
+    "Charlotte Young",
+    "Ryan Turner",
+    "Abigail King",
+    "Nicholas Scott",
+    "Ella Baker",
+    "Samuel Carter",
+    "Amelia Torres",
+    "Tyler Mitchell",
+    "Elizabeth Flores",
+    "Brandon Moore",
+    "Grace Perez",
+    "William Cooper",
+    "Sofia Reed"
   ];
 
   constructor(private data: ScheduleService, private router: Router, private datePipe: DatePipe) {

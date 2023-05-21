@@ -5,11 +5,32 @@ button{
   width: 160px;
   margin: 0 30px 0 30px;
 }
+.list-group-item{
+  height: 70px;
+
+}
 @media print{
   @page  {
     size: landscape;
   }
-   .printable{
-    max-width: 100%;
+  .printable{
+    font-size: 12px;
+    color: black;
+  }
+  .card{
+    background-color: transparent;
+    border-color: transparent;
+  }
+  .wide{
+    width: 1000px;
+  }
+  .date{
+    color: black;
+  }
+  button{
+    visibility: hidden;
+  }
+  .header{
+    visibility: hidden;
   }
 }

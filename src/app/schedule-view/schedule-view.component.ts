@@ -67,14 +67,27 @@ export class ScheduleViewComponent implements OnInit{
   makeView(){
     if (this.schedule.timeFrameStr){
       for(const key in this.schedule.schedules){
-        this.names.push(this.schedule.schedules[key].empName);
-        this.sun.push(this.makeViewHelper(this.schedule.schedules[key].empSun));
-        this.mon.push(this.makeViewHelper(this.schedule.schedules[key].empMon));
-        this.tue.push(this.makeViewHelper(this.schedule.schedules[key].empTue));
-        this.wed.push(this.makeViewHelper(this.schedule.schedules[key].empWed));
-        this.thu.push(this.makeViewHelper(this.schedule.schedules[key].empThu));
-        this.fri.push(this.makeViewHelper(this.schedule.schedules[key].empFri));
-        this.sat.push(this.makeViewHelper(this.schedule.schedules[key].empSat));
+        if (this.schedule.schedules[key].empVacation){
+          let vacStr = 'vacation';
+          this.names.push(this.schedule.schedules[key].empName);
+          this.sun.push(vacStr);
+          this.mon.push(vacStr);
+          this.tue.push(vacStr);
+          this.wed.push(vacStr);
+          this.thu.push(vacStr);
+          this.fri.push(vacStr);
+          this.sat.push(vacStr);
+        }else{
+          this.names.push(this.schedule.schedules[key].empName);
+          this.sun.push(this.makeViewHelper(this.schedule.schedules[key].empSun));
+          this.mon.push(this.makeViewHelper(this.schedule.schedules[key].empMon));
+          this.tue.push(this.makeViewHelper(this.schedule.schedules[key].empTue));
+          this.wed.push(this.makeViewHelper(this.schedule.schedules[key].empWed));
+          this.thu.push(this.makeViewHelper(this.schedule.schedules[key].empThu));
+          this.fri.push(this.makeViewHelper(this.schedule.schedules[key].empFri));
+          this.sat.push(this.makeViewHelper(this.schedule.schedules[key].empSat));
+        }
+
       }
     }
   }
@@ -82,32 +95,26 @@ export class ScheduleViewComponent implements OnInit{
     if (this.schedule.timeFrameStr){
       for (let date of this.schedule.timeFrame){
         let newDate = new Date(date)
-        if (newDate instanceof Date){
-          this.dates.push(this.formatDate(newDate));
-        }
+        this.dates.push(this.formatDate(newDate));
       }
     }
   }
 
   formatDate(date: Date):string{
     let str = date.toDateString()!;
-    let transformed = this.datePipe.transform(str, 'MMM d')!
-    return transformed;
+    return this.datePipe.transform(str, 'MMM d')!;
   }
 
   makeViewHelper(shift:string){
     switch (shift){
       case '1st shift':
-        return this.schedule.firstShiftTime.start + ' - ' + this.schedule.firstShiftTime.end
-      break
+        return this.schedule.firstShiftTime.start + '  ' + this.schedule.firstShiftTime.end
       case '2nd shift':
-        return this.schedule.secondShiftTime.start + ' - ' + this.schedule.secondShiftTime.end
-      break
+        return this.schedule.secondShiftTime.start + '  ' + this.schedule.secondShiftTime.end
       case '3rd shift':
-        return this.schedule.thirdShiftTime.start + ' - ' + this.schedule.thirdShiftTime.end
+        return this.schedule.thirdShiftTime.start + '  ' + this.schedule.thirdShiftTime.end
       default:
         return 'off'
-      break
     }
   }
 }
