@@ -2,7 +2,8 @@
   position: absolute;
   left: 45px;
   top: 103px;
-  width: 1335px;
+  min-width: 1335px;
+  max-width: 1335px;
   height: 98px;
   border-radius: 10px;
   background-color: #828fa0;

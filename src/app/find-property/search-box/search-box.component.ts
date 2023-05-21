@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import type { OnInit } from '@angular/core';
 
-/* @figmaId 167:5669 */
 @Component({
   selector: 'search-box',
   templateUrl: './search-box.component.html',
