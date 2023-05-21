@@ -5,19 +5,6 @@ import { Renderer2} from "@angular/core";
 import {DatePipe} from "@angular/common";
 import {Router} from "@angular/router";
 
-// interface Shift {
-//   id: string
-//   start: string;
-//   end: string;
-// }
-//
-// interface Schedule {
-//   timeFrame: Date[];
-//   firstShiftTime: Shift;
-//   secondShiftTime: Shift;
-//   thirdShiftTime: Shift;
-//   schedules: { [key: string]: {}[] };
-// }
 
 @Component({
   selector: 'schedule-view',

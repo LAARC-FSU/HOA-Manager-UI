@@ -1,18 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import { empSchObj } from "../../interfaces";
 
-// interface empSchObj {
-//   empName: string;
-//   empSun: string;
-//   empMon: string;
-//   empTue: string;
-//   empWed: string;
-//   empThu: string;
-//   empFri: string;
-//   empSat: string;
-//   empVacation: boolean;
-// }
-
 @Component({
   selector: 'employee-schedule',
   templateUrl: './employee-schedule.component.html',

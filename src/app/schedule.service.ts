@@ -2,19 +2,6 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {Schedule} from "./interfaces";
 
-// interface Shift {
-//   id: string
-//   start: string;
-//   end: string;
-// }
-//
-// interface Schedule {
-//   timeFrame: Date[];
-//   firstShiftTime: Shift;
-//   secondShiftTime: Shift;
-//   thirdShiftTime: Shift;
-//   schedules: { [key: string]: {}[] };
-// }
 @Injectable({
   providedIn: 'root'
 })

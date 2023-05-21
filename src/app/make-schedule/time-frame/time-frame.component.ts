@@ -188,5 +188,4 @@ export class TimeFrameComponent implements OnInit{
     return item.weekText;
   }
 
-  protected readonly console = console;
 }
