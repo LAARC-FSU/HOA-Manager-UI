@@ -14,6 +14,7 @@ import {ScheduleViewComponent} from './schedule-view/schedule-view.component';
 import {ScheduleDashboardComponent} from './schedule-dashboard/schedule-dashboard.component';
 import {DatePipe} from "@angular/common";
 import { ClockInOutDialogComponent } from './clock-in-out-dialog/clock-in-out-dialog.component';
+import { ClockComponent } from './clock/clock.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ClockInOutDialogComponent } from './clock-in-out-dialog/clock-in-out-di
     ScheduleViewComponent,
     ScheduleDashboardComponent,
     ClockInOutDialogComponent,
+    ClockComponent,
   ],
   imports: [
     BrowserModule,
