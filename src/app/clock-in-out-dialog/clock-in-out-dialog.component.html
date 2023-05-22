@@ -1,61 +1,65 @@
 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clockInOutModal">Lunch Dialog</button>
 
-<div class="modal fade" id="clockInOutModal">
-  <div class="modal-dialog modal-md">
-    <div class="container">
-      <div class="card wide title">
-        <div class="row ms-4 my-1 text-center">
-          <div class="col"></div>
-          <div class="col d-flex justify-content-center">
-            <span>Employee Name</span>
-          </div>
-          <div class="col d-flex justify-content-end me-4">
-            <button class="btn-close btn-close-white"></button>
-          </div>
-        </div>
-        <div class="row-cols">
-          <div class="card subtitle" >
-            <div class="row-cols text-center my-1">
-              <span>You are currently: </span>
-              <span class="state">Clocked Out </span>
-            </div>
-            <div class="row-cols body">
-              <div class="row-cols d-flex justify-content-center py-3">
-                <img class="shadow" src="assets/employeePhotoPlaceholder.svg">
+<div class="modal fade" id="clockInOutModal" >
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content my-0">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="card title">
+              <div class="row ms-4 my-1 text-center">
+                <div class="col"></div>
+                <div class="col d-flex justify-content-center">
+                  <span>Employee Name</span>
+                </div>
+                <div class="col d-flex justify-content-end me-4">
+                  <button class="btn-close btn-close-white" data-bs-toggle="modal"></button>
+                </div>
               </div>
+              <div class="row">
+                <div class="card subtitle" >
+                  <div class="row-cols text-center my-1">
+                    <span>You are currently: </span>
+                    <span class="state">Clocked Out </span>
+                  </div>
+                  <div class="row-cols body">
+                    <div class="row-cols d-flex justify-content-center py-3">
+                      <img alt="" class="shadow" src="assets/employeePhotoPlaceholder.svg">
+                    </div>
 
-              <div class="row" style="color: black">
-                <div class="col text-end">
-                  <label class="mx-5" for="currTime">Time Now:</label>
-                </div>
-                <div class="col">
-                  <span class="mx-5" id="currTime">'2:58 pm'</span>
-                </div>
-              </div>
-              <div class="row" style="color: black">
-                <div class="col text-end">
-                  <label class="mx-5" for="currDate">Date:</label>
-                </div>
-                <div class="col">
-                  <span class="mx-5" id="currDate">'March 17, 2023'</span>
-                </div>
-              </div>
+                    <div class="row" style="color: black">
+                      <div class="col text-end">
+                        <label class="mx-5" for="currTime">Time Now:</label>
+                      </div>
+                      <div class="col">
+                        <span class="mx-5" id="currTime">'2:58 pm'</span>
+                      </div>
+                    </div>
+                    <div class="row" style="color: black">
+                      <div class="col text-end">
+                        <label class="mx-5" for="currDate">Date:</label>
+                      </div>
+                      <div class="col">
+                        <span class="mx-5" id="currDate">'March 17, 2023'</span>
+                      </div>
+                    </div>
 
-              <div class="row-cols d-flex justify-content-center my-4">
-                <button type="button" class=" btn btn-success me-3">Start Day</button>
-                <button type="button" class=" btn btn-danger ms-3">End Day</button>
-              </div>
-              <div class="row-cols d-flex justify-content-center my-4">
-                <button type="button" class=" btn btn-secondary me-3">Out to lunch</button>
-                <button type="button" class=" btn btn-secondary ms-3">Back from lunch</button>
-              </div>
+                    <div class="row-cols d-flex justify-content-center my-4">
+                      <button type="button" class=" btn btn-success me-3">Start Day</button>
+                      <button type="button" class=" btn btn-danger ms-3">End Day</button>
+                    </div>
+                    <div class="row-cols d-flex justify-content-center my-4">
+                      <button type="button" class=" btn btn-secondary me-3">Out to lunch</button>
+                      <button type="button" class=" btn btn-secondary ms-3">Back from lunch</button>
+                    </div>
 
-              <div class="row"></div>
+                    <div class="row"></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   </div>
 </div>
 
