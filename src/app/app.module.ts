@@ -15,6 +15,8 @@ import {ScheduleDashboardComponent} from './schedule-dashboard/schedule-dashboar
 import {DatePipe} from "@angular/common";
 import { FullCalendarModule} from '@fullcalendar/angular';
 import { MemberCalendarComponent} from "./member-calendar/member-calendar.component";
+import {  MemberTimeGridComponent} from "./member-calendar/member-time-grid/member-time-grid.component";
+import {MemberDayGridComponent} from "./member-calendar/member-day-grid/member-day-grid.component";
 
 @NgModule({
   declarations: [
@@ -27,6 +29,9 @@ import { MemberCalendarComponent} from "./member-calendar/member-calendar.compon
     EmployeeScheduleComponent,
     ScheduleViewComponent,
     ScheduleDashboardComponent,
+    MemberCalendarComponent,
+    MemberTimeGridComponent,
+    MemberDayGridComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,8 +39,7 @@ import { MemberCalendarComponent} from "./member-calendar/member-calendar.compon
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FullCalendarModule,
-    MemberCalendarComponent
+    FullCalendarModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

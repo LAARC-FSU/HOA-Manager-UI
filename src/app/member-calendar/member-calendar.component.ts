@@ -1,8 +1,4 @@
-import { Component} from "@angular/core";
-import { CalendarOptions} from "@fullcalendar/core";
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-
+import {Component} from "@angular/core";
 @Component({
   selector: 'member-calendar',
   templateUrl: './member-calendar.component.html',
@@ -10,8 +6,4 @@ import interactionPlugin from '@fullcalendar/interaction';
 })
 
 export class MemberCalendarComponent {
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
-    plugins: [dayGridPlugin,interactionPlugin]
-  };
 }
