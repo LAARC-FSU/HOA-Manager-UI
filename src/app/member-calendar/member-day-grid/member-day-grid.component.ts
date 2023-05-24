@@ -11,6 +11,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 
 export class MemberDayGridComponent {
   calendarOptions: CalendarOptions = {
+
     initialView: 'dayGridMonth',
     showNonCurrentDates: false,
     fixedWeekCount: false,

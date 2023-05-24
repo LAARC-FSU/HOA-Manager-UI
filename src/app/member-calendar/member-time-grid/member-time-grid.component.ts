@@ -13,6 +13,17 @@ export class MemberTimeGridComponent {
   calendarOptions: CalendarOptions = {
     initialView: 'timeGridWeek',
     plugins: [timeGridPlugin,interactionPlugin],
+    selectable: true,
+    events: [
+      {
+        title: 'test',
+        start: '2023-05-23T15:00:00',
+        end: '2023-05-23T17:00:00'
+      }
+    ],
+    eventClick: function(info){
+      alert('Event: ' + info.event.title);
+    }
   };
 
 }
