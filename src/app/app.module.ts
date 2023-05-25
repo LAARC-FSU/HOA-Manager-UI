@@ -13,6 +13,9 @@ import {EmployeeScheduleComponent} from './make-schedule/employee-schedule/emplo
 import {ScheduleViewComponent} from './schedule-view/schedule-view.component';
 import {ScheduleDashboardComponent} from './schedule-dashboard/schedule-dashboard.component';
 import {DatePipe} from "@angular/common";
+import {BillingPaymentHistoryComponent} from "./billing-payment-history/billing-payment-history.component";
+import {TransactionHistoryComponent} from "./billing-payment-history/transaction-history/transaction-history.component";
+import {NextPaymentComponent} from "./billing-payment-history/next-payment/next-payment.component";
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import {DatePipe} from "@angular/common";
     EmployeeScheduleComponent,
     ScheduleViewComponent,
     ScheduleDashboardComponent,
+    BillingPaymentHistoryComponent,
+    TransactionHistoryComponent,
+    NextPaymentComponent,
   ],
   imports: [
     BrowserModule,
