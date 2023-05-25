@@ -22,3 +22,14 @@ export interface Schedule {
    empSat: string;
    empVacation: boolean;
  }
+
+ export interface empWorkTime {
+  empName: string;
+  empPhotoUrl: string;
+  empClkIn: Date;
+  empClkOut: Date;
+  empLunchOut: Date;
+  empLunchIn: Date;
+  empDayHours: number;
+  empWeekHours: number;
+ }

@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ScheduleService} from "../schedule.service";
-import { Schedule} from "../interfaces";
-import { Renderer2} from "@angular/core";
+import {Schedule} from "../interfaces";
+import {empWorkTime} from "../interfaces";
+import {Renderer2} from "@angular/core";
 import {DatePipe} from "@angular/common";
 import {Router} from "@angular/router";
 
@@ -11,17 +12,29 @@ import {Router} from "@angular/router";
   templateUrl: './schedule-view.component.html',
   styleUrls: ['./schedule-view.component.scss']
 })
-export class ScheduleViewComponent implements OnInit{
+export class ScheduleViewComponent implements OnInit {
   weekDaysHeader = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  dates:string [] = [];
-  names:string [] = [];
-  sun:string [] = [];
-  mon:string [] = [];
-  tue:string [] = [];
-  wed:string [] = [];
-  thu:string [] = [];
-  fri:string [] = [];
-  sat:string [] = [];
+  dates: string [] = [];
+  names: string [] = [];
+  sun: string [] = [];
+  mon: string [] = [];
+  tue: string [] = [];
+  wed: string [] = [];
+  thu: string [] = [];
+  fri: string [] = [];
+  sat: string [] = [];
+
+  activeEmp: empWorkTime = {
+    empName: 'Alfredo Borroto',
+    empPhotoUrl: 'assets/profilepic.jpg',
+    empClkIn: new Date(),
+    empClkOut: new Date(),
+    empLunchOut: new Date(),
+    empLunchIn: new Date(),
+    empDayHours: 0,
+    empWeekHours: 0,
+
+  };
   schedule: Schedule = {
     timeFrameStr: '',
     timeFrame: [],
@@ -31,30 +44,35 @@ export class ScheduleViewComponent implements OnInit{
     schedules: {}
   };
 
-  constructor(private data: ScheduleService, private datePipe: DatePipe, private router:Router, private renderer: Renderer2) {
+  constructor(private data: ScheduleService, private datePipe: DatePipe, private router: Router, private renderer: Renderer2
+  ) {
     if (localStorage.getItem('active')) {
       this.schedule = JSON.parse(localStorage.getItem('active')!);
     }
     this.makeView();
     this.getDates();
   }
+
   ngOnInit() {
-    this.data.currSchedule.subscribe( schedule => this.schedule = schedule)
+    this.data.currSchedule.subscribe(schedule => this.schedule = schedule)
   }
-  toScheduleDash(){
+
+  toScheduleDash() {
     this.router.navigateByUrl('schedule-dashboard');
   }
-  print(){
+
+  print() {
     this.renderer.addClass(document.body, 'print-mode'); // Optional: Add a CSS class to customize the print layout
 
     window.print();
 
     this.renderer.removeClass(document.body, 'print-mode'); // Optional: Remove the CSS class after printing
   }
-  makeView(){
-    if (this.schedule.timeFrameStr){
-      for(const key in this.schedule.schedules){
-        if (this.schedule.schedules[key].empVacation){
+
+  makeView() {
+    if (this.schedule.timeFrameStr) {
+      for (const key in this.schedule.schedules) {
+        if (this.schedule.schedules[key].empVacation) {
           let vacStr = 'vacation';
           this.names.push(this.schedule.schedules[key].empName);
           this.sun.push(vacStr);
@@ -64,7 +82,7 @@ export class ScheduleViewComponent implements OnInit{
           this.thu.push(vacStr);
           this.fri.push(vacStr);
           this.sat.push(vacStr);
-        }else{
+        } else {
           this.names.push(this.schedule.schedules[key].empName);
           this.sun.push(this.makeViewHelper(this.schedule.schedules[key].empSun));
           this.mon.push(this.makeViewHelper(this.schedule.schedules[key].empMon));
@@ -78,22 +96,30 @@ export class ScheduleViewComponent implements OnInit{
       }
     }
   }
-  getDates(){
-    if (this.schedule.timeFrameStr){
-      for (let date of this.schedule.timeFrame){
+
+  getDates() {
+    if (this.schedule.timeFrameStr) {
+      for (let date of this.schedule.timeFrame) {
         let newDate = new Date(date)
         this.dates.push(this.formatDate(newDate));
       }
     }
   }
 
-  formatDate(date: Date):string{
+  formatDate(date
+               :
+               Date
+  ):
+    string {
     let str = date.toDateString()!;
     return this.datePipe.transform(str, 'MMM d')!;
   }
 
-  makeViewHelper(shift:string){
-    switch (shift){
+  makeViewHelper(shift
+                   :
+                   string
+  ) {
+    switch (shift) {
       case '1st shift':
         return this.schedule.firstShiftTime.start + '  ' + this.schedule.firstShiftTime.end
       case '2nd shift':
