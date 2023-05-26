@@ -24,6 +24,7 @@ export class ScheduleViewComponent implements OnInit {
   fri: string [] = [];
   sat: string [] = [];
 
+  // test
   activeEmp: empWorkTime = {
     empName: 'Alfredo Borroto',
     empPhotoUrl: 'assets/profilepic.jpg',
@@ -31,10 +32,10 @@ export class ScheduleViewComponent implements OnInit {
     empClkOut: new Date(),
     empLunchOut: new Date(),
     empLunchIn: new Date(),
-    empDayHours: 0,
+    empDayHours: [0,0,0,0,0,0,0],
     empWeekHours: 0,
-
   };
+
   schedule: Schedule = {
     timeFrameStr: '',
     timeFrame: [],
@@ -106,19 +107,12 @@ export class ScheduleViewComponent implements OnInit {
     }
   }
 
-  formatDate(date
-               :
-               Date
-  ):
-    string {
+  formatDate(date: Date): string {
     let str = date.toDateString()!;
     return this.datePipe.transform(str, 'MMM d')!;
   }
 
-  makeViewHelper(shift
-                   :
-                   string
-  ) {
+  makeViewHelper(shift: string) {
     switch (shift) {
       case '1st shift':
         return this.schedule.firstShiftTime.start + '  ' + this.schedule.firstShiftTime.end

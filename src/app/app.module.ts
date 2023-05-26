@@ -16,6 +16,7 @@ import {DatePipe} from "@angular/common";
 import { ClockInOutDialogComponent } from './clock-in-out-dialog/clock-in-out-dialog.component';
 import { ClockComponent } from './clock/clock.component';
 import { ReusableListComponent } from './reusable-list/reusable-list.component';
+import { WorkedHoursViewComponent } from './worked-hours-view/worked-hours-view.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ReusableListComponent } from './reusable-list/reusable-list.component';
     ClockInOutDialogComponent,
     ClockComponent,
     ReusableListComponent,
+    WorkedHoursViewComponent,
   ],
   imports: [
     BrowserModule,

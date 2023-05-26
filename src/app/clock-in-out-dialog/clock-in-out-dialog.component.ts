@@ -27,7 +27,7 @@ export class ClockInOutDialogComponent implements OnInit {
     empLunchOut: new Date(),
     empLunchIn: new Date(),
     empWeekHours: 0,
-    empDayHours: 0
+    empDayHours: [0,0,0,0,0,0,0]
   }
 
   constructor(private datePipe: DatePipe) {
@@ -80,7 +80,31 @@ export class ClockInOutDialogComponent implements OnInit {
       totalTime = workedTime - lunchTime;
     }else{ totalTime = workedTime;}
 
-    this.empWorkTime.empDayHours = totalTime / (1000 * 3600);
-    this.empWorkTime.empWeekHours += this.empWorkTime.empDayHours;
+    switch (this.empWorkTime.empClkIn.getDay()){
+      case 0:
+        this.empWorkTime.empDayHours[0] = totalTime / (1000 * 3600);
+        break
+      case 1:
+        this.empWorkTime.empDayHours[1] = totalTime / (1000 * 3600);
+        break
+      case 2:
+        this.empWorkTime.empDayHours[2] = totalTime / (1000 * 3600);
+        break
+      case 3:
+        this.empWorkTime.empDayHours[3] = totalTime / (1000 * 3600);
+        break
+      case 4:
+        this.empWorkTime.empDayHours[4] = totalTime / (1000 * 3600);
+        break
+      case 5:
+        this.empWorkTime.empDayHours[5] = totalTime / (1000 * 3600);
+        break
+      case 6:
+        this.empWorkTime.empDayHours[6] = totalTime / (1000 * 3600);
+        break
+    }
+    for (let day of this.empWorkTime.empDayHours){
+      this.empWorkTime.empWeekHours += day;
+    }
   }
 }

@@ -23,6 +23,7 @@ export interface Schedule {
    empVacation: boolean;
  }
 
+ type empDayHours<T> = [T,T,T,T,T,T,T]
  export interface empWorkTime {
   empName: string;
   empPhotoUrl: string;
@@ -30,6 +31,6 @@ export interface Schedule {
   empClkOut: Date;
   empLunchOut: Date;
   empLunchIn: Date;
-  empDayHours: number;
+  empDayHours: empDayHours<number>;
   empWeekHours: number;
  }

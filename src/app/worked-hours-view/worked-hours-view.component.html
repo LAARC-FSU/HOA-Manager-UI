@@ -1,0 +1,88 @@
+<div class="container printable mt-5" style="font-family: montserrat,serif ">
+  <div class="container d-flex justify-content-center">
+    <div class="row mb-5">
+      <div class="col-auto">
+        <button (click)="print()" type="button" class=" btn btn-secondary" style="background-color: #454E5C">Print
+          Hours Worked
+        </button>
+        <button (click)="toMainDash()" type="button" class="btn btn-secondary" style="background-color: #A73E40">
+          Back
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container d-flex justify-content-center align-items-center">
+    <div class="row-cols">.
+      <div class="row text-center">
+        <h2>
+          Hours Worked
+        </h2>
+      </div>
+      <div class="card wide" style="background-color: #454E5C; color: white; width: 1000px">
+        <div class="row ms-4 mt-2 header">
+          <h6>Hours</h6>
+        </div>
+        <div class="row-cols">
+          <div class="card" style="background-color: #828FA0; color: white">
+
+            <div class="row my-2 text-center">
+              <div class="col-2"></div>
+              <span *ngFor="let date of dates" class="col date">{{date}}</span>
+            </div>
+
+            <div class="row-cols" style="background-color: #F5F5F5; height: fit-content">
+              <div class="row mt-2 text-center">
+                <div class="col-2"></div>
+                <div *ngFor="let day of weekDaysHeader" class="col my-2" style="color: black"><span>{{day}}</span>
+                </div>
+
+              </div>
+
+              <div class="row pb-2">
+                <div class="col-2"></div>
+                <div class="col mx-4 mb-3 line" style="border-top: 1px solid #454E5C"></div>
+              </div>
+
+              <div class="row g-0" style="color: black">
+
+                <div class="col">
+                  <reusable-list [items] = names [height]="70" [initialPgBrk]=5 [itemsPerPage]=10></reusable-list>
+                </div>
+
+                <div class="col">
+                  <reusable-list [items] = sun [height]="70" [initialPgBrk]=5 [itemsPerPage]=10></reusable-list>
+                </div>
+                <div class="col">
+                  <reusable-list [items] = mon [height]="70" [initialPgBrk]=5 [itemsPerPage]=10></reusable-list>
+                </div>
+                <div class="col">
+                  <reusable-list [items] = tue [height]="70" [initialPgBrk]=5 [itemsPerPage]=10></reusable-list>
+                </div>
+                <div class="col">
+                  <reusable-list [items] = wed [height]="70" [initialPgBrk]=5 [itemsPerPage]=10></reusable-list>
+                </div>
+                <div class="col">
+                  <reusable-list [items] = thu [height]="70" [initialPgBrk]=5 [itemsPerPage]=10></reusable-list>
+                </div>
+                <div class="col">
+                  <reusable-list [items] = fri [height]="70" [initialPgBrk]=5 [itemsPerPage]=10></reusable-list>
+                </div>
+                <div class="col">
+                  <reusable-list [items] = sat [height]="70" [initialPgBrk]=5 [itemsPerPage]=10></reusable-list>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+</div>
