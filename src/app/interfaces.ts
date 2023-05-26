@@ -34,3 +34,4 @@ export interface Schedule {
   empDayHours: empDayHours<number>;
   empWeekHours: number;
  }
+
