@@ -64,6 +64,8 @@ export class ClockInOutDialogComponent implements OnInit {
     this.empWorkTime.empClkOut = new Date();
     this.calculateHours();
     this.endActive =  false;
+    if (this.lunchInActive){this.lunchInActive = false;}
+    if (this.lunchOutActive){this.lunchOutActive = false;}
     this.startActive =  true;
   }
 

@@ -36,6 +36,17 @@ export class WorkedHoursViewComponent implements OnInit{
   sat: string [] = [];
   total:string [] = [];
 
+  activeEmp: empWorkTime = {
+    empName: 'Alfredo Borroto',
+    empPhotoUrl: 'assets/profilepic.jpg',
+    empClkIn: new Date(),
+    empClkOut: new Date(),
+    empLunchOut: new Date(),
+    empLunchIn: new Date(),
+    empDayHours: [0,0,0,0,0,0,0],
+    empWeekHours: 0,
+  };
+
   constructor(private datePipe:DatePipe, private renderer: Renderer2) {
   }
   ngOnInit() {
