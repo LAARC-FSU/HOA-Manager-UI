@@ -1,0 +1,10 @@
+<ul class="list-group">
+  <ng-container *ngFor="let item of items; let i = index; let even = even">
+    <li class="list-group-item day"
+        [ngClass]="{'list-group-item-primary': even, 'list-group-item-light': !even }"
+        [style.height]="setHeight()"  style="color:#454E5C; border-radius: 0">
+      {{item}}
+    </li>
+    <div *ngIf="(i + 1) === initialPgBrk || (i + (initialPgBrk + 1)) % itemsPerPage === 0" class="pageBrk"></div>
+  </ng-container>
+</ul>

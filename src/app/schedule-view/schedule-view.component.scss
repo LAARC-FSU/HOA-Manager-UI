@@ -5,11 +5,10 @@ button{
   width: 160px;
   margin: 0 30px 0 30px;
 }
-.list-group-item{
-  height: 70px;
-
-}
 @media print{
+  //.pageBrk{
+  //  page-break-before: always;
+  //}
   @page  {
     size: landscape;
   }
@@ -33,4 +32,5 @@ button{
   .header{
     visibility: hidden;
   }
+
 }

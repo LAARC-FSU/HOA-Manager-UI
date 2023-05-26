@@ -1,0 +1,19 @@
+import {Component, Input} from '@angular/core';
+
+@Component({
+  selector: 'reusable-list',
+  templateUrl: './reusable-list.component.html',
+  styleUrls: ['./reusable-list.component.scss']
+})
+export class ReusableListComponent {
+  @Input() height = 0; // optional
+  @Input() items: any[] = [];
+  @Input() itemsPerPage = 0; // after the first page, the number of items you can fit on a page
+  @Input() initialPgBrk = 0; // the first number of items you can fit in the first page
+  setHeight(){
+    if (this.height > 0){
+      return this.height + 'px';
+    }
+    else{ return ''; }
+  }
+}
