@@ -20,11 +20,6 @@ export class MakeScheduleComponent implements OnInit {
   };
   weekDaysHeader = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   @Output() sendSchedule = new EventEmitter;
-  // firstShiftTime: Shift = {id: 'first shift', start: '', end: ''};
-  // secondShiftTime: Shift = {id: 'second shift', start: '', end: ''};
-  // thirdShiftTime: Shift = {id: 'third shift', start: '', end: ''};
-  // timeFrame: Date[] = [];
-  // schedules: {[key:string]: {}[]} = {};
   shifts: string[] = ['off'];
   employees: string[] = [
     'Alfredo Borroto',
@@ -36,6 +31,7 @@ export class MakeScheduleComponent implements OnInit {
     "Emily Johnson",
     "Michael Davis"
   ];
+  employeeName =  '';
 
   constructor(private data: ScheduleService, private router: Router, private datePipe: DatePipe) {
   }
