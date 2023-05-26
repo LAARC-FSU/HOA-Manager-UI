@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Renderer2} from '@angular/core';
 import {empWorkTime} from "../interfaces";
 import {DatePipe} from "@angular/common";
 import {getWeeksOfYear} from "../reusableFunctions";
@@ -17,7 +17,16 @@ export class WorkedHoursViewComponent implements OnInit{
 
   weekDaysHeader = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Total'];
   dates: string [] = this.getDates();
-  names: string [] = [];
+  names: string [] = [
+    'Alfredo Borroto',
+    'Amber Xiong',
+    'Caleb Mc Coy',
+    'Ronald Robbins',
+    'Leandro Yabut',
+    "John Smith",
+    "Emily Johnson",
+    "Michael Davis"
+  ];
   sun: string [] = [];
   mon: string [] = [];
   tue: string [] = [];
@@ -27,17 +36,19 @@ export class WorkedHoursViewComponent implements OnInit{
   sat: string [] = [];
   total:string [] = [];
 
-  constructor(private datePipe:DatePipe) {
+  constructor(private datePipe:DatePipe, private renderer: Renderer2) {
   }
   ngOnInit() {
     this.getData();
   }
 
   toMainDash(){
-
+    //TODO
   }
   print(){
-
+    this.renderer.addClass(document.body, 'print-mode');
+    window.print();
+    this.renderer.removeClass(document.body, 'print-mode');
   }
   getDates(){
     let weeks = getWeeksOfYear(this.year)
@@ -52,7 +63,6 @@ export class WorkedHoursViewComponent implements OnInit{
   }
   getData(){
     for(let employee of this.allEmpWorkTimes){
-      this.names.push(employee.empName);
       this.sun.push(employee.empDayHours[0].toString())
       this.mon.push(employee.empDayHours[1].toString())
       this.tue.push(employee.empDayHours[2].toString())
