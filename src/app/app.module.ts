@@ -13,6 +13,7 @@ import {EmployeeScheduleComponent} from './make-schedule/employee-schedule/emplo
 import {ScheduleViewComponent} from './schedule-view/schedule-view.component';
 import {ScheduleDashboardComponent} from './schedule-dashboard/schedule-dashboard.component';
 import {DatePipe} from "@angular/common";
+import { PhotoImportDialogComponent } from './photo-import-dialog/photo-import-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {DatePipe} from "@angular/common";
     EmployeeScheduleComponent,
     ScheduleViewComponent,
     ScheduleDashboardComponent,
+    PhotoImportDialogComponent,
   ],
   imports: [
     BrowserModule,
