@@ -13,19 +13,21 @@ import {EmployeeScheduleComponent} from './make-schedule/employee-schedule/emplo
 import {ScheduleViewComponent} from './schedule-view/schedule-view.component';
 import {ScheduleDashboardComponent} from './schedule-dashboard/schedule-dashboard.component';
 import {DatePipe} from "@angular/common";
+import {MemberInfoForm} from "./member-info-form/member-info-form";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginPortalComponent,
-    MakeScheduleComponent,
-    TimeFrameComponent,
-    ShiftMakerComponent,
-    TimePickerComponent,
-    EmployeeScheduleComponent,
-    ScheduleViewComponent,
-    ScheduleDashboardComponent,
-  ],
+    declarations: [
+        AppComponent,
+        LoginPortalComponent,
+        MakeScheduleComponent,
+        TimeFrameComponent,
+        ShiftMakerComponent,
+        TimePickerComponent,
+        EmployeeScheduleComponent,
+        ScheduleViewComponent,
+        ScheduleDashboardComponent,
+        MemberInfoForm,
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
