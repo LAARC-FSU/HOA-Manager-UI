@@ -1,5 +1,26 @@
 <div class="container container1">
   <div class="h3">List of Properties</div>
   <hr style="width: 10px; color: #E1EBF6">
-
+  <div class="col">
+    <table class="table table-striped table-bordered table-hover">
+      <thead style="background-color:black; color: white">
+      <th style="text-align: center">Unit</th>
+      <th style="text-align: center">Block</th>
+      <th style="text-align: center">Lot</th>
+      <th style="text-align: center">Acres</th>
+      <th></th>
+      <th></th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let result of results">
+        <td style="text-align: center; color: white">{{result.unit}}</td>
+        <td style="text-align: center; color: white">{{result.block}}</td>
+        <td style="text-align: center; color: white">{{result.lot}}</td>
+        <td style="text-align: center; color: white">{{result.acres}}</td>
+        <td style="text-align: center"><button style="border: none; background-color: black; color: white">View Satellite Image</button></td>
+        <td style="text-align: center"><button style="border: none; background-color: black; color: white">View Plat Map</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
