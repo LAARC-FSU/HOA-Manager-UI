@@ -1,0 +1,38 @@
+<div class="container cont1">
+  <div class="text-white header">Make a Request</div>
+  <hr>
+  <textarea class="textarea"  placeholder="Please describe the issue..." ></textarea>
+</div>
+<div class="container cont2">
+  <div class="row">
+    <div class="col d-flex align-items-center">
+      <input id="radio" type="radio" value="1" (click)="change()">
+      <label for="radio" style="color: white; padding-left: 20px; font-size: 24px"> Is an emergency</label>
+    </div>
+    <div class="col col2">
+      <button class="btn">Request</button>
+    </div>
+  </div>
+</div>
+<div class="container cont3">
+  <div style="color: white; font-size: 24px">Technician on duty</div>
+  <hr style="color: white">
+  <div class="row">
+    <div class="col">
+      <img src="" alt="">
+    </div>
+    <div class="col">
+      <table class="table tech">
+        <tbody>
+          <tr *ngFor="let result of results">
+            <td>{{result.name}}</td>
+          <tr *ngFor="let result of results">
+            <td>{{result.phone}}</td>
+          <tr *ngFor="let result of results">
+            <td>{{result.email}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+.cont1{
+  position: absolute;
+  width: 1344px;
+  height: 230px;
+  left: 48px;
+  top: 123px;
+  background-color: black;
+  color: white;
+}
+
+.header{
+  font-size: 24px;
+}
+.textarea{
+  position: absolute;
+  width: 1300px;
+  height: 168px;
+  left: 10px;
+  top: 51px;
+
+}
+
+.cont2{
+  position: absolute;
+  width: 509px;
+  height: 57px;
+  left: 859px;
+  top: 353px;
+  background-color: black;
+}
+
+input[type='radio']{
+  transform: scale(2);
+}
+
+.btn{
+  background-color: white;
+  width: 180px;
+}
+
+.tech{
+  background-color: black;
+  color: white;
+  position: absolute;
+  width: 210px;
+  top: 57px
+}
+
+.cont3{
+  position: absolute;
+  width: 452px;
+  height: 184px;
+  top: 398px;
+  left: 51px;
+  background-color: black;
+}
+
+td{
+  border-collapse: collapse;
+  border: 0;
+}
