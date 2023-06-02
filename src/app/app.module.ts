@@ -14,6 +14,7 @@ import {ScheduleViewComponent} from './schedule-view/schedule-view.component';
 import {ScheduleDashboardComponent} from './schedule-dashboard/schedule-dashboard.component';
 import {DatePipe} from "@angular/common";
 import { PhotoImportDialogComponent } from './photo-import-dialog/photo-import-dialog.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PhotoImportDialogComponent } from './photo-import-dialog/photo-import-d
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ImageCropperModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
