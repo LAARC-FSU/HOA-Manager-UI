@@ -28,9 +28,16 @@
 <div class="row file-container" (change)="drawImage($event)">
   <input type="file" id="file">
 </div>
-<div class="row">
-  <canvas (click)="onClick($event)" #mainCanvas style="position: absolute ;background-color: blue"></canvas>
+<div class="container" style=" position: relative">
+
+  <div class="row">
+    <canvas   #mainCanvas style="position: absolute; background-color: blue"></canvas>
+  </div>
+  <div class="row">
+    <canvas (mousemove)="onClick($event)" (mousedown)="setMouseDown($event)" (mouseup)="setMouseDown($event)" #croppedCanvas style="position: absolute; background-color: transparent"></canvas>
+  </div>
 </div>
+
 <!--<div class="row">-->
 <!--  <img id="hidden" src="assets/cropCircle.png" style="width: 10%; display: none">-->
 <!--</div>-->
