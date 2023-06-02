@@ -31,10 +31,10 @@
 <div class="container" style=" position: relative">
 
   <div class="row">
-    <canvas   #mainCanvas style="position: absolute; background-color: blue"></canvas>
+    <canvas   #mainCanvas style="position: absolute; background-color: blue; width: 400px; height: 400px"></canvas>
   </div>
   <div class="row">
-    <canvas (mousemove)="onClick($event)" (mousedown)="setMouseDown($event)" (mouseup)="setMouseDown($event)" #croppedCanvas style="position: absolute; background-color: transparent"></canvas>
+    <canvas (mousemove)="onClick($event)" (mousedown)="setMouseDown($event)" (mouseup)="setMouseDown($event)" #croppedCanvas style="position: absolute; background-color: transparent; width: 400px; height: 400px"></canvas>
   </div>
 </div>
 

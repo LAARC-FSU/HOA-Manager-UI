@@ -7,6 +7,7 @@ import {Component, ElementRef, AfterViewInit, ViewChild} from '@angular/core';
 })
 export class PhotoImportDialogComponent implements AfterViewInit {
   selectedFile: File = new File([], '');
+  reader: FileReader = new FileReader();
   image = new Image();
   @ViewChild("mainCanvas") canvasBottomRef!: ElementRef<HTMLCanvasElement>;
   @ViewChild("croppedCanvas") canvasTopRef!: ElementRef<HTMLCanvasElement>;
@@ -45,31 +46,37 @@ export class PhotoImportDialogComponent implements AfterViewInit {
     this.onClick(event);
   }
   drawSelectedImage() {
-debugger
-    this.image.onload = () => {
-      this.canvasTop!.width = 800;
-      this.canvasBack!.width = 800;
-      this.canvasTop!.height = 800;
-      this.canvasBack!.height = 800;
+    this.reader.onload = (e: any) => {
+      this.image.onload = () => {
+        // const size = 2000;
+        // this.canvasTop!.width = size;
+        // this.canvasBack!.width = size;
+        // this.canvasTop!.height = size;
+        // this.canvasBack!.height = size;
+        //
+        // const scale = Math.min(this.canvasTop!.width / this.image.width, this.canvasTop!.height / this.image.height);
+        // const width = this.image.width * scale;
+        // const height = this.image.height * scale;
+        //
+        // // this.canvasBack.width = this.image.width;
+        // // this.canvasTop.width = this.image.width;
+        // // this.canvasBack.height = this.image.height;
+        // // this.canvasTop.height = this.image.height;
+        //
+        this.ctxTop!.clearRect(0,0, this.canvasTop!.width, this.canvasTop!.height);
+        this.ctxBack!.clearRect(0,0, this.canvasBack!.width, this.canvasBack!.height);
 
-      const scale = Math.min(this.canvasTop!.width / this.image.width, this.canvasTop!.height / this.image.height);
-      const width = this.image.width * scale;
-      const height = this.image.height * scale;
+        this.ctxTop!.drawImage(this.image, 0,0, 400, 200 );
+        this.ctxBack!.drawImage(this.image, 0,0, 400, 200);
 
-      // this.canvasBack.width = this.image.width;
-      // this.canvasTop.width = this.image.width;
-      // this.canvasBack.height = this.image.height;
-      // this.canvasTop.height = this.image.height;
-
-      this.ctxTop!.clearRect(0,0, this.canvasTop!.width, this.canvasTop!.height);
-      this.ctxBack!.clearRect(0,0, this.canvasBack!.width, this.canvasBack!.height);
-
-      this.ctxTop!.drawImage(this.image, 0,0, width, height, 0, 0, 800, 800);
-      this.ctxBack!.drawImage(this.image, 0,0, width, height, 0, 0, 800, 800);
-      debugger
+        // this.ctxTop!.drawImage(this.image, 0,0, width, height, 0, 0, size, size);
+        // this.ctxBack!.drawImage(this.image, 0,0, width, height, 0, 0, size, size);
+        // debugger
+      };
+      // this.image.src = URL.createObjectURL(this.selectedFile!);
+      this.image.src = e.target.result;
     };
-
-    this.image.src = URL.createObjectURL(this.selectedFile!);
+    this.reader.readAsDataURL(this.selectedFile)
   }
 
   onClick(event: any) {
@@ -81,7 +88,7 @@ debugger
     if (this.mouseDown){
       let x = event.x;
       let y = event.y;
-      debugger
+
       this.ctxBack!.filter = 'blur(10px)';
       this.ctxBack!.drawImage(this.image, 0, 0);
       this.ctxTop!.drawImage(this.image, 0, 0);
