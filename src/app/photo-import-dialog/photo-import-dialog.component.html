@@ -1,43 +1,55 @@
-<!--<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clockInOutModal">Lunch Dialog</button>-->
+<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clockInOutModal">Lunch Dialog</button>
 
 <div class="modal fade" id="clockInOutModal">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content my-0">
-
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid" style="font-family: montserrat,serif; width: 500px; height: 500px ">
-  <div class="row">
-    <div class="card title">
-      <div class="row ms-4 my-1 text-center">
-        <div class="col"></div>
-        <div class="col d-flex justify-content-center">
-        </div>
-        <div class="col d-flex justify-content-end me-4">
-          <button class="btn-close btn-close-white" data-bs-toggle="modal"></button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="card subtitle">
-          <div class="row file-container" (change)="importImage($event)">
-            <input type="file" id="file">
+      <div class="container-fluid" style="font-family: montserrat,serif; width: 500px; height: 500px ">
+        <div class="row">
+          <div class="card title" style="background-color: #454E5C">
+            <div class="row ms-3 my-1 text-center" style="color: white">
+              <div class="col">Upload Image</div>
+              <div class="col d-flex justify-content-center">
+              </div>
+              <div class="col d-flex justify-content-end me-4">
+                <button class="btn-close btn-close-white" data-bs-toggle="modal"></button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="card subtitle" style="background-color: #828FA0">
+                <div class="row-cols mx-2">
+                  <div class="row my-3 text-center"></div>
+                  <div class="row d-flex justify-content-center py-3 mb-2" style="background-color: #F5F5F5">
+                    <div class="row mb-3" style="height: 400px;">
+                      <image-cropper
+                        [imageChangedEvent]="imageChangedEvent"
+                        [maintainAspectRatio]="true"
+                        [aspectRatio]="1"
+                        [cropperMinWidth]="100"
+                        [cropperMinHeight]="100"
+                        [resizeToWidth]="400"
+                        [resizeToHeight]="400"
+                        [roundCropper]="circleCropper"
+                        (imageCropped)="onImageCropped($event)"
+                        (imageLoaded)="onImageLoaded()"
+                        (cropperReady)="onCropperReady()"
+                        (loadImageFailed)="onLoadImageFailed()"
+                      ></image-cropper>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <input type="file" class="form-control custom-file-input" id="fileInput" accept=".jpg,.jpeg,.png,.gif"
+                               (change)="importImage($event)">
+                        <label for="fileInput" class="custom-button">Select Photo</label>
+                      </div>
+                      <div class="col">
+                        <button (click)="saveImg()" class="btn btn-primary custom-button" type="button" data-bs-toggle="modal" [disabled]="preview === null">Save</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <image-cropper
-            [imageChangedEvent]="imageChangedEvent"
-            [maintainAspectRatio]="true"
-            [aspectRatio]="1/1"
-            [cropperMinWidth]="100"
-            [cropperMinHeight]="100"
-            [roundCropper]="true"
-            (imageCropped)="onImageCropped($event)"
-            (imageLoaded)="onImageLoaded()"
-            (cropperReady)="onCropperReady()"
-            (loadImageFailed)="onLoadImageFailed()"
-            style="--cropper-outline-color:rgba(69, 78, 92, 0.8);
-  --cropper-overlay-color: rgba(255, 255, 255, 1)"
-          ></image-cropper>
         </div>
       </div>
     </div>

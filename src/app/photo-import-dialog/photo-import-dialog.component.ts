@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ImageCroppedEvent} from "ngx-image-cropper";
 @Component({
   selector: 'photo-import-dialog',
@@ -6,141 +6,31 @@ import {ImageCroppedEvent} from "ngx-image-cropper";
   styleUrls: ['./photo-import-dialog.component.scss']
 })
 export class PhotoImportDialogComponent{
-  // {selectedFile: File = new File([], '');
-  // reader: FileReader = new FileReader();
-  // image = new Image();
-  // @ViewChild("mainCanvas") canvasBottomRef!: ElementRef<HTMLCanvasElement>;
-  // @ViewChild("croppedCanvas") canvasTopRef!: ElementRef<HTMLCanvasElement>;
-  // canvasBack: HTMLCanvasElement | undefined = undefined;
-  // canvasTop: HTMLCanvasElement | undefined = undefined;
-  // ctxBack : CanvasRenderingContext2D | null = null;
-  // ctxTop: CanvasRenderingContext2D | null = null;
-  // mouseDown = false;
-  // radius = 10;
-  //
-  // constructor() {
-  // }
-  //
-  // ngAfterViewInit() {
-  //   this.canvasBack = this.canvasBottomRef.nativeElement;
-  //   this.canvasTop = this.canvasTopRef.nativeElement;
-  //   this.ctxBack = this.canvasBack.getContext('2d')!;
-  //   this.ctxTop = this.canvasTop.getContext('2d')!;
-  // }
-  //
-  // drawImage(event: any) {
-  //   this.selectedFile = event.target.files[0];
-  //   this.drawSelectedImage();
-  // }
-  //
-  // setMouseDown(event:any){
-  //   console.log(event);
-  //   switch (event.type){
-  //     case 'mousedown':
-  //       this.mouseDown = true;
-  //       break
-  //     case 'mouseup':
-  //       this.mouseDown = false;
-  //       break
-  //   }
-  //   this.onClick(event);
-  // }
-  // drawSelectedImage() {
-  //   this.reader.onload = (e: any) => {
-  //     this.image.onload = () => {
-  //       // const size = 2000;
-  //       // this.canvasTop!.width = size;
-  //       // this.canvasBack!.width = size;
-  //       // this.canvasTop!.height = size;
-  //       // this.canvasBack!.height = size;
-  //       //
-  //       // const scale = Math.min(this.canvasTop!.width / this.image.width, this.canvasTop!.height / this.image.height);
-  //       // const width = this.image.width * scale;
-  //       // const height = this.image.height * scale;
-  //       //
-  //       // // this.canvasBack.width = this.image.width;
-  //       // // this.canvasTop.width = this.image.width;
-  //       // // this.canvasBack.height = this.image.height;
-  //       // // this.canvasTop.height = this.image.height;
-  //       //
-  //       this.ctxTop!.clearRect(0,0, this.canvasTop!.width, this.canvasTop!.height);
-  //       this.ctxBack!.clearRect(0,0, this.canvasBack!.width, this.canvasBack!.height);
-  //
-  //       this.ctxTop!.drawImage(this.image, 0,0, 400, 200 );
-  //       this.ctxBack!.drawImage(this.image, 0,0, 400, 200);
-  //
-  //       // this.ctxTop!.drawImage(this.image, 0,0, width, height, 0, 0, size, size);
-  //       // this.ctxBack!.drawImage(this.image, 0,0, width, height, 0, 0, size, size);
-  //       // debugger
-  //     };
-  //     // this.image.src = URL.createObjectURL(this.selectedFile!);
-  //     this.image.src = e.target.result;
-  //   };
-  //   this.reader.readAsDataURL(this.selectedFile)
-  // }
-  //
-  // onClick(event: any) {
-  //
-  //
-  //   // this.ctx.fillStyle = 'blue';
-  //   // this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-  //
-  //   if (this.mouseDown){
-  //     let x = event.x;
-  //     let y = event.y;
-  //
-  //     this.ctxBack!.filter = 'blur(10px)';
-  //     this.ctxBack!.drawImage(this.image, 0, 0);
-  //     this.ctxTop!.drawImage(this.image, 0, 0);
-  //     this.ctxBack!.filter = 'none';
-  //
-  //     this.ctxTop!.globalCompositeOperation = 'source-in';
-  //     this.drawCropShape(x, y, this.radius);
-  //     this.ctxTop!.drawImage(this.image, 0, 0);
-  //     this.ctxTop!.globalCompositeOperation = 'source-over';
-  //     this.drawButton(x, y)
-  //   }
-  //
-  //
-  //
-  // }
-  //
-  // drawCropShape(x: number, y: number, r: number) {
-  //   this.ctxTop!.fillStyle = 'black'
-  //   this.ctxTop!.beginPath();
-  //   this.ctxTop!.arc(x, y, r, 0, 2 * Math.PI); // Draw a full circle
-  //   this.ctxTop!.fill();
-  // }
-  //
-  // drawButton(x:number, y:number) {
-  //   const buttonWidth = 50;
-  //   const buttonHeight = 50;
-  //
-  //
-  //   this.ctxTop!.fillStyle = '#3498db';
-  //   this.ctxTop!.fillRect(x, y, buttonWidth, buttonHeight);
-  //
-  // }
   imageChangedEvent: any = '';
-  preview:any='';
+  preview:any = null;
+  @Output() croppedImg = new EventEmitter();
+  @Input() circleCropper = false;
 
   importImage(event:any){
     this.imageChangedEvent = event;
   }
   onImageCropped(event: ImageCroppedEvent) {
     this.preview = event.base64;
-    console.log(this.preview)
   }
 
   onImageLoaded() {
-    // Handle the image loaded event
   }
 
   onCropperReady() {
-    // Handle the cropper ready event
+
   }
 
   onLoadImageFailed() {
     // Handle the load image failed event
+  }
+  saveImg(){
+    if (this.preview){
+      this.croppedImg.emit(this.preview);
+    }
   }
 }
