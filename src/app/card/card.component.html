@@ -1,0 +1,37 @@
+<span class="card text-bg-primary" style="max-width: 18rem;">
+
+  <div class="card-header" *ngIf="headerIsVisible">
+    <div class="d-flex justify-content-between align">
+      <span class="align-self-center">
+        <ng-content select=".header-left"></ng-content>
+      </span>
+      <span>
+        <ng-content select=".header-center"></ng-content>
+      </span>
+      <span>
+        <ng-content select=".header-right"></ng-content>
+      </span>
+    </div>
+  </div>
+
+  <div class="secondary-bg text-bg-secondary" *ngIf="subheaderIsVisible">
+    <div class="card-header text-bg-secondary border-bottom-0">
+      <div class="subheaderItems d-inline-flex justify-content-between">
+        <span class="align-self-center">
+          <ng-content select=".subheader-left"></ng-content>
+        </span>
+        <span >
+          <ng-content select=".subheader-center"></ng-content>
+        </span>
+        <span>
+          <ng-content select=".subheader-right"></ng-content>
+        </span>
+      </div>
+    </div>
+
+  </div>
+  <div class="card-body text-secondary text-bg-secondary pt-0">
+    <ng-content select=".body"></ng-content>
+  </div>
+
+</span>
