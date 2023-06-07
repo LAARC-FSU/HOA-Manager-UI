@@ -1,0 +1,13 @@
+*{
+  border-color: #828FA0
+}
+input, select{
+  cursor: pointer;
+}
+.collapse {
+  border-color: transparent;
+}
+.form-control:focus {
+  border-color: #828FA0;
+  box-shadow: none;
+}

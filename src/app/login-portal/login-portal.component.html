@@ -1,0 +1,596 @@
+<div class="bg-image" style="background-image: url(assets/loginBackground.jpg); height: 100%; width: 100%; position: fixed">
+
+<div class="container" style="font-family: montserrat,serif">
+
+  <div class="row">
+    <div class="col position-absolute top-50 start-50 translate-middle" style="width: 450px">
+
+      <div class="card p-5 text-center" style="background-color: #E1EBF6; border-radius: 20px">
+
+        <div class="row justify-content-center">
+          <div>
+            <img src="assets/loginLogo.svg" class="card-img-top h-75" alt="">
+          </div>
+        </div>
+
+        <div class="signIn" *ngIf="getMode()== Mode.login" [@fadeInOut]="">
+          <div class="card-body">
+            <div class="row-cols-10">
+              <div class="row mb-5">
+                <h1 class="card-title">Sign In</h1>
+              </div>
+
+              <div *ngIf="login.errors" class="valErrMessage mb-5">
+                The email or password is invalid.
+              </div>
+              <form [formGroup]="login" class="row" (ngSubmit)="signIn()">
+
+                <div *ngIf="email?.touched && email?.invalid">
+                  <div *ngIf="email && email.errors && email.errors['required']"
+                       class="valErrMessage">
+                    Email is required.
+                  </div>
+                  <div *ngIf="email && email.errors && email.errors['pattern']"
+                       class="valErrMessage">
+                    It needs to be a valid email.
+                  </div>
+                </div>
+
+                  <div class="input-group mb-4">
+                    <input
+                      formControlName="email"
+                      type="email"
+                      placeholder="Email"
+                      class="form-control shadow"
+                      style="background-color: #F5F5F5">
+                    <span *ngIf="email?.touched && email?.invalid"
+                          class="input-group-text shadow "
+                          style="border-width: 1px; border-color: #A73E40">
+                      <img src="assets/userIcon.svg" style="height: 30px" alt="">
+                    </span>
+                    <span *ngIf="!email?.touched || !email?.invalid"
+                          class="input-group-text shadow">
+                      <img src="assets/userIcon.svg" style="height: 30px" alt="">
+                    </span>
+                  </div>
+
+                <div *ngIf="password?.touched && password?.invalid">
+                  <div *ngIf="email && email.errors && email.errors['required']"
+                       class="valErrMessage">
+                    Password is required.
+                  </div>
+                </div>
+
+                  <div class="input-group">
+                    <input
+                      formControlName="password"
+                      type="password"
+                      placeholder="Password"
+                      class="form-control shadow"
+                      style="background-color: #F5F5F5">
+                    <span *ngIf="password?.touched && password?.invalid"
+                          class="input-group-text shadow" style="border-width: 1px; border-color: #A73E40">
+                      <img src="assets/lockIcon.svg" style="height: 30px" alt="">
+                    </span>
+                    <span *ngIf="!password?.touched || !password?.invalid"
+                          class="input-group-text shadow">
+                      <img src="assets/lockIcon.svg" style="height: 30px" alt="">
+                    </span>
+                  </div>
+
+
+              </form>
+
+                <div class="row-cols-10 pt-4 pb-2">
+                  <button (click)="toForgotEmail()" class="btn" style="border-color: transparent">Forgot Email</button>
+                </div>
+
+                <div class="row-cols-10 pb-4">
+                  <button (click)="toForgotPassword()" class="btn" style="border-color: transparent">Forgot Password</button>
+                </div>
+
+                <div class="row justify-content-center pb-5">
+                  <div class="card col-6 py-3" style="background-color: transparent">
+                    <div class="form-check">
+                      <input  class="form-check-input" type="radio" name="selector" id="employeeCheck">
+                      <label class="form-check-label" for="employeeCheck" >Employee</label>
+                    </div>
+                    <div class="form-check">
+                      <input  class="form-check-input" type="radio" name="selector" id="memberCheck" checked>
+                      <label class="form-check-label" for="memberCheck">Member</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row-col">
+                  <div class="row pb-4">
+                    <button (click)="signIn()"
+                            type="submit"
+                            class="btn btn-primary btn-lg"
+                            style="background-color: #828FA0; border-color: #828FA0">Sign In</button>
+                  </div>
+                  <div class="row pb-4">
+                    <button (click)="toSignUp()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Sign Up</button>
+                  </div>
+                  <div class="row">
+                    <button class="btn btn-primary btn-lg" style="background-color: #A73E40; border-color: #828FA0">Exit</button>
+                  </div>
+                </div>
+
+
+            </div>
+        </div>
+      </div>
+
+        <div class="signUp" *ngIf="getMode()== Mode.signup" [@fadeInOut]="">
+          <div class="card-body">
+            <div class="row-cols-10">
+              <div class="row pb-4">
+                <h1 class="card-title">Sign Up</h1>
+              </div>
+            <div class="row-col">
+              <form [formGroup]="signUp" class="row">
+
+                <div *ngIf="memberId?.pending && memberId?.touched">Searching for user id...</div>
+
+                <div *ngIf="memberId?.touched && memberId?.invalid">
+                  <div *ngIf="memberId && memberId.errors && memberId.errors['required']"
+                       class="valErrMessage">
+                    Member Id is required.
+                  </div>
+                    <div *ngIf="memberId && memberId.errors && memberId.errors['idNotFound']" class="valErrMessage">
+                    Member Id not found.
+                  </div>
+                </div>
+
+                <div class="input-group mb-4">
+                  <input
+                    formControlName="memberId"
+                    (change)="log(memberId)"
+                    class="form-control shadow"
+                    type="text"
+                    placeholder="Member ID"
+                    style="background-color: #F5F5F5">
+
+                  <span *ngIf="!memberId?.touched || !memberId?.invalid"
+                        class="input-group-text shadow">
+                    <img src="assets/userIcon.svg" style="height: 28px" alt="">
+                  </span>
+                  <span *ngIf="memberId?.touched && memberId?.invalid"
+                        class="input-group-text shadow "
+                        style="border-width: 1px; border-color: #A73E40">
+                    <img src="assets/userIcon.svg" style="height: 28px" alt="">
+                  </span>
+                </div>
+
+                <div *ngIf="newEmail?.touched && newEmail?.invalid">
+                  <div *ngIf="newEmail && newEmail.errors && newEmail.errors['required']"
+                       class="valErrMessage">
+                    Email is required.
+                  </div>
+                  <div *ngIf="newEmail && newEmail.errors && newEmail.errors['pattern']"
+                       class="valErrMessage">
+                    It needs to be a valid email.
+                  </div>
+                </div>
+
+                <div class="input-group mb-4">
+                  <input
+                    formControlName="newEmail"
+                    class="form-control shadow"
+                    type="email"
+                    placeholder="Email"
+                    style="background-color: #F5F5F5">
+                  <span *ngIf="!newEmail?.touched || !newEmail?.invalid"
+                        class="input-group-text shadow">
+                    <img src="assets/emailIcon.svg" style="height: 28px" alt="">
+                  </span>
+                  <span *ngIf="newEmail?.touched && newEmail?.invalid"
+                        class="input-group-text shadow "
+                        style="border-width: 1px; border-color: #A73E40">
+                    <img src="assets/emailIcon.svg" style="height: 28px" alt="">
+                  </span>
+                </div>
+
+                <div *ngIf="newPassword?.touched && newPassword?.invalid">
+                  <div *ngIf="newPassword && newPassword.errors && newPassword.errors['required']"
+                       class="valErrMessage">
+                    New Password is required.
+                  </div>
+                </div>
+                <div class="input-group mb-4">
+                  <input
+                    formControlName="newPassword"
+                    class="form-control shadow"
+                    type="password"
+                    placeholder="Password"
+                    style="background-color: #F5F5F5">
+
+                  <span *ngIf="!newPassword?.touched || !newPassword?.invalid"
+                        class="input-group-text shadow">
+                    <img src="assets/lockIcon.svg" style="height: 28px" alt="">
+                  </span>
+                  <span *ngIf="newPassword?.touched && newPassword?.invalid"
+                        class="input-group-text shadow "
+                        style="border-width: 1px; border-color: #A73E40">
+                    <img src="assets/lockIcon.svg" style="height: 28px" alt="">
+                  </span>
+                </div>
+
+                <div *ngIf="confirmPassword?.touched && confirmPassword?.invalid">
+                  <div *ngIf="confirmPassword && confirmPassword.errors && confirmPassword.errors['required']"
+                       class="valErrMessage">
+                    Please Re-type password.
+                  </div>
+                </div>
+                <div class="input-group mb-4">
+                  <input
+                    formControlName="confirmPassword"
+                    class="form-control shadow"
+                    type="password"
+                    placeholder="Re-type Password"
+                    style="background-color: #F5F5F5">
+
+                  <span *ngIf="!confirmPassword?.touched || !confirmPassword?.invalid"
+                        class="input-group-text shadow">
+                    <img src="assets/lockIcon.svg" style="height: 28px" alt="">
+                  </span>
+                  <span *ngIf="confirmPassword?.touched && confirmPassword?.invalid"
+                        class="input-group-text shadow "
+                        style="border-width: 1px; border-color: #A73E40">
+                    <img src="assets/lockIcon.svg" style="height: 28px" alt="">
+                  </span>
+                </div>
+
+                <div *ngIf = "signUp.errors && signUp.errors['noMatch']" class="valErrMessage">Passwords don't match.</div>
+
+                <div class="row pt-5 gy-3">
+                  <button (click)="signUpUser()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Sign Up</button>
+                  <button (click)="back()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Back</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <div class="forgotEmail" *ngIf="getMode()== Mode.forgotEmail" [@fadeInOut]="">
+          <div class="card-body">
+            <div class="row-cols-10">
+              <div class="row pb-4">
+                <h1 class="card-title">Forgot Email</h1>
+              </div>
+              <div class="row-col">
+                <form [formGroup]="forgotEmail" class="row">
+
+                  <div *ngIf="memberIdForgotEmail?.pending && memberIdForgotEmail?.touched">Searching for user id...</div>
+
+                  <div *ngIf="memberIdForgotEmail?.touched && memberIdForgotEmail?.invalid">
+                    <div *ngIf="memberIdForgotEmail && memberIdForgotEmail.errors && memberIdForgotEmail.errors['required']"
+                         class="valErrMessage">
+                      Member Id is required.
+                    </div>
+                    <div *ngIf="memberIdForgotEmail && memberIdForgotEmail.errors && memberIdForgotEmail.errors['idNotFound']" class="valErrMessage">
+                      Member Id not found.
+                    </div>
+                  </div>
+
+                  <div class="input-group mb-4">
+                    <input
+                      formControlName="memberIdForgotEmail"
+                      class="form-control shadow"
+                      type="text"
+                      placeholder="Member ID"
+                      style="background-color: #F5F5F5">
+
+                    <span *ngIf="!memberIdForgotEmail?.touched || !memberIdForgotEmail?.invalid"
+                          class="input-group-text shadow">
+                    <img src="assets/userIcon.svg" style="height: 28px" alt="">
+                  </span>
+                    <span *ngIf="memberIdForgotEmail?.touched && memberIdForgotEmail?.invalid"
+                          class="input-group-text shadow "
+                          style="border-width: 1px; border-color: #A73E40">
+                    <img src="assets/userIcon.svg" style="height: 28px" alt="">
+                  </span>
+                  </div>
+
+                  <div class="result my-5">
+                    <div *ngIf="getEmailFound()===''" class="row">
+                      <p>Sorry there is no email associated to this account.</p>
+                      <p>Please sign up to proceed.</p>
+                    </div>
+                    <div *ngIf="getEmailFound()!==null" class="row">
+                      <p>Here is the email linked to your account:</p>
+                      <p>{{getEmailFound()}}</p>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <button (click)="findEmail()" class="btn btn-primary btn-lg mb-4" style="background-color: #828FA0; border-color: #828FA0">Find my Email</button>
+                    <button (click)="back()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Back</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="forgotPassword" *ngIf="getMode()==Mode.forgotPassword" [@fadeInOut]="">
+          <div class="card-body">
+            <div class="row-cols-10">
+              <div class="row pb-4">
+                <h1 class="card-title">Forgot Password</h1>
+              </div>
+              <div class="row-col">
+                <form [formGroup]="forgotPassword" class="row">
+
+                  <div *ngIf="memberIdForgotPass?.pending">Searching for member id...</div>
+                  <div *ngIf="memberIdForgotPass?.touched && memberIdForgotPass?.invalid">
+                    <div *ngIf="memberIdForgotPass && memberIdForgotPass.errors && memberIdForgotPass.errors['required']"
+                         class="valErrMessage">
+                      Member Id is required.
+                    </div>
+                    <div *ngIf="memberIdForgotPass && memberIdForgotPass.errors && memberIdForgotPass.errors['idNotFound']" class="valErrMessage">
+                      Member Id not found.
+                    </div>
+                  </div>
+
+                  <div class="input-group mb-4">
+                    <input
+                      formControlName="memberIdForgotPass"
+                      class="form-control shadow"
+                      type="text"
+                      placeholder="Member ID"
+                      style="background-color: #F5F5F5">
+
+                    <span *ngIf="!memberIdForgotPass?.touched || !memberIdForgotPass?.invalid"
+                          class="input-group-text shadow">
+                    <img src="assets/userIcon.svg" style="height: 28px" alt="">
+                  </span>
+                    <span *ngIf="memberIdForgotPass?.touched && memberIdForgotPass?.invalid"
+                          class="input-group-text shadow "
+                          style="border-width: 1px; border-color: #A73E40">
+                    <img src="assets/userIcon.svg" style="height: 28px" alt="">
+                  </span>
+                  </div>
+
+                  <div *ngIf="emailForgotPass?.touched && emailForgotPass?.invalid">
+                    <div *ngIf="emailForgotPass && emailForgotPass.errors && emailForgotPass.errors['required']"
+                         class="valErrMessage">
+                      Email is required.
+                    </div>
+                    <div *ngIf="emailForgotPass && emailForgotPass.errors && emailForgotPass.errors['pattern']"
+                         class="valErrMessage">
+                      It needs to be a valid email.
+                    </div>
+                  </div>
+                  <div class="input-group mb-4">
+                    <input
+                      formControlName="emailForgotPass"
+                      class="form-control shadow"
+                      type="email"
+                      placeholder="Email"
+                      style="background-color: #F5F5F5">
+                    <span *ngIf="!emailForgotPass?.touched || !emailForgotPass?.invalid"
+                          class="input-group-text shadow">
+                    <img src="assets/emailIcon.svg" style="height: 28px" alt="">
+                  </span>
+                    <span *ngIf="emailForgotPass?.touched && emailForgotPass?.invalid"
+                          class="input-group-text shadow "
+                          style="border-width: 1px; border-color: #A73E40">
+                    <img src="assets/emailIcon.svg" style="height: 28px" alt="">
+                  </span>
+                  </div>
+
+                  <div *ngIf="newPasswordForgotPass?.touched && newPasswordForgotPass?.invalid">
+                    <div *ngIf="newPasswordForgotPass && newPasswordForgotPass.errors && newPasswordForgotPass.errors['required']"
+                         class="valErrMessage">
+                      New Password is required.
+                    </div>
+                  </div>
+                  <div class="input-group mb-4">
+
+                    <input
+                      formControlName="newPasswordForgotPass"
+                      class="form-control shadow"
+                      type="password"
+                      placeholder="Password"
+                      style="background-color: #F5F5F5">
+
+                    <span *ngIf="!newPasswordForgotPass?.touched || !newPasswordForgotPass?.invalid"
+                          class="input-group-text shadow">
+                    <img src="assets/lockIcon.svg" style="height: 28px" alt="">
+                  </span>
+                    <span *ngIf="newPasswordForgotPass?.touched && newPasswordForgotPass?.invalid"
+                          class="input-group-text shadow "
+                          style="border-width: 1px; border-color: #A73E40">
+                    <img src="assets/lockIcon.svg" style="height: 28px" alt="">
+                  </span>
+                  </div>
+
+                  <div *ngIf="confirmPasswordForgotPass?.touched && confirmPasswordForgotPass?.invalid">
+                    <div *ngIf="confirmPasswordForgotPass && confirmPasswordForgotPass.errors && confirmPasswordForgotPass.errors['required']"
+                         class="valErrMessage">
+                      Please Re-type password.
+                    </div>
+                  </div>
+                  <div class="input-group mb-4">
+
+                    <input
+                      formControlName="confirmPasswordForgotPass"
+                      class="form-control shadow"
+                      type="password"
+                      placeholder="Re-type Password"
+                      style="background-color: #F5F5F5">
+
+                    <span *ngIf="!confirmPasswordForgotPass?.touched || !confirmPasswordForgotPass?.invalid"
+                          class="input-group-text shadow">
+                    <img src="assets/lockIcon.svg" style="height: 28px" alt="">
+                  </span>
+                    <span *ngIf="confirmPasswordForgotPass?.touched && confirmPasswordForgotPass?.invalid"
+                          class="input-group-text shadow "
+                          style="border-width: 1px; border-color: #A73E40">
+                    <img src="assets/lockIcon.svg" style="height: 28px" alt="">
+                  </span>
+                  </div>
+
+                  <div *ngIf = "forgotPassword.errors && forgotPassword.errors['noMatch']" class="valErrMessage">Passwords don't match.</div>
+
+                  <div class="row pt-5 gy-3">
+                    <button (click)="signUpUser()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Change Password</button>
+                    <button (click)="back()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Back</button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+
+
+<!--          <div class="card-body">-->
+<!--            <div class="row-cols-10">-->
+<!--              <div class="row pb-4">-->
+<!--                <h1 class="card-title">Forgot Password</h1>-->
+<!--              </div>-->
+<!--              <div class="row-col">-->
+<!--                <form [formGroup]="forgotPassword" class="row gy-4">-->
+
+<!--                  <div class="input-group ">-->
+<!--                    <input class="form-control shadow" type="text" placeholder="Member ID"  style="background-color: #F5F5F5">-->
+<!--                    <span class="input-group-text shadow"><img src="assets/userIcon.svg" style="height: 28px" alt=""></span>-->
+<!--                  </div>-->
+
+<!--                  <div class="input-group ">-->
+<!--                    <input class="form-control shadow" type="email" placeholder="Email" style="background-color: #F5F5F5">-->
+<!--                    <span class="input-group-text shadow"><img src="assets/emailIcon.svg" style="height: 28px" alt=""></span>-->
+<!--                  </div>-->
+
+<!--                  <div class="input-group">-->
+<!--                    <input class="form-control shadow" type="password" placeholder="New Password" style="background-color: #F5F5F5">-->
+<!--                    <span class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 28px" alt=""></span>-->
+<!--                  </div>-->
+
+<!--                  <div class="input-group">-->
+<!--                    <input class="form-control shadow" type="password" placeholder="Re-type Password" style="background-color: #F5F5F5">-->
+<!--                    <span class="input-group-text shadow"><img src="assets/lockIcon.svg" style="height: 28px" alt=""></span>-->
+<!--                  </div>-->
+
+<!--                  <div class="row gy-4">-->
+<!--                    <button (click)="signUpUser()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Change my password</button>-->
+<!--                    <button (click)="back()" class="btn btn-primary btn-lg" style="background-color: #828FA0; border-color: #828FA0">Back</button>-->
+<!--                  </div>-->
+<!--                </form>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="ftCard" >&ndash;&gt;-->
+  <!--      <form form-control>-->
+  <!--        <img src="assets/loginLogo.svg" class="mx-auto my-5 d-block"  alt="HOA Manager Logo">-->
+  <!--        <div class="input-group">-->
+  <!--          <input class="form-control shadow ms-4" type="email" name="email" id="email" placeholder="Email" required="true">-->
+  <!--          <span class="input-group-text me-4" id="emailIcon"><img src="assets/userIcon.svg" alt="user icon" style="height: 20px"></span>-->
+  <!--        </div>-->
+  <!--        <div class="clkText">-->
+  <!--          <button  id="fEmail">Forgot Email</button>-->
+  <!--        </div>-->
+  <!--        <div class="input-group">-->
+  <!--          <input class="form-control shadow ms-4" type="password" name="password" id="password" placeholder="Password" required="true">-->
+  <!--          <span class="input-group-text me-4" id="passIcon"><img src="assets/lockIcon.svg" alt="user icon" style="height: 20px"></span>-->
+  <!--        </div>-->
+  <!--        <div class="clkText">-->
+  <!--        <button id="fPassword">Forgot Password</button>-->
+  <!--        </div>-->
+  <!--        <div class="card">-->
+  <!--          <div class="form-check ">-->
+  <!--            <input  class="form-check-input" type="radio" name="selector" id="employeeCheck">-->
+  <!--            <label class="form-check-label" for="employeeCheck" >Employee</label>-->
+  <!--          </div>-->
+  <!--          <div class="form-check">-->
+  <!--            <input  class="form-check-input" type="radio" name="selector" id="memberCheck" checked>-->
+  <!--            <label class="form-check-label" for="memberCheck">Member</label>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--        <div class="row row-cols-1">-->
+  <!--          <button (click)="mode=Mode.signup" class="btn shadow" id="signUpBtn">Sign up</button>-->
+  <!--          <button class="btn shadow" id="signInBtn">Sign In</button>-->
+  <!--          <button class="btn shadow" id="exitBtn">Exit</button>-->
+  <!--        </div>-->
+  <!--      </form>-->
+  <!--</div>-->
+
+  <!--  <div class="ftCard" [hidden]="mode!= Mode.signup">-->
+  <!--    <div class="container">-->
+  <!--      <div class="col">-->
+  <!--        <form id="col signUpForm">-->
+  <!--          <div class="row">-->
+  <!--            <img src="assets/loginLogo.svg" class="mx-auto my-5 d-block"  alt="HOA Manager Logo">-->
+  <!--          </div>-->
+  <!--          <div class="row-cols-1">-->
+  <!--            <h1>Sign Up</h1>-->
+  <!--          </div>-->
+  <!--          <div class="row">-->
+  <!--            <input class="form-control shadow" type="text" placeholder="Member ID">-->
+  <!--          </div>-->
+  <!--          <div class="row">-->
+  <!--            <input class="form-control shadow" type="email" placeholder="Email">-->
+  <!--          </div>-->
+  <!--          <div class="row">-->
+  <!--            <input class="form-control shadow" type="password" placeholder="Create password">-->
+  <!--          </div>-->
+  <!--          <div class="row">-->
+  <!--            <input class="form-control shadow" type="password" placeholder="Re-type password">-->
+  <!--          </div>-->
+  <!--          <div class="row">-->
+  <!--            <button class="btn" id="signUpBtn1">Sign Up</button>-->
+  <!--          </div>-->
+  <!--        </form>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->

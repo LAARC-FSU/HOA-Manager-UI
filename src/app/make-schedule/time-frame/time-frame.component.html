@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+      <div class="col-2" style="background-color: #828FA0; min-width: 250px; height: 320px; border-radius: 10px 10px 10px 10px">
+        <form class="col-10 m-auto min" (change)="sendTimeFrame()">
+          <div class="form-group">
+            <label class="col-form-label mt-3" for="yearSelect">Select Year</label>
+            <select [(ngModel)]="yearSelected" (ngModelChange)= "onYearChange()" class="form-select" name="yearSelect" id="yearSelect">
+              <option *ngFor="let year of years" [value]="year">{{year}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label mt-3" for="monthSelect">Select Month</label>
+            <select [(ngModel)]="monthSelected" (ngModelChange)= "onYearChange()" class="form-select" name="monthSelect" id="monthSelect">
+              <option *ngFor="let month of months" [value]="month">{{month}}</option>
+            </select>
+          </div>
+          <div class="form-group pb-4">
+            <label class="col-form-label mt-3" for="weekSelect">Select Week</label>
+            <select [(ngModel)]="weekSelected" (ngModelChange)= "onYearChange()" class="form-select" name="weekSelect" id="weekSelect">
+              <option *ngFor="let week of weeks; trackBy: identifyWeek" [value]="week.weekText">{{week.weekText}}</option>
+            </select>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>

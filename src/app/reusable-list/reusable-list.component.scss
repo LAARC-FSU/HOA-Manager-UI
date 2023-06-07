@@ -1,0 +1,10 @@
+@media print {
+  .pageBrk {
+    page-break-before: always;
+  }
+}
+.day{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
