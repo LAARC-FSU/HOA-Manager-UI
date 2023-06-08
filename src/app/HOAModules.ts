@@ -8,18 +8,19 @@ export interface HOAModule {
 export interface DashboardButton {
   text: string;
   image: string;
+  page: string;
 }
 
 export const DASHBOARDBUTTONS: DashboardButton[] = [
-  { text:'Enter Work Hours', image: '/assets/Icons/clockIcon.svg' },
-  { text:'Add Property', image: '/assets/Icons/addPropIcon.svg' },
-  { text:'View/Update Property', image: '/assets/Icons/viewPropIcon.svg' },
-  { text:'Make Schedule', image: '/assets/Icons/scheduleIcon.svg' },
-  { text:'Employees', image: '/assets/Icons/employeeIcon.svg' },
-  { text:'Check Schedule', image: '/assets/Icons/calendarIcon.svg' },
-  { text:'Add Member', image: '/assets/Icons/addMemberIcon.svg' },
-  { text:'View/Update Members', image: '/assets/Icons/viewMemberIcon.svg' },
-  { text:'Committee', image: '/assets/Icons/committeeIcon.svg' }
+  { text:'Enter Work Hours', image: '/assets/Icons/clockIcon.svg', page:'/enter-work-hours' },
+  { text:'Add Property', image: '/assets/Icons/addPropIcon.svg', page:'/add-property' },
+  { text:'View/Update Property', image: '/assets/Icons/viewPropIcon.svg', page:'/view-update-property' },
+  { text:'Make Schedule', image: '/assets/Icons/scheduleIcon.svg', page:'/make-schedule' },
+  { text:'Employees', image: '/assets/Icons/employeeIcon.svg', page:'/employees' },
+  { text:'Check Schedule', image: '/assets/Icons/calendarIcon.svg', page:'/view-schedule' },
+  { text:'Add Member', image: '/assets/Icons/addMemberIcon.svg', page:'/add-member' },
+  { text:'View/Update Members', image: '/assets/Icons/viewMemberIcon.svg', page:'/view-update-members' },
+  { text:'Committee', image: '/assets/Icons/committeeIcon.svg', page:'/committee' }
 ];
 
 export const HOAMODULES: HOAModule[] = [

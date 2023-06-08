@@ -7,7 +7,5 @@ import * as child_process from "child_process";
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent {
-  headerIsVisible= true;
-  subheaderIsVisible = true;
 
 }

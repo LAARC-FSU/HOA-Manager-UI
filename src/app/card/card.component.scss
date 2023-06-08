@@ -1,4 +1,13 @@
+$headerVisibility: visible !default;
+$subheaderVisibility: visible !default;
 
+.header {
+  visibility: $headerVisibility;
+
+}
+.subheader {
+  visibility: $subheaderVisibility;
+}
 .card-header {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;

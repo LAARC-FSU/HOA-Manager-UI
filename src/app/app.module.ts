@@ -42,12 +42,13 @@ import { MainDashboardComponent } from './main-dashboard/main-dashboard.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
   providers: [DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
+export class AppModule {}
 
