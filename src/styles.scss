@@ -1,4 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+$theme-colors: (
+  "success": #4A7E3B,
+  "warn": #A73E40,
+  "dark": #21281F,
+  "primary": #454E5C,
+  "secondary": #828FA0,
+  "info": #E1EBF6
+);
+
+@import "node_modules/bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@200&family=Montserrat:wght@300&family=Raleway:wght@300&display=swap');
 
 // Variables for custom check mark

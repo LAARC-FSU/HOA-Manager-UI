@@ -17,6 +17,9 @@ import { ClockInOutDialogComponent } from './clock-in-out-dialog/clock-in-out-di
 import { ClockComponent } from './clock/clock.component';
 import { ReusableListComponent } from './reusable-list/reusable-list.component';
 import { WorkedHoursViewComponent } from './worked-hours-view/worked-hours-view.component';
+import { CardComponent } from './card/card.component';
+import { HeaderComponent } from './header/header.component';
+import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import { WorkedHoursViewComponent } from './worked-hours-view/worked-hours-view.
     ClockComponent,
     ReusableListComponent,
     WorkedHoursViewComponent,
+    CardComponent,
+    HeaderComponent,
+    MainDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,7 @@ import { WorkedHoursViewComponent } from './worked-hours-view/worked-hours-view.
     ReactiveFormsModule
   ],
   providers: [DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
+

@@ -1,0 +1,22 @@
+$headerVisibility: visible !default;
+$subheaderVisibility: visible !default;
+
+.header {
+  visibility: $headerVisibility;
+
+}
+.subheader {
+  visibility: $subheaderVisibility;
+}
+.card-header {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  flex-direction: column;
+  background-color: #454E5C;
+}
+.card-body {
+  border-radius: 5px;
+}
+.secondary-bg {
+  border-radius: 5px;
+}
