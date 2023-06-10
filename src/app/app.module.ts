@@ -20,6 +20,8 @@ import { WorkedHoursViewComponent } from './worked-hours-view/worked-hours-view.
 import { CardComponent } from './card/card.component';
 import { HeaderComponent } from './header/header.component';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
+import { PhotoImportDialogComponent } from './photo-import-dialog/photo-import-dialog.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -38,17 +40,19 @@ import { MainDashboardComponent } from './main-dashboard/main-dashboard.componen
     WorkedHoursViewComponent,
     CardComponent,
     HeaderComponent,
-    MainDashboardComponent
+    MainDashboardComponent,
+    PhotoImportDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ImageCropperModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
-
+export class AppModule {
+}
