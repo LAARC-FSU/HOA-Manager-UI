@@ -22,6 +22,9 @@ import { HeaderComponent } from './header/header.component';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { PhotoImportDialogComponent } from './photo-import-dialog/photo-import-dialog.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { EmployeeCredentialsMakerComponent } from './employee-credentials-maker/employee-credentials-maker.component';
+import {HttpClientModule} from "@angular/common/http";
+
 
 @NgModule({
   declarations: [
@@ -42,6 +45,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     HeaderComponent,
     MainDashboardComponent,
     PhotoImportDialogComponent,
+    EmployeeCredentialsMakerComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    ImageCropperModule
+    ImageCropperModule,
+    HttpClientModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
