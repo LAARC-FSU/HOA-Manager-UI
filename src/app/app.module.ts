@@ -41,6 +41,8 @@ import {MemberInfoForm} from "./member-info-form/member-info-form";
 import {MemberViewPropertyComponent} from "./member-view-property/member-view-property.component";
 import {FindEmployeeComponent} from "./find-employee/find-employee.component";
 import {FindMemberInputComponent} from "./find-member/find-member-input/find-member-input.component";
+import {FindEmployeeResultComponent} from "./find-employee/find-employee-result/find-employee-result.component";
+import {FindEmployeeInputComponent} from "./find-employee/find-employee-input/find-employee-input.component";
 
 @NgModule({
   declarations: [
@@ -78,6 +80,8 @@ import {FindMemberInputComponent} from "./find-member/find-member-input/find-mem
     MemberViewPropertyComponent,
     FindEmployeeComponent,
     FindMemberInputComponent,
+    FindEmployeeResultComponent,
+    FindEmployeeInputComponent,
   ],
   imports: [
     HttpClientModule,
