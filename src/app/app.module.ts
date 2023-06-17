@@ -4,6 +4,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginPortalComponent} from './login-portal/login-portal.component';
+import { AddPropertyComponent } from './add-property/add-property.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MakeScheduleComponent} from './make-schedule/make-schedule.component';
 import {TimeFrameComponent} from './make-schedule/time-frame/time-frame.component';
@@ -23,6 +24,9 @@ import { MainDashboardComponent } from './main-dashboard/main-dashboard.componen
 import { PhotoImportDialogComponent } from './photo-import-dialog/photo-import-dialog.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {PropertyInputFormComponent} from "./add-property/input-form/property-input-form.component";
+import {TransactionComponent} from "./add-property/transactions/transaction.component";
+import {NotesComponents} from "./add-property/notes/notes.components";
 
 @NgModule({
   declarations: [
@@ -43,6 +47,10 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     HeaderComponent,
     MainDashboardComponent,
     PhotoImportDialogComponent,
+    AddPropertyComponent,
+    PropertyInputFormComponent,
+    TransactionComponent,
+    NotesComponents,
   ],
   imports: [
     HttpClientModule,
