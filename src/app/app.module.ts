@@ -34,6 +34,9 @@ import { FullCalendarModule} from "@fullcalendar/angular";
 import { MemberCalendarComponent} from "./member-calendar/member-calendar.component";
 import {  MemberTimeGridComponent} from "./member-calendar/member-time-grid/member-time-grid.component";
 import {MemberDayGridComponent} from "./member-calendar/member-day-grid/member-day-grid.component";
+import {BillingPaymentHistoryComponent} from "./billing-payment-history/billing-payment-history.component";
+import {TransactionHistoryComponent} from "./billing-payment-history/transaction-history/transaction-history.component";
+import {NextPaymentComponent} from "./billing-payment-history/next-payment/next-payment.component";
 
 @NgModule({
   declarations: [
@@ -64,6 +67,9 @@ import {MemberDayGridComponent} from "./member-calendar/member-day-grid/member-d
     MemberCalendarComponent,
     MemberTimeGridComponent,
     MemberDayGridComponent,
+    BillingPaymentHistoryComponent,
+    TransactionHistoryComponent,
+    NextPaymentComponent,
   ],
   imports: [
     HttpClientModule,
