@@ -27,7 +27,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {PropertyInputFormComponent} from "./add-property/input-form/property-input-form.component";
 import {TransactionComponent} from "./add-property/transactions/transaction.component";
 import {NotesComponents} from "./add-property/notes/notes.components";
-
+import {TransactionInputComponents} from "./transaction-input/transaction-input.components";
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +51,7 @@ import {NotesComponents} from "./add-property/notes/notes.components";
     PropertyInputFormComponent,
     TransactionComponent,
     NotesComponents,
+    TransactionInputComponents,
   ],
   imports: [
     HttpClientModule,
