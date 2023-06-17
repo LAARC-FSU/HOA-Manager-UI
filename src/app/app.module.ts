@@ -38,6 +38,7 @@ import {BillingPaymentHistoryComponent} from "./billing-payment-history/billing-
 import {TransactionHistoryComponent} from "./billing-payment-history/transaction-history/transaction-history.component";
 import {NextPaymentComponent} from "./billing-payment-history/next-payment/next-payment.component";
 import {MemberInfoForm} from "./member-info-form/member-info-form";
+import {MemberViewPropertyComponent} from "./member-view-property/member-view-property.component";
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import {MemberInfoForm} from "./member-info-form/member-info-form";
     TransactionHistoryComponent,
     NextPaymentComponent,
     MemberInfoForm,
+    MemberViewPropertyComponent,
   ],
   imports: [
     HttpClientModule,
