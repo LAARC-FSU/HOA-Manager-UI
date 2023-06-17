@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -6,6 +6,7 @@ import {
 } from '@angular/forms';
 import {fadeInOutAnimation} from "./animations";
 import {LoginPortalValidators} from "./login-portal-validators";
+import {HttpClient} from "@angular/common/http";
 
 
 @Component({
@@ -16,23 +17,44 @@ import {LoginPortalValidators} from "./login-portal-validators";
 })
 export class LoginPortalComponent {
   // Testing elements----------------------------------------------------------------------------------------
-  validIds: string[] = ['1111','2222','3333','44444']
+  validIds: string[] = ['1111', '2222', '3333', '44444']
   private emailFound = null;
   private userFound = false;
   private users: any[] = [];
 
-  user= {
+  //test
+  body = {
+    username: "rgrobbins@student.fullsail.edu",
+    password: "P@ssword123"
+  }
+  constructor(private http: HttpClient) {
+    this.http.post('http://ec2-3-136-16-135.us-east-2.compute.amazonaws.com:8080/', this.body)
+      .subscribe((response) => {
+        console.log(response)
+      }, (error) => {
+        // Deal with any errors like a champ
+      });
+  }
+
+
+  user = {
     memberId: '',
     email: '',
     password: ''
   };
 
   login = new FormGroup({
-    email: new  FormControl('',[Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/)]),
-    password: new FormControl('',[Validators.required])
+    email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/)]),
+    password: new FormControl('', [Validators.required])
   })
-  get email() { return this.login.get('email');}
-  get password() {return this.login.get('password');}
+
+  get email() {
+    return this.login.get('email');
+  }
+
+  get password() {
+    return this.login.get('password');
+  }
 
 
   signUp = new FormGroup({
@@ -42,16 +64,30 @@ export class LoginPortalComponent {
     confirmPassword: new FormControl('', [Validators.required])
   }, LoginPortalValidators.passwordMatchVerifier('newPassword', 'confirmPassword'));
 
-  get memberId(){return this.signUp.get('memberId');}
-  get newEmail(){return this.signUp.get('newEmail');}
-  get newPassword(){return this.signUp.get('newPassword');}
-  get confirmPassword(){return this.signUp.get('confirmPassword');}
+  get memberId() {
+    return this.signUp.get('memberId');
+  }
+
+  get newEmail() {
+    return this.signUp.get('newEmail');
+  }
+
+  get newPassword() {
+    return this.signUp.get('newPassword');
+  }
+
+  get confirmPassword() {
+    return this.signUp.get('confirmPassword');
+  }
 
 
   forgotEmail = new FormGroup({
-    memberIdForgotEmail: new  FormControl('',[Validators.required], [LoginPortalValidators.validMemberId(this.validIds)]),
+    memberIdForgotEmail: new FormControl('', [Validators.required], [LoginPortalValidators.validMemberId(this.validIds)]),
   })
-  get memberIdForgotEmail() { return this.forgotEmail.get('memberIdForgotEmail');}
+
+  get memberIdForgotEmail() {
+    return this.forgotEmail.get('memberIdForgotEmail');
+  }
 
   forgotPassword = new FormGroup({
     memberIdForgotPass: new FormControl('', [Validators.required], [LoginPortalValidators.validMemberId(this.validIds)]),
@@ -60,51 +96,65 @@ export class LoginPortalComponent {
     confirmPasswordForgotPass: new FormControl('', [Validators.required])
   }, LoginPortalValidators.passwordMatchVerifier('newPasswordForgotPass', 'confirmPasswordForgotPass'));
 
-  get memberIdForgotPass(){return this.forgotPassword.get('memberIdForgotPass');}
-  get emailForgotPass(){return this.forgotPassword.get('emailForgotPass');}
-  get newPasswordForgotPass(){return this.forgotPassword.get('newPasswordForgotPass');}
-  get confirmPasswordForgotPass(){return this.forgotPassword.get('confirmPasswordForgotPass');}
+  get memberIdForgotPass() {
+    return this.forgotPassword.get('memberIdForgotPass');
+  }
 
+  get emailForgotPass() {
+    return this.forgotPassword.get('emailForgotPass');
+  }
 
+  get newPasswordForgotPass() {
+    return this.forgotPassword.get('newPasswordForgotPass');
+  }
 
-
-
+  get confirmPasswordForgotPass() {
+    return this.forgotPassword.get('confirmPasswordForgotPass');
+  }
 
 
   private mode = Mode.login;
   private dontMatch: boolean = false;
 
 
-  getMatchingValidator(){
+  getMatchingValidator() {
     return this.dontMatch
   }
-  getMode(){
+
+  getMode() {
     return this.mode
   }
-  getEmailFound(){
-    return  this.emailFound;
+
+  getEmailFound() {
+    return this.emailFound;
   }
-  toSignUp(){
+
+  toSignUp() {
     this.mode = Mode.signup;
     this.formReset(this.login);
   }
-  toForgotEmail(){
+
+  toForgotEmail() {
     this.clearUser()
     this.mode = Mode.forgotEmail;
   }
-  toForgotPassword(){
+
+  toForgotPassword() {
     this.clearUser();
     this.mode = Mode.forgotPassword;
   }
-  signIn(){
+
+  signIn() {
     this.login.setErrors({
       invalidLogin: true
     });
   }
-  exit(){
-  //ToDo
+
+  exit() {
+    //ToDo
   }
-  back(){
+
+  back() {
     this.clearUser()
     this.mode = Mode.login;
     this.formReset(this.forgotEmail);
@@ -112,25 +162,27 @@ export class LoginPortalComponent {
     this.formReset(this.signUp);
   }
 
-  formReset(form:FormGroup){
+  formReset(form: FormGroup) {
     form.markAsUntouched();
-    form.setErrors(null, { emitEvent: false });
+    form.setErrors(null, {emitEvent: false});
     form.reset();
     this.dontMatch = false;
   }
-  log(x:any){
+
+  log(x: any) {
     console.log(x);
   }
 
   // testing functions
-  findEmail(){
-    for( let user of this.users) {
+  findEmail() {
+    for (let user of this.users) {
       if (user.id == this.user.memberId) {
         this.emailFound = user.email;
       }
     }
   }
-  signUpUser(){
+
+  signUpUser() {
     // this.user.email = this.newEmail!?.value;
     // this.user.memberId = <string>this.memberId?.value;
     // this.user.password = <string>this.newPassword?.value;
@@ -139,7 +191,8 @@ export class LoginPortalComponent {
     // this.log(this.users[0]);
     this.mode = Mode.login;
   }
-  clearUser(){
+
+  clearUser() {
     this.user.memberId = '';
     this.user.email = '';
     this.user.password = '';
