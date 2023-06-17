@@ -22,6 +22,7 @@ import { HeaderComponent } from './header/header.component';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { PhotoImportDialogComponent } from './photo-import-dialog/photo-import-dialog.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     PhotoImportDialogComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

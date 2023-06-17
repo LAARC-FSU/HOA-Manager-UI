@@ -6,6 +6,7 @@ import {
 } from '@angular/forms';
 import {fadeInOutAnimation} from "./animations";
 import {LoginPortalValidators} from "./login-portal-validators";
+import {HttpClient} from "@angular/common/http";
 
 
 @Component({
@@ -34,7 +35,24 @@ export class LoginPortalComponent {
   get email() { return this.login.get('email');}
   get password() {return this.login.get('password');}
 
+  public postJsonValue: any;
+  constructor(private http: HttpClient){
 
+  }
+
+  postUser(){
+
+    console.log("It works");
+
+    let body = {
+      username: 'rgrobbins@student.fullsail.edu',
+      password: 'P@ssword123',
+    }
+    this.http.post('http://ec2-3-136-16-135.us-east-2.compute.amazonaws.com:8080/', body).subscribe((data) => {
+      console.log(data);
+      this.postJsonValue = data;
+    })
+  }
   signUp = new FormGroup({
     memberId: new FormControl('', [Validators.required], [LoginPortalValidators.validMemberId(this.validIds)]),
     newEmail: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/)]),
