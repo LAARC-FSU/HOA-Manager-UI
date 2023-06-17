@@ -10,14 +10,26 @@ import {SearchResultComponent} from "./find-property/search-results/search-resul
 import {FindMemberInputComponent} from "./find-member/find-member-input/find-member-input.component";
 import {FindMemberResultComponent} from "./find-member/find-member-result/find-member-result.component";
 import {NgForOf} from "@angular/common";
+import {ClockInOutDialogComponent} from "./clock-in-out-dialog/clock-in-out-dialog.component";
+import {AddPropertyComponent} from "./add-property/add-property.component";
+import {FindPropertyComponent} from "./find-property/find-property.component";
+import {FindMemeberComponent} from "./find-member/find-memeber.component";
+import {FindEmployeeComponent} from "./find-employee/find-employee.component";
+
 
 const routes: Routes = [
-  {path: '', redirectTo: '/log-in', pathMatch:'full'},
+  //{path: '', redirectTo: '/log-in', pathMatch:'full'},
+  {path: '', redirectTo: '/main-dashboard', pathMatch:'full'},
   {path: 'make-schedule', component: MakeScheduleComponent},
   {path: 'view-schedule', component: ScheduleViewComponent},
   {path: 'schedule-dashboard', component: ScheduleDashboardComponent},
   {path: 'log-in', component: LoginPortalComponent},
   {path: 'main-dashboard', component: MainDashboardComponent},
+  {path: 'clock-in-out-dialog', component: ClockInOutDialogComponent},
+  {path: 'add-property', component: AddPropertyComponent},
+  {path: 'find-property', component: FindPropertyComponent},
+  {path: 'view-update-members', component: FindMemeberComponent},
+  {path: 'employees', component: FindEmployeeComponent},
 ];
 
 @NgModule({

@@ -32,13 +32,15 @@ import {FindPropertyComponent} from "./find-property/find-property.component";
 import {FindMemeberComponent} from "./find-member/find-memeber.component";
 import { FullCalendarModule} from "@fullcalendar/angular";
 import { MemberCalendarComponent} from "./member-calendar/member-calendar.component";
-import {  MemberTimeGridComponent} from "./member-calendar/member-time-grid/member-time-grid.component";
+import { MemberTimeGridComponent} from "./member-calendar/member-time-grid/member-time-grid.component";
 import {MemberDayGridComponent} from "./member-calendar/member-day-grid/member-day-grid.component";
 import {BillingPaymentHistoryComponent} from "./billing-payment-history/billing-payment-history.component";
 import {TransactionHistoryComponent} from "./billing-payment-history/transaction-history/transaction-history.component";
 import {NextPaymentComponent} from "./billing-payment-history/next-payment/next-payment.component";
 import {MemberInfoForm} from "./member-info-form/member-info-form";
 import {MemberViewPropertyComponent} from "./member-view-property/member-view-property.component";
+import {FindEmployeeComponent} from "./find-employee/find-employee.component";
+import {FindMemberInputComponent} from "./find-member/find-member-input/find-member-input.component";
 
 @NgModule({
   declarations: [
@@ -74,6 +76,8 @@ import {MemberViewPropertyComponent} from "./member-view-property/member-view-pr
     NextPaymentComponent,
     MemberInfoForm,
     MemberViewPropertyComponent,
+    FindEmployeeComponent,
+    FindMemberInputComponent,
   ],
   imports: [
     HttpClientModule,

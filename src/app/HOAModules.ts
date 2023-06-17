@@ -12,9 +12,9 @@ export interface DashboardButton {
 }
 
 export const DASHBOARDBUTTONS: DashboardButton[] = [
-  { text:'Enter Work Hours', image: '/assets/Icons/clockIcon.svg', page:'/enter-work-hours' },
+  { text:'Enter Work Hours', image: '/assets/Icons/clockIcon.svg', page:'/main-dashboard' },
   { text:'Add Property', image: '/assets/Icons/addPropIcon.svg', page:'/add-property' },
-  { text:'View/Update Property', image: '/assets/Icons/viewPropIcon.svg', page:'/view-update-property' },
+  { text:'Find Property', image: '/assets/Icons/viewPropIcon.svg', page:'/find-property' },
   { text:'Make Schedule', image: '/assets/Icons/scheduleIcon.svg', page:'/make-schedule' },
   { text:'Employees', image: '/assets/Icons/employeeIcon.svg', page:'/employees' },
   { text:'Check Schedule', image: '/assets/Icons/calendarIcon.svg', page:'/view-schedule' },

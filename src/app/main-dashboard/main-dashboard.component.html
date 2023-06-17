@@ -7,10 +7,12 @@
     <ng-container class="header-left">{{card.title}}</ng-container>
     <ng-container class="header-right"> <img src={{card.image}} /> </ng-container>
       <ng-container class="body">
-        <a href="#" class="btn btn-info d-flex justify-content-between m-2 " *ngFor="let button of card.buttons" routerLink={{button.page}}>
+        <a href="#" class="btn btn-info d-flex justify-content-between m-2 " [attr.data-bs-toggle]="button.text === 'Enter Work Hours' ? 'modal' : null" [attr.data-bs-target]="button.text === 'Enter Work Hours' ? '#clockInOutModal' : null"  *ngFor="let button of card.buttons" routerLink={{button.page}}>
           <span class=""> {{button.text}} </span>
           <span class="buttonImage"> <img src={{button.image}} /> </span>
         </a>
     </ng-container>
   </app-card>
 </span>
+
+<clock-in-out-dialog></clock-in-out-dialog>
