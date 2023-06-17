@@ -29,6 +29,7 @@ import {TransactionComponent} from "./add-property/transactions/transaction.comp
 import {NotesComponents} from "./add-property/notes/notes.components";
 import {TransactionInputComponents} from "./transaction-input/transaction-input.components";
 import {FindPropertyComponent} from "./find-property/find-property.component";
+import {FindMemeberComponent} from "./find-member/find-memeber.component";
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import {FindPropertyComponent} from "./find-property/find-property.component";
     NotesComponents,
     TransactionInputComponents,
     FindPropertyComponent,
+    FindMemeberComponent,
   ],
   imports: [
     HttpClientModule,

@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="col">
+    <table class="table table-striped table-bordered table-hover">
+      <thead style="background-color: #E1EBF6; color: black">
+      <th style="text-indent: 10px">First Name</th>
+      <th style="text-align: center">Last Name</th>
+      <th style="text-align: center">Member ID</th>
+      <th style="text-align: center">Phone Number</th>
+      <th style="text-align: center">Address</th>
+      <th></th>
+      <th></th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let result of results">
+        <td>{{result.name1}}</td>
+        <td style="text-align: center">{{result.name2}}</td>
+        <td style="text-align: center">{{result.member}}</td>
+        <td style="text-align: center">{{result.phone}}</td>
+        <td style="text-align: center">{{result.address}}</td>
+        <td style="text-align: center"><button style="border: none">view/edit</button></td>
+        <td style="text-align: center"><button style="border-radius: 10px; background-color: #A73E40; color: white">Remove</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
