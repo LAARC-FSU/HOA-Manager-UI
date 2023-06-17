@@ -23,7 +23,7 @@
               <div *ngIf="login.errors" class="valErrMessage mb-5">
                 The email or password is invalid.
               </div>
-              <form [formGroup]="login" class="row" (ngSubmit)="signIn()">
+              <form [formGroup]="login" class="row" (ngSubmit)="postUser()">
 
                 <div *ngIf="email?.touched && email?.invalid">
                   <div *ngIf="email && email.errors && email.errors['required']"
@@ -103,7 +103,7 @@
                 </div>
                 <div class="row-col">
                   <div class="row pb-4">
-                    <button (click)="signIn()"
+                    <button (click)="postUser()"
                             type="submit"
                             class="btn btn-primary btn-lg"
                             style="background-color: #828FA0; border-color: #828FA0">Sign In</button>
