@@ -28,6 +28,8 @@ import {PropertyInputFormComponent} from "./add-property/input-form/property-inp
 import {TransactionComponent} from "./add-property/transactions/transaction.component";
 import {NotesComponents} from "./add-property/notes/notes.components";
 import {TransactionInputComponents} from "./transaction-input/transaction-input.components";
+import {FindPropertyComponent} from "./find-property/find-property.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +54,7 @@ import {TransactionInputComponents} from "./transaction-input/transaction-input.
     TransactionComponent,
     NotesComponents,
     TransactionInputComponents,
+    FindPropertyComponent,
   ],
   imports: [
     HttpClientModule,

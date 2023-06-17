@@ -5,6 +5,9 @@ import { MakeScheduleComponent} from "./make-schedule/make-schedule.component";
 import { ScheduleViewComponent} from "./schedule-view/schedule-view.component";
 import {LoginPortalComponent} from "./login-portal/login-portal.component";
 import {MainDashboardComponent} from "./main-dashboard/main-dashboard.component";
+import {SearchBoxComponent} from "./find-property/search-box/search-box.component";
+import {SearchResultComponent} from "./find-property/search-results/search-result.component";
+import {NgForOf} from "@angular/common";
 
 const routes: Routes = [
   {path: '', redirectTo: '/log-in', pathMatch:'full'},
@@ -16,7 +19,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes), NgForOf],
+  declarations: [
+    SearchBoxComponent,
+    SearchResultComponent
+  ],
+  exports: [RouterModule, SearchBoxComponent, SearchResultComponent]
 })
 export class AppRoutingModule { }
