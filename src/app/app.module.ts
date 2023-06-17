@@ -37,6 +37,7 @@ import {MemberDayGridComponent} from "./member-calendar/member-day-grid/member-d
 import {BillingPaymentHistoryComponent} from "./billing-payment-history/billing-payment-history.component";
 import {TransactionHistoryComponent} from "./billing-payment-history/transaction-history/transaction-history.component";
 import {NextPaymentComponent} from "./billing-payment-history/next-payment/next-payment.component";
+import {MemberInfoForm} from "./member-info-form/member-info-form";
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import {NextPaymentComponent} from "./billing-payment-history/next-payment/next-
     BillingPaymentHistoryComponent,
     TransactionHistoryComponent,
     NextPaymentComponent,
+    MemberInfoForm,
   ],
   imports: [
     HttpClientModule,
