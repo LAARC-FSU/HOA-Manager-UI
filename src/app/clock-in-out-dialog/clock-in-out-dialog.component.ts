@@ -8,7 +8,7 @@ import {empWorkTime} from "../interfaces";
   styleUrls: ['./clock-in-out-dialog.component.scss']
 })
 
-export class ClockInOutDialogComponent implements OnInit {
+export class ClockInOutDialogComponent implements OnInit{
   clockColor: string = '';
   currDate: Date = new Date();
   currDateStr: string = '';
