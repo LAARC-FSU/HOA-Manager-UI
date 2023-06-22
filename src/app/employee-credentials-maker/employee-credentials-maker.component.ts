@@ -8,7 +8,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 })
 export class EmployeeCredentialsMakerComponent {
   image: any = "assets/employeePhotoPlaceholder.svg";
-  emInfo = {
+  empInfo = {
     firstName: '',
     middleName: '',
     lastName: '',
@@ -19,8 +19,61 @@ export class EmployeeCredentialsMakerComponent {
     cellPhone: '',
     homePhone: '',
     email: '',
-    role: ''
+    role: 'memberAdmin'
   };
+  states: string[] = [
+    'Alabama',
+    'Alaska',
+    'Arizona',
+    'Arkansas',
+    'California',
+    'Colorado',
+    'Connecticut',
+    'Delaware',
+    'Florida',
+    'Georgia',
+    'Hawaii',
+    'Idaho',
+    'Illinois',
+    'Indiana',
+    'Iowa',
+    'Kansas',
+    'Kentucky',
+    'Louisiana',
+    'Maine',
+    'Maryland',
+    'Massachusetts',
+    'Michigan',
+    'Minnesota',
+    'Mississippi',
+    'Missouri',
+    'Montana',
+    'Nebraska',
+    'Nevada',
+    'New Hampshire',
+    'New Jersey',
+    'New Mexico',
+    'New York',
+    'North Carolina',
+    'North Dakota',
+    'Ohio',
+    'Oklahoma',
+    'Oregon',
+    'Pennsylvania',
+    'Rhode Island',
+    'South Carolina',
+    'South Dakota',
+    'Tennessee',
+    'Texas',
+    'Utah',
+    'Vermont',
+    'Virginia',
+    'Washington',
+    'West Virginia',
+    'Wisconsin',
+    'Wyoming'
+  ];
+
   constructor(private fb: FormBuilder) {
   }
 
@@ -30,8 +83,8 @@ export class EmployeeCredentialsMakerComponent {
     lastName: ['', Validators.required],
     address: ['', Validators.required],
     city: ['', Validators.required],
-    zipCode: ['', Validators.required],
-    cellPhone: ['', Validators.required],
+    zip: ['', Validators.required],
+    cell: ['', Validators.required],
     homePhone: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     memberAdminRole: ['', Validators.required],
@@ -41,7 +94,7 @@ export class EmployeeCredentialsMakerComponent {
 
 
   // Getters for form controls
-  get firstName(): AbstractControl | null{
+  get firstName(): AbstractControl | null {
     return this.form.get('firstName');
   }
 
@@ -62,11 +115,11 @@ export class EmployeeCredentialsMakerComponent {
   }
 
   get zipCode(): AbstractControl | null {
-    return this.form.get('zipCode');
+    return this.form.get('zip');
   }
 
   get cellPhone(): AbstractControl | null {
-    return this.form.get('cellPhone');
+    return this.form.get('cell');
   }
 
   get homePhone(): AbstractControl | null {
@@ -94,23 +147,28 @@ export class EmployeeCredentialsMakerComponent {
       alert('Please fill out all required fields.');
       return;
     }
-    else{
-      this.emInfo.firstName = this.firstName!.value;
-      this.emInfo.middleName = this.middleName!.value;
-      this.emInfo.lastName = this.lastName!.value;
-      this.emInfo.address = this.address!.value;
-      this.emInfo.city = this.city!.value;
-      this.emInfo.zipCode = this.zipCode!.value;
-      this.emInfo.cellPhone = this.cellPhone!.value;
-      this.emInfo.homePhone = this.homePhone!.value;
-      this.emInfo.email = this.email!.value;
 
-      // this.emInfo.memberAdminRole = this.memberAdminRole!.value;
-      // this.emInfo.propertyAdminRole = this.propertyAdminRole!.value;
-      this.emInfo.state = this.state!.value;
-    }
   }
 
+  roleChange(role:string) {
+    this.empInfo.role = role;
+  }
+
+  onChange() {
+    this.empInfo.firstName = this.firstName!.value;
+    this.empInfo.middleName = this.middleName!.value;
+    this.empInfo.lastName = this.lastName!.value;
+    this.empInfo.address = this.address!.value;
+    this.empInfo.city = this.city!.value;
+    this.empInfo.zipCode = this.zipCode!.value;
+    this.empInfo.cellPhone = this.cellPhone!.value;
+    this.empInfo.homePhone = this.homePhone!.value;
+    this.empInfo.email = this.email!.value;
+    console.log(this.memberAdminRole)
+    this.empInfo.role = '';
+    // this.emInfo.propertyAdminRole = this.propertyAdminRole!.value;
+    this.empInfo.state = this.state!.value;
+  }
 
 
   getImage(event: any) {
