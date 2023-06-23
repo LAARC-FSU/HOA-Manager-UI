@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'employee-credentials-maker',
@@ -8,6 +9,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 })
 export class EmployeeCredentialsMakerComponent {
   image: any = "assets/employeePhotoPlaceholder.svg";
+  emailInitText = 'User Id'
   empInfo = {
     firstName: '',
     middleName: '',
@@ -18,8 +20,9 @@ export class EmployeeCredentialsMakerComponent {
     zipCode: '',
     cellPhone: '',
     homePhone: '',
-    email: '',
-    role: 'memberAdmin'
+    email: this.emailInitText,
+    role: 'memberAdmin',
+    active: false
   };
   states: string[] = [
     'Alabama',
@@ -74,7 +77,7 @@ export class EmployeeCredentialsMakerComponent {
     'Wyoming'
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
   }
 
   form: FormGroup = this.fb.group({
@@ -85,10 +88,8 @@ export class EmployeeCredentialsMakerComponent {
     city: ['', Validators.required],
     zip: ['', Validators.required],
     cell: ['', Validators.required],
-    homePhone: ['', Validators.required],
+    homePhone: [''],
     email: ['', [Validators.required, Validators.email]],
-    memberAdminRole: ['', Validators.required],
-    propertyAdminRole: ['', Validators.required],
     state: ['', Validators.required]
   });
 
@@ -130,24 +131,17 @@ export class EmployeeCredentialsMakerComponent {
     return this.form.get('email');
   }
 
-  get memberAdminRole(): AbstractControl | null {
-    return this.form.get('memberAdminRole');
-  }
-
-  get propertyAdminRole(): AbstractControl | null {
-    return this.form.get('propertyAdminRole');
-  }
 
   get state(): AbstractControl | null {
     return this.form.get('state');
   }
 
   submitForm(): void {
-    if (this.form.invalid) {
-      alert('Please fill out all required fields.');
-      return;
-    }
-
+    this.sendEmail();
+    // if (this.form.invalid) {
+    //   alert('Please fill out all required fields.');
+    //   return;
+    // }
   }
 
   roleChange(role:string) {
@@ -164,14 +158,66 @@ export class EmployeeCredentialsMakerComponent {
     this.empInfo.cellPhone = this.cellPhone!.value;
     this.empInfo.homePhone = this.homePhone!.value;
     this.empInfo.email = this.email!.value;
-    console.log(this.memberAdminRole)
     this.empInfo.role = '';
-    // this.emInfo.propertyAdminRole = this.propertyAdminRole!.value;
     this.empInfo.state = this.state!.value;
   }
 
+  createLogin() {
+    if (this.empInfo.email !== this.emailInitText){
+      this.sendEmail();
+      this.empInfo.active = true;
+    }
+  }
+
+  resetLogin(){
+
+  }
+
+  deactivateLogin(){
+    this.empInfo.active = false;
+  }
+
+  activateLogin(){
+    this.empInfo.active = true;
+  }
 
   getImage(event: any) {
     this.image = event;
+  }
+
+  sendEmail(): void {
+    const accessToken = '94733815-c0ae-4adf-bb73-47013f135a88'
+    const url = 'https://graph.microsoft.com/v1.0/me/sendMail';
+
+    const email = {
+      message: {
+        subject: 'Hello from Angular',
+        body: {
+          content: 'This is the email body',
+          contentType: 'Text'
+        },
+        toRecipients: [
+          {
+            emailAddress: {
+              address: 'aborroto1984@gmail.com'
+            }
+          }
+        ]
+      }
+    };
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`
+    });
+
+    this.http.post(url, email, { headers }).subscribe(
+      () => {
+        console.log('Email sent successfully!');
+      },
+      (error) => {
+        console.error('Error sending email:', error);
+      }
+    );
   }
 }
