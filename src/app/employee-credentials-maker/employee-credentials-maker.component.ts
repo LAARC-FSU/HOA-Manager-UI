@@ -11,8 +11,8 @@ export class EmployeeCredentialsMakerComponent {
   image: any = "assets/employeePhotoPlaceholder.svg";
   emailInitText = 'User Id'
   private apiUrl = 'https://graph.microsoft.com/v1.0';
-  private accessToken: any = 'EwCYA8l6BAAUAOyDv0l6PcCVu89kmzvqZmkWABkAAQB9V0QUmlDxSDbVLL6dzLD9acUxxAYC3ZG+0s87m07ar70RJAldmi7aQu2ekGfSxobIQUqr62wyHJzcEB6SPYZaRzQf0lCBcq73KcjCl1AXkoc7bsXqQUj6y6yas4o73w8RcXS4pqSLcd7Zf32m1uq2huQNBXfpE9denkk+9gV7/VAMFH9jVbk2hZodv6rDlGitsq9Q5asKBEiubexHQkLfcsksz6hCQgBWZITzVd1z0soFTODbMdaPNmqyua4yMqOTWKLc9X3SmV+bRMC1Ld8SxHDJjigr8oGcBqdiW0TmXU8eo9BRKjAIXRvWVje+ZN15oGR2YoMQBMxxvRgMc1QDZgAACMzykVG+E44MaALJyIgztz6Ob15zwtOxU1HOHEQof5SuO7xW3/UESW4pIAjObgp1wfvF5GyPuCbTk1h07ZmGcauCVCsDBAO4ow3Bn7Ny+WvuTxmo0i0duU01bc9MFnVuqH3zoC1HB1fNJf9UlRd4oJ7oJWf/JphwOWBuuiyyST8FIfyD8DKZ3KyTVLhXYwCO6RLv5b9zvWKssRIdU4NgGvsiLzuu3DkkOOD2Hhxq/32/krfoQBt3i3KZ1DsKICJa/o4iTqHQQMP8FaR+hoAlMnMzpO2DC/gLMzEt+aUrOXevLgGnVZMMA3cMbncflHluNd1bE2igraPe8hppY5XKgIJE0vNg+xCXrAxs0t5j3kVN+mIaRWltzQaZD8fyxwONYGLhyyCdOMMnIkduzo+eDRTYP5H0SPXZVEKPYu/q/lJBcsEb15M68oXqeHERjpoZItcDEJLE2kt6qO/+5vjydRBSJ/+bO+EDJQn45sdnexhMDqsKleLVyA9WsZ0a1JMQpJ9E3a+tiH2I6LIqZ2nK+X/gdimRWKwwfQ/zolYNBYubA1tmnK6HL4RBL8giwFOtiDNxOEnXiCgC5ZlBWiBphULEF1KwkISb2/S/UfhkzLh+y4S5PXszKvEU44hh+0AgcgUwBFunC/DqKbdRlHrJTpzNw3LA/CWL/KLrfgCmQLk2K7GdjCmfhuCVakvQ6//L9gtR6Fjxv+lyb6jkRZIoa6FQz15XEs0AExn8rVtd7EfTK3tW1omvsET4uMiR6kRcl1wCti1m3iHnSThYrhu12/l9nuJ4l2tmkUmPzfFyaqf1KOzypkOb31NOtLlfYvvgbXVsoAI=';
-  empInfo = {
+  private accessToken: any = "EwCYA8l6BAAUAOyDv0l6PcCVu89kmzvqZmkWABkAATWa2wWCZKX36ew7lgLZN0FLC+0A9JpRnzvYz+lbFvWn/dewwHlgwFqX0bANI/AWpGdr8kmhJmiIzjRt18lTQAuSQtRuwoLbnsk7ZDbZUq7Pqmli00rR3t0zL6JNHXxVuygojQSc7phBTk1Qf6Fd0eu4HDVnp5EcH3f+jOCrgDNr8vTlEpb9XLvzMkxdY1ZwK4s3Zb5NmVQ5mVEW3WQ+37YZTADgfR3ALeheKe9cthrkRWRbgxuSI1lTr2WwLEI9/hVwATbSzGSf3QaAYrQoMoOX9z6iA9bOfnPXaOEr1Ahf0PRa1nOuBzM+5BgZahUV2QpBr4fQ75DuETq4LqPNllsDZgAACNexTkC0le5QaAIb43BysoEARtrBmcFWdT8EGqgjMyzBvQXvKt0dhRBcU0nM91pQwfBpKc7cmu4ccegyUXs19NBAPpDueIZ1ia9B65F1al/UCqh/c1At3CKSAWl3Yuo6blBD4NIo2kDmpkFB/kDvfF28+0+muKLgujm5MMB97BbVlqtDupv1oFcw6ixHZ5aL7Grl9Gy+M68PHYR1NHoUsJqc6uk0Yt2HmcrwRLXIP3qcKrNMnl8Kdivx5bEcH9s4y0eNOYxgBtvzYcN67/5McxhrnU6O477HQQ+syKc7rL4Yg2h5XeD5syKPndkdgMJp8Fp59gRvTPbbSl6Qk4bh9S9vLHy0/cBt5ds/s2cwWCZH61TxtQiESMhS2Y9gHgiLGDJjtLJI0iEMMEaN/YDK24VYnpkgEVEvyZSlGRougpH5XSr6V7sLXjbg9B0N9/BLyOzep2OcJcQHdR/H4heiQOUwdWFNNF0MlJe3VXkJooi8VB0WPzIPrbopMMeIH3+9TGFijo+f6CLi33/itRVH/Py0JKT592W2p9qInJWGou6eOhTJbpfepnB4p8c1GZfPDuufd/D/+bpOM091FAeLcn3Ak7BtSuD5m5DlgmW+NiYRLVUBMRhSdkfQzTxdqr7C3Q5btjJizLb3pwzvXQMt1C9Vt3uQJi5DR27SMBKoiO8BeSHb+7p6RFSOPgtqzawSAcSZecJlMVWMb8x0RillZrtwPVfo7HT8gAHsMeL25HAV959XTavkxLB84s8MtQXr+uVGlPGVRhrk1xv5vKU4K6IGNIr+vwbwE5Pc2CVhPPb2dSZJteLoS5DkUg6u2qME35W2oAI="
+    empInfo = {
     firstName: '',
     middleName: '',
     lastName: '',
@@ -139,12 +139,6 @@ export class EmployeeCredentialsMakerComponent {
   }
 
   submitForm(): void {
-    this.requestAccessToken();
-    this.sendEmail();
-    // if (this.form.invalid) {
-    //   alert('Please fill out all required fields.');
-    //   return;
-    // }
   }
 
   roleChange(role:string) {
@@ -226,12 +220,13 @@ export class EmployeeCredentialsMakerComponent {
             "address": "aborroto1984@gmail.com"
           }
         }
-      ],
+      ]
     },
       "saveToSentItems": "false"
     }
 
-    const url = `${this.apiUrl}/me/sendMail`;
+
+    const url = `https://graph.microsoft.com/v1.0/me/sendMail`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.accessToken}`
