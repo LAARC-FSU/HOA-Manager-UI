@@ -1,16 +1,39 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <input-form></input-form>
-    </div>
-    <div class="col" style="min-width: 388px">
-      <img src="assets/loginLogo.svg" alt="...">
+<app-header>
+  <ng-container class="pageTitle">Welcome, <b>Alfredo Borroto</b></ng-container>
+</app-header>
+
+<module-frame>
+  <div class="heading">Add Property</div>
+  <button class="title" style="border-radius: 10px">Save</button>
+  <div class="heading2">Property Info</div>
+  <div class="content">
+    <div class="container">
+      <div class="row row1">
+        <div class="col col1">
+          <input-form></input-form>
+        </div>
+        <div class="col col2" style="min-width: 388px;">
+          <img [src]="image" style="max-height: 230px " atl="assets/location_color.png">
+          <div class="row row2">
+            <button class="btn btn-primary btn1" data-bs-toggle="modal" data-bs-target="#clockInOutModal">Upload Image
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<div class="container">
-  <transaction></transaction>
-</div>
-<div class="container">
-  <notes></notes>
-</div>
+</module-frame>
+
+<module-frame>
+  <div class="heading">Transaction History</div>
+  <button class="title" style="border-radius: 10px">Save</button>
+  <div class="content"><transaction></transaction></div>
+</module-frame>
+
+<module-frame>
+  <div class="heading">Notes</div>
+  <button class="title" style="border-radius: 10px">Save</button>
+  <div class="content"><notes></notes></div>
+</module-frame>
+
+<photo-import-dialog (croppedImg)="getImage($event)"></photo-import-dialog>

@@ -43,6 +43,7 @@ import {FindEmployeeComponent} from "./find-employee/find-employee.component";
 import {FindMemberInputComponent} from "./find-member/find-member-input/find-member-input.component";
 import {FindEmployeeResultComponent} from "./find-employee/find-employee-result/find-employee-result.component";
 import {FindEmployeeInputComponent} from "./find-employee/find-employee-input/find-employee-input.component";
+import {ModuleFrame} from "./module-fram/module-frame";
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import {FindEmployeeInputComponent} from "./find-employee/find-employee-input/fi
     TransactionInputComponents,
     FindPropertyComponent,
     FindMemeberComponent,
+    FindMemberInputComponent,
     MemberCalendarComponent,
     MemberTimeGridComponent,
     MemberDayGridComponent,
@@ -79,9 +81,9 @@ import {FindEmployeeInputComponent} from "./find-employee/find-employee-input/fi
     MemberInfoForm,
     MemberViewPropertyComponent,
     FindEmployeeComponent,
-    FindMemberInputComponent,
     FindEmployeeResultComponent,
     FindEmployeeInputComponent,
+    ModuleFrame,
   ],
   imports: [
     HttpClientModule,

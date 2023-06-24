@@ -7,7 +7,6 @@ import {LoginPortalComponent} from "./login-portal/login-portal.component";
 import {MainDashboardComponent} from "./main-dashboard/main-dashboard.component";
 import {SearchBoxComponent} from "./find-property/search-box/search-box.component";
 import {SearchResultComponent} from "./find-property/search-results/search-result.component";
-import {FindMemberInputComponent} from "./find-member/find-member-input/find-member-input.component";
 import {FindMemberResultComponent} from "./find-member/find-member-result/find-member-result.component";
 import {NgForOf} from "@angular/common";
 import {ClockInOutDialogComponent} from "./clock-in-out-dialog/clock-in-out-dialog.component";
@@ -37,9 +36,8 @@ const routes: Routes = [
   declarations: [
     SearchBoxComponent,
     SearchResultComponent,
-    FindMemberInputComponent,
-    FindMemberResultComponent
+    FindMemberResultComponent,
   ],
-  exports: [RouterModule, SearchBoxComponent, SearchResultComponent, FindMemberInputComponent, FindMemberResultComponent]
+  exports: [RouterModule, SearchBoxComponent, SearchResultComponent, FindMemberResultComponent]
 })
 export class AppRoutingModule { }

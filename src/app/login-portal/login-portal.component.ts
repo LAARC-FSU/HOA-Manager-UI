@@ -9,6 +9,10 @@ import {LoginPortalValidators} from "./login-portal-validators";
 import {HttpClient} from "@angular/common/http";
 
 
+class JWT {
+  token = "";
+}
+
 @Component({
   animations: [fadeInOutAnimation],
   selector: 'login-portal',
@@ -42,15 +46,13 @@ export class LoginPortalComponent {
 
   postUser(){
 
-    console.log("It works");
-
     let body = {
       username: 'rgrobbins@student.fullsail.edu',
       password: 'P@ssword123',
     }
-    this.http.post('http://ec2-3-136-16-135.us-east-2.compute.amazonaws.com:8080/', body).subscribe((data) => {
+    this.http.post<JWT>('http://ec2-3-136-16-135.us-east-2.compute.amazonaws.com:8080/', body).subscribe((data) => {
       console.log(data);
-      this.postJsonValue = data;
+      localStorage.setItem("token", data.token);
     })
   }
   signUp = new FormGroup({
