@@ -44,6 +44,9 @@ import {FindMemberInputComponent} from "./find-member/find-member-input/find-mem
 import {FindEmployeeResultComponent} from "./find-employee/find-employee-result/find-employee-result.component";
 import {FindEmployeeInputComponent} from "./find-employee/find-employee-input/find-employee-input.component";
 import {ModuleFrame} from "./module-fram/module-frame";
+import { EmployeeCredentialsMakerComponent } from './employee-credentials-maker/employee-credentials-maker.component';
+import {HttpClientModule} from "@angular/common/http";
+
 
 @NgModule({
   declarations: [
@@ -64,6 +67,7 @@ import {ModuleFrame} from "./module-fram/module-frame";
     HeaderComponent,
     MainDashboardComponent,
     PhotoImportDialogComponent,
+    EmployeeCredentialsMakerComponent,
     AddPropertyComponent,
     PropertyInputFormComponent,
     TransactionComponent,
@@ -92,6 +96,8 @@ import {ModuleFrame} from "./module-fram/module-frame";
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    ImageCropperModule,
+    HttpClientModule
     ImageCropperModule,
     ReactiveFormsModule,
     FullCalendarModule
