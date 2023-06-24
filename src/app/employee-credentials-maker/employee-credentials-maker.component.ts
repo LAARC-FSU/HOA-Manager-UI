@@ -161,7 +161,8 @@ export class EmployeeCredentialsMakerComponent {
 
   createLogin() {
     if (this.empInfo.email !== this.emailInitText){
-      this.sendEmail();
+      // this.sendEmail();
+      this.requestAccessToken();
       this.empInfo.active = true;
     }
   }
