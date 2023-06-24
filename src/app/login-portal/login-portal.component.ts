@@ -6,7 +6,10 @@ import {
 } from '@angular/forms';
 import {fadeInOutAnimation} from "./animations";
 import {LoginPortalValidators} from "./login-portal-validators";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {JWT} from "../interfaces";
+import jwtDecode from "jwt-decode";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -28,29 +31,62 @@ export class LoginPortalComponent {
     password: ''
   };
 
+  jwtAccess = {
+    iat: '',
+    role: '',
+    subject: ''
+  };
+
   login = new FormGroup({
     email: new  FormControl('',[Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/)]),
     password: new FormControl('',[Validators.required])
   })
   get email() { return this.login.get('email');}
   get password() {return this.login.get('password');}
+
+
   public postJsonValue: any;
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private router: Router){
 
   }
 
+
+
   postUser(){
+    const user = this.login.value;
+
+    let body = {
+      username: user.email,
+      password: user.password
+    }
+
+    //let formObj = JSON.stringify(this.login);
+    //let serializedForm = JSON.stringify((formObj));
+
 
     console.log("It works");
 
-    let body = {
-      username: 'rgrobbins@student.fullsail.edu',
-      password: 'P@ssword123',
-    }
-    this.http.post('http://ec2-3-136-16-135.us-east-2.compute.amazonaws.com:8080/', body).subscribe((data) => {
+    this.http.post<JWT>('http://3.136.16.135:8080/login', body).subscribe((data) => {
       console.log(data);
-      this.postJsonValue = data;
-    })
+
+      localStorage.setItem("token", data.token);
+
+        if(localStorage.getItem("token")){
+          this.jwtAccess = jwtDecode(data.token);
+          localStorage.setItem("username", this.jwtAccess.subject);
+          if(this.jwtAccess.role == "ADMINISTRATOR" || this.jwtAccess.role == "EMPLOYEE"){
+            this.router.navigate(["/main-dashboard"]);
+          }
+          else if(this.jwtAccess.role == "MEMBER"){
+
+          }
+        }
+
+
+    }
+    );
+
+
   }
 
   signUp = new FormGroup({

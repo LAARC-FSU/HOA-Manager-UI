@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {CardService} from "../card.service";
+import jwtDecode from "jwt-decode";
 @Component({
   selector: 'app-main-dashboard',
   templateUrl: './main-dashboard.component.html',
@@ -14,4 +15,9 @@ export class MainDashboardComponent {
   }
 
   protected readonly String = String;
+
+  getUsername(){
+  }
+
+  protected readonly localStorage = localStorage;
 }
