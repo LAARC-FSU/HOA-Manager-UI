@@ -1,6 +1,6 @@
-<div class="bg-image" style="background-image: url(assets/loginBackground.jpg); height: 100%; width: 100%; position: fixed">
+<div class="bg-image overflow-auto" style="background-image: url(assets/loginBackground.jpg); height: 100%; width: 100%; position: fixed">
 
-<div class="container" style="font-family: montserrat,serif">
+<div class="container main" style="font-family: montserrat,serif">
 
   <div class="row">
     <div class="col position-absolute top-50 start-50 translate-middle" style="width: 450px">
@@ -89,18 +89,19 @@
                   <button (click)="toForgotPassword()" class="btn" style="border-color: transparent">Forgot Password</button>
                 </div>
 
-                <div class="row justify-content-center pb-5">
-                  <div class="card col-6 py-3" style="background-color: transparent">
-                    <div class="form-check">
-                      <input  class="form-check-input" type="radio" name="selector" id="employeeCheck">
-                      <label class="form-check-label" for="employeeCheck" >Employee</label>
-                    </div>
-                    <div class="form-check">
-                      <input  class="form-check-input" type="radio" name="selector" id="memberCheck" checked>
-                      <label class="form-check-label" for="memberCheck">Member</label>
-                    </div>
-                  </div>
-                </div>
+<!--                <div class="row justify-content-center pb-5">-->
+<!--                  <div class="card col-6 py-3" style="background-color: transparent">-->
+<!--                    <div class="form-check">-->
+<!--                      <input  class="form-check-input" type="radio" name="selector" id="employeeCheck">-->
+<!--                      <label class="form-check-label" for="employeeCheck" >Employee</label>-->
+<!--                    </div>-->
+<!--                    <div class="form-check">-->
+<!--                      <input  class="form-check-input" type="radio" name="selector" id="memberCheck" checked>-->
+<!--                      <label class="form-check-label" for="memberCheck">Member</label>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+
                 <div class="row-col">
                   <div class="row pb-4">
                     <button (click)="postUser()"
