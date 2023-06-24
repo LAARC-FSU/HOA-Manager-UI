@@ -23,7 +23,6 @@ import { HeaderComponent } from './header/header.component';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { PhotoImportDialogComponent } from './photo-import-dialog/photo-import-dialog.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {PropertyInputFormComponent} from "./add-property/input-form/property-input-form.component";
 import {TransactionComponent} from "./add-property/transactions/transaction.component";
 import {NotesComponents} from "./add-property/notes/notes.components";
@@ -97,7 +96,7 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserAnimationsModule,
     ReactiveFormsModule,
     ImageCropperModule,
-    HttpClientModule
+    HttpClientModule,
     ImageCropperModule,
     ReactiveFormsModule,
     FullCalendarModule

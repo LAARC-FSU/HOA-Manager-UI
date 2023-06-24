@@ -61,9 +61,6 @@ export class LoginPortalComponent {
   }
 
   public postJsonValue: any;
-  constructor(private http: HttpClient){
-
-  }
 
   postUser(){
 
