@@ -1,0 +1,205 @@
+<div class="container" style="font-family: montserrat,serif ">
+  <div class="row">
+    <div class="card title mt-5" style="background-color: #454E5C; color: white; min-width: 1200px">
+      <div class="row my-1">
+        <div class="col ms-5">
+          <span>New Member</span>
+        </div>
+        <div class="col  text-end me-5">
+          <span>Member ID #{{memInfo.id}}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card subtitle" style="background-color: #828FA0">
+          <div class="row my-1">
+            <div class="row">
+              <div class="col ms-5">
+                <span>Personal Information</span>
+              </div>
+              <div class="col me-3" style="display: grid; place-items: end">
+                <button (click)="submitForm()" class="btn btn-primary btn-sm"
+                        [attr.data-bs-toggle]="form.invalid ? 'modal' : null"
+                        [attr.data-bs-target]="form.invalid ? '#invalidMessage' : null"
+                        style="background-color: #F5F5F5; color: black; width: 150px">
+                  Save Member
+                </button>
+                <div class="modal fade" id="invalidMessage">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content" style="color: black; background-color: #E1EBF6">
+                      <div class="modal-header">
+                        <div class="container">
+                          <div class="row">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                          </div>
+                          <div class="row text-center">
+                            <p>
+                              Please remember to fill
+                              the required fields before submitting
+                            </p>
+                          </div>
+                          <div class="row py-2">
+                            <img src="assets/infoIcon.svg" alt="" style="height: 40px">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mx-auto mt-1 mb-1">
+              <div class="col-9 me-2"
+                   style="background-color: #F5F5F5; color: black; display: grid; place-content: center">
+                <form [formGroup]="form" (ngSubmit)="submitForm()" (change)="onChange()">
+                  <div class="row employee-name">
+                    <div class="col first-name">
+                      <label for="firstName" class="form-label">First Name*</label>
+                      <input class="form-control shadow" type="text" id="firstName" formControlName="firstName"
+                             style="border-width: 2px">
+                    </div>
+                    <div class="col middle-name">
+                      <label for="middleName" class="form-label">Middle Name</label>
+                      <input class="form-control shadow" type="text" id="middleName" formControlName="middleName"
+                             style="border-width: 2px">
+                    </div>
+                    <div class="col last-name">
+                      <label for="lastName" class="form-label">last Name*</label>
+                      <input class="form-control shadow" type="text" id="lastName" formControlName="lastName"
+                             style="border-width: 2px">
+                    </div>
+                  </div>
+                  <div class="row employee-address mt-3">
+                    <div class="col address">
+                      <label for="address" class="form-label">Address*</label>
+                      <input class="form-control shadow" type="text" id="address" formControlName="address"
+                             style="border-width: 2px">
+                    </div>
+                    <div class="col city">
+                      <label for="city" class="form-label">City*</label>
+                      <input class="form-control shadow" type="text" id="city" formControlName="city"
+                             style="border-width: 2px">
+                    </div>
+                    <div class="col state">
+                      <label for="state" class="form-label">State*</label>
+                      <select class="form-control shadow" name="" id="state" formControlName="state"
+                              style="border-width: 2px">
+                        <option value="">Select a state</option>
+                        <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+                      </select>
+                    </div>
+                    <div class="col zip-code">
+                      <label for="zip" class="form-label">Zipcode*</label>
+                      <input class="form-control shadow" type="text" id="zip" formControlName="zip"
+                             style="border-width: 2px">
+                    </div>
+                  </div>
+                  <div class="row employee-contact mt-3">
+                    <div class="col cell-phone">
+                      <label for="cell" class="form-label">Cell Phone*</label>
+                      <input class="form-control shadow" type="text" id="cell" formControlName="cell"
+                             style="border-width: 2px">
+                    </div>
+                    <div class="col home-phone">
+                      <label for="homePhone" class="form-label">Home Phone</label>
+                      <input class="form-control shadow" type="text" id="homePhone" formControlName="homePhone"
+                             style="border-width: 2px">
+                    </div>
+                    <div class="col email">
+                      <label for="email" class="form-label">Email*</label>
+                      <input class="form-control shadow" type="text" id="email" formControlName="email"
+                             style="border-width: 2px">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col ms-1 p-4" style="background-color: #F5F5F5">
+                <div class="row-cols d-flex justify-content-center py-3">
+                  <img alt="" class="shadow" [src]=image
+                       style="width: 200px; border-radius: 100px; border: 5px solid #828FA0;">
+                </div>
+                <div class="row-1 d-grid  mt-3">
+                  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clockInOutModal">Upload
+                    Image
+                  </button>
+                  <photo-import-dialog [circleCropper]="true" (croppedImg)=getImage($event)></photo-import-dialog>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="card title mt-5" style="background-color: #454E5C; color: white; min-width: 1200px">
+      <div class="row my-1">
+        <div class="col ms-5 mt-1">
+          <span>Lots Owned</span>
+        </div>
+        <div class="col d-grid justify-content-end me-5">
+          <button class="btn btn-secondary btn-sm" style="background-color: #F5F5F5; width: 150px">Add</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card subtitle" style="background-color: #828FA0">
+          <div class="row my-1">
+            <div class="col-3 ms-5">
+              <span>Address</span>
+            </div>
+            <div class="col ms-5">
+              <span>Block</span>
+            </div>
+            <div class="col ms-5">
+              <span>Lot</span>
+            </div>
+            <div class="col ms-5">
+              <span>Area</span>
+            </div>
+            <div class="col ms-5">
+              <span>Unit</span>
+            </div>
+            <div class="row mx-auto my-1">
+              <div class="col"
+                   style="background-color: #F5F5F5; color: black; display: grid; place-content: center">
+                <div class="content">
+                  hello
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="card title mt-5" style="background-color: #454E5C; color: white; min-width: 1200px">
+      <div class="row my-1">
+        <div class="col ms-5 mt-1">
+          <span>Notes</span>
+        </div>
+        <div class="col d-grid justify-content-end me-5">
+          <button class="btn btn-secondary btn-sm" style="background-color: #F5F5F5; width: 150px">Add</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card subtitle" style="background-color: #828FA0">
+          <div class="row my-1">
+            <div class="row mx-auto my-1">
+              <div class="col"
+                   style="background-color: #F5F5F5; color: black; display: grid; place-content: center">
+                <div class="content">
+                  hello
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--{{empInfo | json}}-->
