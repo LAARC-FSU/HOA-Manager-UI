@@ -45,6 +45,7 @@ import {FindEmployeeInputComponent} from "./find-employee/find-employee-input/fi
 import {ModuleFrame} from "./module-fram/module-frame";
 import { EmployeeCredentialsMakerComponent } from './employee-credentials-maker/employee-credentials-maker.component';
 import {HttpClientModule} from "@angular/common/http";
+import {MemberDashboardComponent} from "./member-dashboard/member-dashboard.component";
 
 
 @NgModule({
@@ -87,6 +88,7 @@ import {HttpClientModule} from "@angular/common/http";
     FindEmployeeResultComponent,
     FindEmployeeInputComponent,
     ModuleFrame,
+    MemberDashboardComponent,
   ],
   imports: [
     HttpClientModule,

@@ -14,21 +14,25 @@ import {AddPropertyComponent} from "./add-property/add-property.component";
 import {FindPropertyComponent} from "./find-property/find-property.component";
 import {FindMemeberComponent} from "./find-member/find-memeber.component";
 import {FindEmployeeComponent} from "./find-employee/find-employee.component";
+import {MemberDashboardComponent} from "./member-dashboard/member-dashboard.component";
+import {MemberCalendarComponent} from "./member-calendar/member-calendar.component";
 
 
 const routes: Routes = [
   //{path: '', redirectTo: '/log-in', pathMatch:'full'},
-  {path: '', redirectTo: '/main-dashboard', pathMatch:'full'},
+  {path: '', redirectTo: '/member-dashboard', pathMatch:'full'},
   {path: 'make-schedule', component: MakeScheduleComponent},
   {path: 'view-schedule', component: ScheduleViewComponent},
   {path: 'schedule-dashboard', component: ScheduleDashboardComponent},
   {path: 'log-in', component: LoginPortalComponent},
   {path: 'main-dashboard', component: MainDashboardComponent},
+  {path: 'member-dashboard', component: MemberDashboardComponent},
   {path: 'clock-in-out-dialog', component: ClockInOutDialogComponent},
   {path: 'add-property', component: AddPropertyComponent},
   {path: 'find-property', component: FindPropertyComponent},
   {path: 'view-update-members', component: FindMemeberComponent},
   {path: 'employees', component: FindEmployeeComponent},
+  {path: 'Calendar', component: MemberCalendarComponent},
 ];
 
 @NgModule({

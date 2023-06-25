@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import * as child_process from "child_process";
 
 @Component({
   selector: 'app-card',

@@ -9,6 +9,7 @@ import {LoginPortalValidators} from "./login-portal-validators";
 import {HttpClient} from "@angular/common/http";
 
 
+
 class JWT {
   token = "";
 }
@@ -26,20 +27,9 @@ export class LoginPortalComponent {
   private userFound = false;
   private users: any[] = [];
 
-  //test
-  body = {
-    username: "rgrobbins@student.fullsail.edu",
-    password: "P@ssword123"
-  }
-  constructor(private http: HttpClient) {
-    this.http.post('http://ec2-3-136-16-135.us-east-2.compute.amazonaws.com:8080/', this.body)
-      .subscribe((response) => {
-        console.log(response)
-      }, (error) => {
-        // Deal with any errors like a champ
-      });
-  }
+  constructor(private http: HttpClient){
 
+  }
 
   user = {
     memberId: '',

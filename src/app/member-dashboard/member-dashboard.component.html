@@ -1,0 +1,19 @@
+<app-header>
+  <ng-container class="pageTitle">Welcome, <b>Alfredo Borroto</b></ng-container>
+</app-header>
+
+<span class="d-flex flex-fill flex-wrap align-items-top justify-content-around align-content-stretch p-5">
+  <app-card class="m-3" *ngFor="let card of cards">
+    <ng-container class="header-left">{{card.title}}</ng-container>
+    <ng-container class="header-right"> <img src={{card.image}} alt=""/> </ng-container>
+      <ng-container class="body">
+        <a href="#" class="btn btn-info d-flex justify-content-between m-2"  *ngFor="let button of card.buttons"
+           routerLink={{button.page}}>
+          <span class=""> {{button.text}} </span>
+          <span class="buttonImage"> <img src={{button.image}} alt=""/> </span>
+        </a>
+    </ng-container>
+  </app-card>
+</span>
+
+
