@@ -16,6 +16,7 @@ import {FindMemeberComponent} from "./find-member/find-memeber.component";
 import {FindEmployeeComponent} from "./find-employee/find-employee.component";
 import {MemberDashboardComponent} from "./member-dashboard/member-dashboard.component";
 import {MemberCalendarComponent} from "./member-calendar/member-calendar.component";
+import {BillingPaymentHistoryComponent} from "./billing-payment-history/billing-payment-history.component";
 
 
 const routes: Routes = [
@@ -32,7 +33,8 @@ const routes: Routes = [
   {path: 'find-property', component: FindPropertyComponent},
   {path: 'view-update-members', component: FindMemeberComponent},
   {path: 'employees', component: FindEmployeeComponent},
-  {path: 'Calendar', component: MemberCalendarComponent},
+  {path: 'member-calendar', component: MemberCalendarComponent},
+  {path: 'billing-payment-history', component: BillingPaymentHistoryComponent}
 ];
 
 @NgModule({
