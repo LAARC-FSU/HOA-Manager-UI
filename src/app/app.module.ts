@@ -36,7 +36,7 @@ import {MemberDayGridComponent} from "./member-calendar/member-day-grid/member-d
 import {BillingPaymentHistoryComponent} from "./billing-payment-history/billing-payment-history.component";
 import {TransactionHistoryComponent} from "./billing-payment-history/transaction-history/transaction-history.component";
 import {NextPaymentComponent} from "./billing-payment-history/next-payment/next-payment.component";
-import {MemberInfoForm} from "./member-info-form/member-info-form";
+import {MemberInfoFormComponent} from "./member-info-form/input-form-mem/member-info-form.component";
 import {MemberViewPropertyComponent} from "./member-view-property/member-view-property.component";
 import {FindEmployeeComponent} from "./find-employee/find-employee.component";
 import {FindMemberInputComponent} from "./find-member/find-member-input/find-member-input.component";
@@ -46,6 +46,7 @@ import {ModuleFrame} from "./module-fram/module-frame";
 import { EmployeeCredentialsMakerComponent } from './employee-credentials-maker/employee-credentials-maker.component';
 import {HttpClientModule} from "@angular/common/http";
 import {MemberDashboardComponent} from "./member-dashboard/member-dashboard.component";
+import {MemberInfoForm} from "./member-info-form/member-info-form";
 
 
 @NgModule({
@@ -89,6 +90,7 @@ import {MemberDashboardComponent} from "./member-dashboard/member-dashboard.comp
     FindEmployeeInputComponent,
     ModuleFrame,
     MemberDashboardComponent,
+    MemberInfoFormComponent
   ],
   imports: [
     HttpClientModule,

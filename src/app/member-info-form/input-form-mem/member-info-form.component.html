@@ -2,78 +2,66 @@
   <div class="row row1">
     <div class="col">
       <div class="text-black">Name</div>
-      <input [readOnly]="isDisabled" type="text" >
+      <input [readOnly]="isDisabled" type="text">
     </div>
-    <img class="img-fluid img1" src="assets/loginLogo.svg" alt="">
+    <photo-import-dialog></photo-import-dialog>
   </div>
   <div class="row row2">
     <div class="col" style="width: 200px">
-      <label for="address">Address</label>
-      <input [readOnly]="isDisabled" type="text" id="address" >
+      <div class="text-black">Address</div>
+      <input [readOnly]="isDisabled" type="text" id="address">
     </div>
     <div class="col">
-      <label for="city">City</label>
+      <div class="text-black">City</div>
       <input [readOnly]="isDisabled" type="text" id="city" style="width: 150px">
     </div>
     <div class="col">
       <div>
-        <label for="state">State</label>
+        <div class="text-black">State</div>
       </div>
       <input [readOnly]="isDisabled" type="text" id="state" style="width: 100px">
     </div>
     <div class="col">
-      <div>
-      <label for="postalCode">Postal Code</label>
-      </div>
+      <div class="text-black">Postal Code</div>
       <input [readOnly]="isDisabled" type="text" id="postalCode" style="width: 100px">
     </div>
     <div class="col">
-      <div>
-      <label for="country">Country</label>
-      </div>
+      <div class="text-black">Country</div>
       <input [readOnly]="isDisabled" type="text" id="country" style="width: 150px">
     </div>
   </div>
   <div class="row row3">
     <div class="col">
-      <div>E-Mail</div>
+      <div class="text-black">E-Mail</div>
     </div>
     <div class="col col23">
       <div>
-        <label for="emailPrimary">Primary</label>
+        <div class="text-black">Primary</div>
       </div>
       <input [readOnly]="isDisabled" type="email" id="emailPrimary" style="width: 300px">
     </div>
     <div class="col col33">
       <div>
-        <label for="Secondary">Secondary</label>
+        <div class="text-black">Secondary</div>
       </div>
       <input [readOnly]="isDisabled" type="email" id="Secondary" style="width: 300px">
     </div>
   </div>
   <div class="row row4">
     <div class="col">
-      <div>Phone</div>
+      <div class="text-black">Phone</div>
     </div>
     <div class="col col24">
       <div>
-      <label for="mobile">Mobile</label>
+        <div class="text-black">Mobile</div>
       </div>
       <input [readOnly]="isDisabled" type="tel" id="mobile">
     </div>
     <div class="col col34">
       <div>
-      <label for="work">Work</label>
+        <div class="text-black">Work</div>
       </div>
       <input [readOnly]="isDisabled" type="tel" id="work">
     </div>
   </div>
-  <button class="btn-info btn1" type=button id="saveEdit" (click)="change()">
-    <span *ngIf="isDisabled; else prompt">
-      Edit
-    </span>
-  </button>
-<ng-template #prompt>
-  Save
-</ng-template>
 </div>

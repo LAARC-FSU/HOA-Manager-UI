@@ -1,0 +1,21 @@
+<app-header>
+  <ng-container class="pageTitle">Welcome, <b>Alfredo Borroto</b></ng-container>
+</app-header>
+
+<module-frame>
+  <div class="heading">My Information</div>
+  <div class="title">
+    <button class="btn-info btn1" type=button id="saveEdit" (click)="change()">
+    <span *ngIf="isDisabled; else prompt">
+      Edit
+    </span>
+    </button>
+  </div>
+  <div class="content">
+    <input-form-mem></input-form-mem>
+  </div>
+</module-frame>
+
+<ng-template #prompt>
+  Save
+</ng-template>
