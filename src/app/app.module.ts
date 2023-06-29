@@ -29,7 +29,7 @@ import {NotesComponents} from "./add-property/notes/notes.components";
 import {TransactionInputComponents} from "./transaction-input/transaction-input.components";
 import {FindPropertyComponent} from "./find-property/find-property.component";
 import {FindMemeberComponent} from "./find-member/find-memeber.component";
-import { FullCalendarModule} from "@fullcalendar/angular";
+import { FullCalendarModule} from "@fullcalendar/angular/full-calendar.module";
 import { MemberCalendarComponent} from "./member-calendar/member-calendar.component";
 import { MemberTimeGridComponent} from "./member-calendar/member-time-grid/member-time-grid.component";
 import {MemberDayGridComponent} from "./member-calendar/member-day-grid/member-day-grid.component";
@@ -100,9 +100,6 @@ import {MemberInfoForm} from "./member-info-form/member-info-form";
     BrowserAnimationsModule,
     ReactiveFormsModule,
     ImageCropperModule,
-    HttpClientModule,
-    ImageCropperModule,
-    ReactiveFormsModule,
     FullCalendarModule
   ],
   providers: [DatePipe],

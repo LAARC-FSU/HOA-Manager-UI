@@ -35,3 +35,7 @@ export interface Schedule {
   empWeekHours: number;
  }
 
+ export interface JWT {
+  token: string;
+ }
+
