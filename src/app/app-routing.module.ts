@@ -21,8 +21,7 @@ import {MemberInfoForm} from "./member-info-form/member-info-form";
 
 
 const routes: Routes = [
-  //{path: '', redirectTo: '/log-in', pathMatch:'full'},
-  {path: '', redirectTo: '/member-dashboard', pathMatch:'full'},
+  {path: '', redirectTo: '/log-in', pathMatch:'full'},
   {path: 'make-schedule', component: MakeScheduleComponent},
   {path: 'view-schedule', component: ScheduleViewComponent},
   {path: 'schedule-dashboard', component: ScheduleDashboardComponent},

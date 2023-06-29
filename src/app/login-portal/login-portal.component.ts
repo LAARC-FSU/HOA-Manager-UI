@@ -78,7 +78,7 @@ export class LoginPortalComponent {
             this.router.navigate(["/main-dashboard"]);
           }
           else if(this.jwtAccess.role == "MEMBER"){
-
+            this.router.navigate(["/member-dashboard"]);
           }
         }
 
