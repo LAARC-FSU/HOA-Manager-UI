@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
+import {userInfo} from "../interfaces";
 
 @Component({
   selector: 'member-add',
@@ -10,7 +11,9 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 export class MemberAddComponent {
   image: any = "assets/memberPhotoPlaceholder.svg";
   emailInitText = 'User Id'
-  memInfo = {
+  index: any = null;
+  isNotes = false;
+  memInfo: userInfo = {
     firstName: '',
     middleName: '',
     lastName: '',
@@ -21,11 +24,16 @@ export class MemberAddComponent {
     cellPhone: '',
     homePhone: '',
     email: this.emailInitText,
-    role: 'memberAdmin',
     active: false,
     id: '000000',
-    properties: [''],
-    notes: ['']
+    properties: [{address: 'test', area: '12', lot: '45', block: '45', unit: '2'}, {
+      address: 'test2',
+      area: '12',
+      lot: '45',
+      block: '45',
+      unit: '2'
+    }],
+    notes: [{title: 'note1', body: 'this is note 1'}, {title: 'note2', body: 'this is note 2'}]
   };
   states: string[] = [
     'Alabama',
@@ -80,7 +88,7 @@ export class MemberAddComponent {
     'Wyoming'
   ];
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder) {
   }
 
   form: FormGroup = this.fb.group({
@@ -142,10 +150,6 @@ export class MemberAddComponent {
   submitForm(): void {
   }
 
-  roleChange(role:string) {
-    this.memInfo.role = role;
-  }
-
   onChange() {
     this.memInfo.firstName = this.firstName!.value;
     this.memInfo.middleName = this.middleName!.value;
@@ -156,10 +160,25 @@ export class MemberAddComponent {
     this.memInfo.cellPhone = this.cellPhone!.value;
     this.memInfo.homePhone = this.homePhone!.value;
     this.memInfo.email = this.email!.value;
-    this.memInfo.role = '';
     this.memInfo.state = this.state!.value;
   }
 
+
+  onDelete(i:any) {
+    if (this.index !== -1) {
+      if (this.isNotes){
+        this.memInfo.notes.splice(i, 1);
+      }else{
+        this.memInfo.properties.splice(i, 1);
+      }
+
+    }
+  }
+
+  getIsNotes(isNts:any){
+    debugger
+    this.isNotes = isNts;
+  }
 
   getImage(event: any) {
     this.image = event;

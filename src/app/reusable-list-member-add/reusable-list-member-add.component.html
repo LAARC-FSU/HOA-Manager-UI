@@ -1,0 +1,32 @@
+
+<div *ngIf="!isNotes">
+  <ul class="list-group">
+    <ng-container *ngFor="let item of items; let i = index; let even = even">
+      <li class="list-group-item day"
+          [ngClass]="{'list-group-item-primary': even, 'list-group-item-light': !even }"
+          [style.height]="setHeight()"  [style.width]="setWidth()" style="color:#454E5C; border-radius: 0">
+        <div *ngIf="objectMem === 0">{{item.address}}</div>
+        <div *ngIf="objectMem === 1">{{item.unit}}</div>
+        <div *ngIf="objectMem === 2">{{item.block}}</div>
+        <div *ngIf="objectMem === 3">{{item.area}}</div>
+        <div *ngIf="objectMem === 4">{{item.unit}}</div>
+        <div *ngIf="isDeleteBtn" class="d-grid justify-content-center"><button class="btn btn-primary btn-sm" (click)="delete(i)" style="background-color: #A73E40; height: 30px">Delete</button></div>
+      </li>
+      <div *ngIf="(i + 1) === initialPgBrk || (i + (initialPgBrk + 1)) % itemsPerPage === 0" class="pageBrk"></div>
+    </ng-container>
+  </ul>
+</div>
+<div *ngIf="isNotes">
+  <ul class="list-group">
+    <ng-container *ngFor="let item of items; let i = index; let even = even">
+      <li class="list-group-item day"
+          [ngClass]="{'list-group-item-primary': even, 'list-group-item-light': !even }"
+          [style.height]="setHeight()"  [style.width]="setWidth()" style="color:#454E5C; border-radius: 0">
+        <div *ngIf="objectMem === 0">{{item.title}}</div>
+        <div *ngIf="isDeleteBtn" class="d-grid justify-content-center"><button class="btn btn-primary btn-sm" (click)="delete(i)" style="background-color: #A73E40; height: 30px">Delete</button></div>
+      </li>
+      <div *ngIf="(i + 1) === initialPgBrk || (i + (initialPgBrk + 1)) % itemsPerPage === 0" class="pageBrk"></div>
+    </ng-container>
+  </ul>
+</div>
+

@@ -35,3 +35,32 @@ export interface Schedule {
   empWeekHours: number;
  }
 
+export interface userInfo {
+  firstName: string,
+  middleName: string,
+  lastName: string,
+  address: string,
+  city: string,
+  state: string,
+  zipCode: string,
+  cellPhone: string,
+  homePhone: string,
+  email: string,
+  active: boolean,
+  id: string,
+  properties: property [],
+  notes: note []
+}
+
+export interface property {
+  address: string,
+  block: string,
+  lot: string,
+  area: string,
+  unit: string
+}
+
+export interface note {
+  title: string;
+  body: string;
+}

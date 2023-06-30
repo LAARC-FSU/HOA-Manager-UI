@@ -11,7 +11,7 @@ export class EmployeeCredentialsMakerComponent {
   image: any = "assets/employeePhotoPlaceholder.svg";
   emailInitText = 'User Id'
   private apiUrl = 'https://graph.microsoft.com/v1.0';
-  private accessToken: any = "EwCYA8l6BAAUAOyDv0l6PcCVu89kmzvqZmkWABkAATWa2wWCZKX36ew7lgLZN0FLC+0A9JpRnzvYz+lbFvWn/dewwHlgwFqX0bANI/AWpGdr8kmhJmiIzjRt18lTQAuSQtRuwoLbnsk7ZDbZUq7Pqmli00rR3t0zL6JNHXxVuygojQSc7phBTk1Qf6Fd0eu4HDVnp5EcH3f+jOCrgDNr8vTlEpb9XLvzMkxdY1ZwK4s3Zb5NmVQ5mVEW3WQ+37YZTADgfR3ALeheKe9cthrkRWRbgxuSI1lTr2WwLEI9/hVwATbSzGSf3QaAYrQoMoOX9z6iA9bOfnPXaOEr1Ahf0PRa1nOuBzM+5BgZahUV2QpBr4fQ75DuETq4LqPNllsDZgAACNexTkC0le5QaAIb43BysoEARtrBmcFWdT8EGqgjMyzBvQXvKt0dhRBcU0nM91pQwfBpKc7cmu4ccegyUXs19NBAPpDueIZ1ia9B65F1al/UCqh/c1At3CKSAWl3Yuo6blBD4NIo2kDmpkFB/kDvfF28+0+muKLgujm5MMB97BbVlqtDupv1oFcw6ixHZ5aL7Grl9Gy+M68PHYR1NHoUsJqc6uk0Yt2HmcrwRLXIP3qcKrNMnl8Kdivx5bEcH9s4y0eNOYxgBtvzYcN67/5McxhrnU6O477HQQ+syKc7rL4Yg2h5XeD5syKPndkdgMJp8Fp59gRvTPbbSl6Qk4bh9S9vLHy0/cBt5ds/s2cwWCZH61TxtQiESMhS2Y9gHgiLGDJjtLJI0iEMMEaN/YDK24VYnpkgEVEvyZSlGRougpH5XSr6V7sLXjbg9B0N9/BLyOzep2OcJcQHdR/H4heiQOUwdWFNNF0MlJe3VXkJooi8VB0WPzIPrbopMMeIH3+9TGFijo+f6CLi33/itRVH/Py0JKT592W2p9qInJWGou6eOhTJbpfepnB4p8c1GZfPDuufd/D/+bpOM091FAeLcn3Ak7BtSuD5m5DlgmW+NiYRLVUBMRhSdkfQzTxdqr7C3Q5btjJizLb3pwzvXQMt1C9Vt3uQJi5DR27SMBKoiO8BeSHb+7p6RFSOPgtqzawSAcSZecJlMVWMb8x0RillZrtwPVfo7HT8gAHsMeL25HAV959XTavkxLB84s8MtQXr+uVGlPGVRhrk1xv5vKU4K6IGNIr+vwbwE5Pc2CVhPPb2dSZJteLoS5DkUg6u2qME35W2oAI="
+  private accessToken: any = 'eyJ0eXAiOiJKV1QiLCJub25jZSI6InBPMVllRkxrNkwxeDZKaHB5LTR4NHNzcTI3MkJhbmZCNi1MbVB0S3lwQ0UiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC85MTg4MDQwZC02YzY3LTRjNWItYjExMi0zNmEzMDRiNjZkYWQvIiwiaWF0IjoxNjg4MDgwNDMxLCJuYmYiOjE2ODgwODA0MzEsImV4cCI6MTY4ODA4NDMzMSwiYWlvIjoiRTJaZ1lFZzZkSEJid0FFcFB6L3UvR3ZCamZXWEFBPT0iLCJhcHBfZGlzcGxheW5hbWUiOiJIT0FfTWFuYWdlciIsImFwcGlkIjoiYTI3NDYyMzMtMjc0ZC00NTkxLThjZjUtYmNkNDgwYTBmZWQyIiwiYXBwaWRhY3IiOiIxIiwiaWRwIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvOTE4ODA0MGQtNmM2Ny00YzViLWIxMTItMzZhMzA0YjY2ZGFkLyIsImlkdHlwIjoiYXBwIiwib2lkIjoiMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDRjZWU5MmY1IiwicmgiOiIwLkFTY0NEUVNJa1dkc1cweXhFamFqQkxadHJRTUFBQUFBQUFBQXdBQUFBQUFBQUFBekFBQS4iLCJzdWIiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwNGNlZTkyZjUiLCJ0ZW5hbnRfcmVnaW9uX3Njb3BlIjoiU0EiLCJ0aWQiOiI5MTg4MDQwZC02YzY3LTRjNWItYjExMi0zNmEzMDRiNjZkYWQiLCJ1dGkiOiJlUVpzWDFmeTdVYWg1NEtnM0NZU0FBIiwidmVyIjoiMS4wIiwid2lkcyI6WyIwOTk3YTFkMC0wZDFkLTRhY2ItYjQwOC1kNWNhNzMxMjFlOTAiXSwieG1zX3RjZHQiOjE0MzE2NDE0OTh9.RJWFfc87F8Rlgx80ANvWMdg67HJllZ5K59cNNS_jXK_kY9Zj8sW8k0UVVg-Kb9ce0Nw35p5eJ9zTG5p3foMAUQazfXFWtQ3kGVrNnWz4ihre6mzn7i_LGBXAmmgmfKN2aTcfkSxDmIBcwHlnQqpXhRM_lEaWd8c-oDoN0Avh3jVpRJBUj_MjrimRK24vQj872m7pQertQwIK9fN9Fq_Sd86dh_B0gSLJyL-Me1IJw1OJR6OS5FSTXhv1Y-6Wlh6kl8KyiRE5aBhe6GeA7_-et2OXGB1pZkyflWAEWLEiSxgaLp_oFQJQ4vV2UttvUCoVDixv36n8c-Yhjs4l6nFhMg';
     empInfo = {
     firstName: '',
     middleName: '',
@@ -161,7 +161,7 @@ export class EmployeeCredentialsMakerComponent {
 
   createLogin() {
     if (this.empInfo.email !== this.emailInitText){
-      // this.sendEmail();
+      this.sendEmail();
       // this.requestAccessToken();
       this.empInfo.active = true;
     }
@@ -218,7 +218,7 @@ export class EmployeeCredentialsMakerComponent {
       "toRecipients": [
         {
           "emailAddress": {
-            "address": "aborroto1984@gmail.com"
+            "address": "aborroto1984@hotmail.com"
           }
         }
       ]
@@ -228,12 +228,18 @@ export class EmployeeCredentialsMakerComponent {
 
 
     const url = `https://graph.microsoft.com/v1.0/me/sendMail`;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${this.accessToken}`
-    });
+    // const headers = new HttpHeaders({
+    //   'Content-Type': 'application/json',
+    //   Authorization: `Bearer ${this.accessToken}`
+    // });
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.accessToken}`
+      })
+    };
 
-    this.http.post(url, email, { headers }).subscribe(
+    this.http.post(url, email, httpOptions).subscribe(
       (response) => {
         console.log('Email sent successfully:', response);
       },

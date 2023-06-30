@@ -12,6 +12,7 @@ export class ReusableListComponent {
   @Input() items: any[] = [];
   @Input() itemsPerPage = 0; // after the first page, the number of items you can fit on a page
   @Input() initialPgBrk = 0; // the first number of items you can fit in the first page
+  @Input() hasDeleteBtn = false; // it adds a delete button to the list row
   setHeight() {
     if (this.height > 0) {
       return this.height + 'px';

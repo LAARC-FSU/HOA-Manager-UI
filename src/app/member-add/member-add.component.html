@@ -161,14 +161,32 @@
             </div>
             <div class="row mx-auto my-1">
               <div class="col"
-                   style="background-color: #F5F5F5; color: black; display: grid; place-content: center">
+                   style="background-color: #F5F5F5; color: black; min-height: 45px">
                 <div class="content">
-                  hello
+                  <div class="row g-0">
+                    <div class="col-3">
+                      <reusable-list-member-add [items]="memInfo.properties" [objectMem]="0" [height]="45"></reusable-list-member-add>
+                    </div>
+                    <div class="col text-center">
+                      <reusable-list-member-add [items]="memInfo.properties" [objectMem]="1" [height]="45"></reusable-list-member-add>
+                    </div>
+                    <div class="col text-center">
+                      <reusable-list-member-add [items]="memInfo.properties" [objectMem]="2" [height]="45"></reusable-list-member-add>
+                    </div>
+                    <div class="col text-center">
+                      <reusable-list-member-add [items]="memInfo.properties" [objectMem]="3" [height]="45"></reusable-list-member-add>
+                    </div>
+                    <div class="col text-center">
+                      <reusable-list-member-add [items]="memInfo.properties" [objectMem]="4" [height]="45"></reusable-list-member-add>
+                    </div>
+                    <div class="col">
+                      <reusable-list-member-add [items]="memInfo.properties" [isDeleteBtn]="true" [height]="45" (index)="onDelete(index)"></reusable-list-member-add>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -188,14 +206,20 @@
           <div class="row my-1">
             <div class="row mx-auto my-1">
               <div class="col"
-                   style="background-color: #F5F5F5; color: black; display: grid; place-content: center">
+                   style="background-color: #F5F5F5; color: black;min-height: 45px">
                 <div class="content">
-                  hello
+                  <div class="row g-0">
+                    <div class="col-10">
+                      <reusable-list-member-add [items]="memInfo.notes" [isNotes]="true" [objectMem]="0" [height]="45"></reusable-list-member-add>
+                    </div>
+                    <div class="col">
+                      <reusable-list-member-add [items]="memInfo.notes" [isDeleteBtn]="true" [objectMem]="0" [height]="45" (isNotesType)="getIsNotes($event.target.value)" (index)="onDelete(index)"></reusable-list-member-add>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>

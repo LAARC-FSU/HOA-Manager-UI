@@ -5,6 +5,7 @@
         [style.height]="setHeight()"  [style.width]="setWidth()" style="color:#454E5C; border-radius: 0">
       <div *ngIf="!isMarkup">{{item}}</div>
       <div *ngIf="isMarkup"><ng-content ></ng-content></div>
+      <div *ngIf="hasDeleteBtn"><button class="btn btn-danger btn-sm">Delete</button></div>
     </li>
     <div *ngIf="(i + 1) === initialPgBrk || (i + (initialPgBrk + 1)) % itemsPerPage === 0" class="pageBrk"></div>
   </ng-container>
