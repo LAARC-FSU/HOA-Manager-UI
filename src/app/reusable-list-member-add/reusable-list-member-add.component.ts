@@ -11,11 +11,14 @@ export class ReusableListMemberAddComponent {
   @Input() items: any[] = [];
   @Input() itemsPerPage = 0; // after the first page, the number of items you can fit on a page
   @Input() initialPgBrk = 0; // the first number of items you can fit in the first page
-  @Input() isDeleteBtn = false; // it adds a delete button to the list row
-  @Input() objectMem: number = -1;
-  @Input()  isNotes = false;
-  @Output() index = new EventEmitter();
-  @Output() isNotesType = new EventEmitter();
+  @Input() isDeleteProperty = false; // it adds a delete button to the property list row
+  @Input() isDeleteNote = false; // it adds a delete button to the notes list row
+  @Input()  isView = false; // it adds view link to view the stored notes
+  @Input() objectMem: number = -1; // initial value of the object member to be displayed in the list
+  @Input()  isNotes = false;  // it asserts the object array being passed into items is of type notes
+  @Output() indexProperty = new EventEmitter();
+  @Output() indexNote = new EventEmitter();
+  @Output() indexViewNote = new EventEmitter();
 
   setHeight() {
     if (this.height > 0) {
@@ -33,8 +36,13 @@ export class ReusableListMemberAddComponent {
     }
   }
 
-  delete(e:any){
-    this.index.emit(e);
-    this.isNotesType.emit(this.isNotes);
+  deleteProperty(e:any){
+    this.indexProperty.emit(e);
+  }
+  deleteNote(e:any){
+    this.indexNote.emit(e);
+  }
+  viewNote(e:any){
+    this.indexViewNote.emit(e);
   }
 }

@@ -12,7 +12,6 @@ export class MemberAddComponent {
   image: any = "assets/memberPhotoPlaceholder.svg";
   emailInitText = 'User Id'
   index: any = null;
-  isNotes = false;
   memInfo: userInfo = {
     firstName: '',
     middleName: '',
@@ -33,7 +32,7 @@ export class MemberAddComponent {
       block: '45',
       unit: '2'
     }],
-    notes: [{title: 'note1', body: 'this is note 1'}, {title: 'note2', body: 'this is note 2'}]
+    notes: [{title: 'note1',date:'3/23/2023', body: 'this is note 1'}, {title: 'note2',date:'2/31/2023', body: 'this is note 2'}]
   };
   states: string[] = [
     'Alabama',
@@ -164,20 +163,15 @@ export class MemberAddComponent {
   }
 
 
-  onDelete(i:any) {
+  deleteProperty(i:any) {
     if (this.index !== -1) {
-      if (this.isNotes){
-        this.memInfo.notes.splice(i, 1);
-      }else{
-        this.memInfo.properties.splice(i, 1);
-      }
-
+      this.memInfo.properties.splice(i, 1);
     }
   }
-
-  getIsNotes(isNts:any){
-    debugger
-    this.isNotes = isNts;
+  deleteNote(i:any) {
+    if (this.index !== -1) {
+      this.memInfo.notes.splice(i, 1);
+    }
   }
 
   getImage(event: any) {

@@ -62,5 +62,6 @@ export interface property {
 
 export interface note {
   title: string;
+  date: string;
   body: string;
 }
