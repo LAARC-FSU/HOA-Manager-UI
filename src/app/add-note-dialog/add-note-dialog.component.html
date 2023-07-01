@@ -1,1 +1,67 @@
-<p>add-note-dialog works!</p>
+<!--<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-note" >Clock in/out Dialog</button>-->
+
+<div class="modal fade" id="add-note" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-static">
+    <div class="modal-content my-0">
+      <div class="container-fluid" style="font-family: montserrat,serif; width: 600px">
+      <div class="row">
+        <div class="card title">
+          <div class="row my-2 text-center">
+            <div class="col-3">
+              New Note
+            </div>
+            <div class="col-6 text-center">
+              <span>Created on {{newNote.date}}</span>
+            </div>
+            <div class="col d-flex justify-content-end me-4">
+              <button (click)="cancel()" class="btn-close btn-close-white" data-bs-toggle="modal"></button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="card subtitle">
+              <div class="row mx-3">
+                <form [formGroup]="noteForm" (ngSubmit)="submitForm()">
+                  <div
+                    [@fade]=
+                      "(title!['invalid'] && title!['touched']) ||
+                              (body!['invalid'] && body!['touched']) ? 'visible' : 'hidden'"
+                    class="invalid-message mt-4 mb-3">
+                    <div class="row text-center py-2 mx-auto" id="invalid-message"
+                         style="background-color: #A73E40; border-radius:5px; width: fit-content">
+                      <span>Please fill required fields marked with *</span>
+                    </div>
+                  </div>
+
+                  <div class="row mt-2">
+                    <label for="title" class="form-label">Title*</label>
+                    <input class="form-control shadow" type="text" id="title" formControlName="title"
+                           style="border-width: 2px">
+                  </div>
+                  <div class="row mt-2 mb-4">
+                    <label for="body" class="form-label">Body*</label>
+                    <textarea class="form-control scrollable-textarea shadow" rows="15" id="body" formControlName="body"
+                              style="border-width: 2px"></textarea>
+                  </div>
+
+                </form>
+              </div>
+              <div class="row mt-3 mb-5">
+                <div class="col d-flex justify-content-end">
+                  <button (click)="submitForm()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-note" [disabled]="noteForm.invalid" style="background-color: #4A7E3B">Save</button>
+                </div>
+                <div class="col">
+                  <button (click)="cancel()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-note"
+                          style="background-color: #A73E40">Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!--{{empWorkTime | json}}-->

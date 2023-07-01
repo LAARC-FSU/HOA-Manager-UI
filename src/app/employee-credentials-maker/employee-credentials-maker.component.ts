@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {states} from "../interfaces";
 
 @Component({
   selector: 'employee-credentials-maker',
@@ -10,7 +11,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 export class EmployeeCredentialsMakerComponent {
   image: any = "assets/employeePhotoPlaceholder.svg";
   emailInitText = 'User Id'
-  private apiUrl = 'https://graph.microsoft.com/v1.0';
+  // private apiUrl = 'https://graph.microsoft.com/v1.0';
   private accessToken: any = 'eyJ0eXAiOiJKV1QiLCJub25jZSI6InBPMVllRkxrNkwxeDZKaHB5LTR4NHNzcTI3MkJhbmZCNi1MbVB0S3lwQ0UiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC85MTg4MDQwZC02YzY3LTRjNWItYjExMi0zNmEzMDRiNjZkYWQvIiwiaWF0IjoxNjg4MDgwNDMxLCJuYmYiOjE2ODgwODA0MzEsImV4cCI6MTY4ODA4NDMzMSwiYWlvIjoiRTJaZ1lFZzZkSEJid0FFcFB6L3UvR3ZCamZXWEFBPT0iLCJhcHBfZGlzcGxheW5hbWUiOiJIT0FfTWFuYWdlciIsImFwcGlkIjoiYTI3NDYyMzMtMjc0ZC00NTkxLThjZjUtYmNkNDgwYTBmZWQyIiwiYXBwaWRhY3IiOiIxIiwiaWRwIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvOTE4ODA0MGQtNmM2Ny00YzViLWIxMTItMzZhMzA0YjY2ZGFkLyIsImlkdHlwIjoiYXBwIiwib2lkIjoiMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDRjZWU5MmY1IiwicmgiOiIwLkFTY0NEUVNJa1dkc1cweXhFamFqQkxadHJRTUFBQUFBQUFBQXdBQUFBQUFBQUFBekFBQS4iLCJzdWIiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwNGNlZTkyZjUiLCJ0ZW5hbnRfcmVnaW9uX3Njb3BlIjoiU0EiLCJ0aWQiOiI5MTg4MDQwZC02YzY3LTRjNWItYjExMi0zNmEzMDRiNjZkYWQiLCJ1dGkiOiJlUVpzWDFmeTdVYWg1NEtnM0NZU0FBIiwidmVyIjoiMS4wIiwid2lkcyI6WyIwOTk3YTFkMC0wZDFkLTRhY2ItYjQwOC1kNWNhNzMxMjFlOTAiXSwieG1zX3RjZHQiOjE0MzE2NDE0OTh9.RJWFfc87F8Rlgx80ANvWMdg67HJllZ5K59cNNS_jXK_kY9Zj8sW8k0UVVg-Kb9ce0Nw35p5eJ9zTG5p3foMAUQazfXFWtQ3kGVrNnWz4ihre6mzn7i_LGBXAmmgmfKN2aTcfkSxDmIBcwHlnQqpXhRM_lEaWd8c-oDoN0Avh3jVpRJBUj_MjrimRK24vQj872m7pQertQwIK9fN9Fq_Sd86dh_B0gSLJyL-Me1IJw1OJR6OS5FSTXhv1Y-6Wlh6kl8KyiRE5aBhe6GeA7_-et2OXGB1pZkyflWAEWLEiSxgaLp_oFQJQ4vV2UttvUCoVDixv36n8c-Yhjs4l6nFhMg';
     empInfo = {
     firstName: '',
@@ -26,58 +27,7 @@ export class EmployeeCredentialsMakerComponent {
     role: 'memberAdmin',
     active: false
   };
-  states: string[] = [
-    'Alabama',
-    'Alaska',
-    'Arizona',
-    'Arkansas',
-    'California',
-    'Colorado',
-    'Connecticut',
-    'Delaware',
-    'Florida',
-    'Georgia',
-    'Hawaii',
-    'Idaho',
-    'Illinois',
-    'Indiana',
-    'Iowa',
-    'Kansas',
-    'Kentucky',
-    'Louisiana',
-    'Maine',
-    'Maryland',
-    'Massachusetts',
-    'Michigan',
-    'Minnesota',
-    'Mississippi',
-    'Missouri',
-    'Montana',
-    'Nebraska',
-    'Nevada',
-    'New Hampshire',
-    'New Jersey',
-    'New Mexico',
-    'New York',
-    'North Carolina',
-    'North Dakota',
-    'Ohio',
-    'Oklahoma',
-    'Oregon',
-    'Pennsylvania',
-    'Rhode Island',
-    'South Carolina',
-    'South Dakota',
-    'Tennessee',
-    'Texas',
-    'Utah',
-    'Vermont',
-    'Virginia',
-    'Washington',
-    'West Virginia',
-    'Wisconsin',
-    'Wyoming'
-  ];
+  states: string[] = states;
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
   }

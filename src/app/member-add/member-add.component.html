@@ -138,13 +138,14 @@
           <span>Lots Owned</span>
         </div>
         <div class="col d-grid justify-content-end me-5">
-          <button class="btn btn-secondary btn-sm" style="background-color: #F5F5F5; width: 150px">Add</button>
+          <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#add-lot" style="background-color: #F5F5F5; width: 150px">Add</button>
         </div>
+        <add-lot-dialog (property)="addLot($event)"></add-lot-dialog>
       </div>
       <div class="row">
         <div class="card subtitle" style="background-color: #828FA0">
           <div class="row my-1 text-center">
-            <div class="col-3 ms-2">
+            <div class="col-6 ms-2">
               <span>Address</span>
             </div>
             <div class="col">
@@ -165,7 +166,7 @@
                    style="background-color: #F5F5F5; color: black; min-height: 45px">
                 <div class="content">
                   <div class="row g-0">
-                    <div class="col-3">
+                    <div class="col-6">
                       <reusable-list-member-add [items]="memInfo.properties" [objectMem]="0" [height]="45"></reusable-list-member-add>
                     </div>
                     <div class="col text-center">
@@ -199,7 +200,8 @@
           <span>Notes</span>
         </div>
         <div class="col d-grid justify-content-end me-5">
-          <button class="btn btn-secondary btn-sm" style="background-color: #F5F5F5; width: 150px">Add</button>
+          <button  class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#add-note" style="background-color: #F5F5F5; width: 150px">Add</button>
+          <add-note-dialog (note)="addNote($event)"></add-note-dialog>
         </div>
       </div>
       <div class="row">
@@ -233,4 +235,4 @@
   </div>
 </div>
 
-<!--{{empInfo | json}}-->
+<!--{{memInfo | json}}-->

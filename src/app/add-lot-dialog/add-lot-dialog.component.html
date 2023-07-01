@@ -1,1 +1,103 @@
-<p>add-lot-dialog works!</p>
+<!--<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-lot" >Clock in/out Dialog</button>-->
+
+<div class="modal fade" id="add-lot" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-static">
+    <div class="modal-content my-0">
+      <div class="container-fluid" style="font-family: montserrat,serif; width: 600px">
+        <div class="row">
+          <div class="card title">
+            <div class="row my-2 text-center">
+              <div class="col">
+                New Lot
+              </div>
+              <div class="col d-flex justify-content-center">
+
+              </div>
+              <div class="col d-flex justify-content-end me-4">
+                <button (click)="cancel()" class="btn-close btn-close-white" data-bs-toggle="modal"></button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="card subtitle">
+                <div class="row mx-3">
+                  <form [formGroup]="lotForm" (ngSubmit)="submitForm()">
+                    <div class="row lot-address mt-3">
+                      <div
+                        [@fade]=
+                             "(address!['invalid'] && address!['touched']) ||
+                              (city!['invalid'] && city!['touched']) ||
+                              (state!['invalid'] && state!['touched']) ||
+                              (zip!['invalid'] && zip!['touched']) ? 'visible' : 'hidden'"
+                           class="invalid-message">
+                        <div class="row text-center my-2 mx-auto py-2" id="invalid-message" style="background-color: #A73E40; border-radius:5px; width: fit-content">
+                          <span>Please fill required fields marked with *</span>
+                        </div>
+                      </div>
+                      <div class="row-cols address mb-2">
+                        <label for="address" class="form-label">Address*</label>
+                        <input class="form-control shadow" type="text" maxlength="25" id="address" formControlName="address"
+                               style="border-width: 2px">
+                      </div>
+                      <div class="col city">
+                        <label for="city" class="form-label">City*</label>
+                        <input class="form-control shadow" type="text" id="city" formControlName="city"
+                               style="border-width: 2px">
+                      </div>
+                      <div class="col state">
+                        <label for="state" class="form-label">State*</label>
+                        <select class="form-control shadow" name="" id="state" formControlName="state"
+                                style="border-width: 2px">
+                          <option value="">Select a state</option>
+                          <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+                        </select>
+                      </div>
+                      <div class="col zip-code">
+                        <label for="zip" class="form-label">Zipcode*</label>
+                        <input class="form-control shadow" type="text" id="zip" formControlName="zip"
+                               style="border-width: 2px">
+                      </div>
+                    </div>
+                    <div class="row lot-info mt-3 mb-3">
+                      <div class="col block mb-2">
+                        <label for="block" class="form-label">Block</label>
+                        <input class="form-control shadow" type="text" id="block" formControlName="block"
+                               style="border-width: 2px">
+                      </div>
+                      <div class="col lot">
+                        <label for="lot" class="form-label">Lot</label>
+                        <input class="form-control shadow" type="text" id="lot" formControlName="lot"
+                               style="border-width: 2px">
+                      </div>
+                      <div class="col area">
+                        <label for="area" class="form-label">Area</label>
+                        <input class="form-control shadow" type="text" id="area" formControlName="area"
+                               style="border-width: 2px">
+                      </div>
+                      <div class="col unit">
+                        <label for="unit" class="form-label">Unit</label>
+                        <input class="form-control shadow" type="text" id="unit" formControlName="unit"
+                               style="border-width: 2px">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="row mt-3 mb-5">
+                  <div class="col d-flex justify-content-end">
+                    <button (click)="submitForm()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addlot" [disabled]="lotForm.invalid" style="background-color: #4A7E3B">Save</button>
+                  </div>
+                  <div class="col">
+                    <button (click)="cancel()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addlot" style="background-color: #A73E40">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--{{newProperty | json}}-->
+
+

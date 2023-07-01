@@ -94,7 +94,7 @@ import { AddNoteDialogComponent } from './add-note-dialog/add-note-dialog.compon
     MemberAddComponent,
     ReusableListMemberAddComponent,
     AddLotDialogComponent,
-    AddNoteDialogComponent,
+    AddNoteDialogComponent
   ],
   imports: [
     HttpClientModule,

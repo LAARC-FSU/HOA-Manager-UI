@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
-import {userInfo} from "../interfaces";
+import {note, property, userInfo} from "../interfaces";
+import {states} from "../interfaces";
 
 @Component({
   selector: 'member-add',
@@ -25,67 +25,10 @@ export class MemberAddComponent {
     email: this.emailInitText,
     active: false,
     id: '000000',
-    properties: [{address: 'test', area: '12', lot: '45', block: '45', unit: '2'}, {
-      address: 'test2',
-      area: '12',
-      lot: '45',
-      block: '45',
-      unit: '2'
-    }],
-    notes: [{title: 'note1',date:'3/23/2023', body: 'this is note 1'}, {title: 'note2',date:'2/31/2023', body: 'this is note 2'}]
+    properties: [],
+    notes: []
   };
-  states: string[] = [
-    'Alabama',
-    'Alaska',
-    'Arizona',
-    'Arkansas',
-    'California',
-    'Colorado',
-    'Connecticut',
-    'Delaware',
-    'Florida',
-    'Georgia',
-    'Hawaii',
-    'Idaho',
-    'Illinois',
-    'Indiana',
-    'Iowa',
-    'Kansas',
-    'Kentucky',
-    'Louisiana',
-    'Maine',
-    'Maryland',
-    'Massachusetts',
-    'Michigan',
-    'Minnesota',
-    'Mississippi',
-    'Missouri',
-    'Montana',
-    'Nebraska',
-    'Nevada',
-    'New Hampshire',
-    'New Jersey',
-    'New Mexico',
-    'New York',
-    'North Carolina',
-    'North Dakota',
-    'Ohio',
-    'Oklahoma',
-    'Oregon',
-    'Pennsylvania',
-    'Rhode Island',
-    'South Carolina',
-    'South Dakota',
-    'Tennessee',
-    'Texas',
-    'Utah',
-    'Vermont',
-    'Virginia',
-    'Washington',
-    'West Virginia',
-    'Wisconsin',
-    'Wyoming'
-  ];
+  states: string[] = states;
 
   constructor(private fb: FormBuilder) {
   }
@@ -96,11 +39,11 @@ export class MemberAddComponent {
     lastName: ['', Validators.required],
     address: ['', Validators.required],
     city: ['', Validators.required],
+    state: ['', Validators.required],
     zip: ['', Validators.required],
     cell: ['', Validators.required],
     homePhone: [''],
-    email: ['', [Validators.required, Validators.email]],
-    state: ['', Validators.required]
+    email: ['', [Validators.required, Validators.email]]
   });
 
 
@@ -168,10 +111,18 @@ export class MemberAddComponent {
       this.memInfo.properties.splice(i, 1);
     }
   }
+  addLot(e:property){
+    let propertyClone: property = {...e};
+    this.memInfo.properties.push(propertyClone);
+  }
   deleteNote(i:any) {
     if (this.index !== -1) {
       this.memInfo.notes.splice(i, 1);
     }
+  }
+  addNote(e:note){
+    let noteClone: note = {...e};
+    this.memInfo.notes.push(noteClone);
   }
 
   getImage(event: any) {
