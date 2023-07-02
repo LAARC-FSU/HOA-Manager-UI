@@ -10,8 +10,14 @@ import {states} from "../interfaces";
 })
 export class MemberAddComponent {
   image: any = "assets/memberPhotoPlaceholder.svg";
-  emailInitText = 'User Id'
+  emailInitText = 'User Id';
   index: any = null;
+  noteToViewIndex = 0;
+  noteToView: note = {
+    title: '',
+    date: '',
+    body: ''
+  };
   memInfo: userInfo = {
     firstName: '',
     middleName: '',
@@ -120,9 +126,33 @@ export class MemberAddComponent {
       this.memInfo.notes.splice(i, 1);
     }
   }
+
+  viewNote(i:any){
+    if (this.index !== -1) {
+      this.noteToViewIndex = i;
+      this.noteToView =  this.memInfo.notes[i];
+    }
+  }
+
+  eraseNoteView(){
+    debugger
+    this.noteToView = {
+      title: '',
+      date: '',
+      body: ''
+    }
+    this.noteToViewIndex = 0;
+  }
+
   addNote(e:note){
-    let noteClone: note = {...e};
-    this.memInfo.notes.push(noteClone);
+    if (this.noteToViewIndex !== 0){
+      this.memInfo.notes[this.noteToViewIndex] = this.noteToView;
+      this.eraseNoteView();
+
+    }else{
+      let noteClone: note = {...e};
+      this.memInfo.notes.push(noteClone);
+    }
   }
 
   getImage(event: any) {

@@ -1,0 +1,112 @@
+<!--<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view-note" >Clock in/out Dialog</button>-->
+
+<div class="modal fade" id="view-note" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-static">
+    <div class="modal-content my-0">
+      <div *ngIf="!edit" class="container-fluid" style="font-family: montserrat,serif; width: 600px">
+        <div class="row">
+          <div class="card title">
+            <div class="row my-2 text-center">
+              <div class="col-3">
+                Note View
+              </div>
+              <div class="col-6 text-center">
+                <span>Created on {{note.date}}</span>
+              </div>
+              <div class="col d-flex justify-content-end me-4">
+                <button class="btn-close btn-close-white" data-bs-toggle="modal"></button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="card subtitle">
+                <div class="row mx-3 my-4">
+                  <label for="title">Title</label>
+                  <span class="form-control" id="title">{{note.title}}</span>
+                </div>
+                <div class="row mx-3 my-4">
+                  <label for="body">Note</label>
+                  <span class="form-control overflow-auto" id="body" style="height: 350px">{{note.body}}</span>
+                </div>
+                <div class="row mt-3 mb-5">
+                  <div class="col d-flex justify-content-end">
+                    <button (click)="doEdit()" class="btn btn-primary">Edit
+                    </button>
+                  </div>
+                  <div class="col">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view-note">Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="edit" class="container-fluid" style="font-family: montserrat,serif; width: 600px">
+        <div class="row">
+          <div class="card title">
+            <div class="row my-2 text-center">
+              <div class="col-3">
+                New Note
+              </div>
+              <div class="col-6 text-center">
+                <span>Created on {{note.date}}</span>
+              </div>
+              <div class="col d-flex justify-content-end me-4">
+                <button (click)="cancel()" class="btn-close btn-close-white" data-bs-toggle="modal"></button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="card subtitle">
+                <div class="row mx-3">
+                  <form [formGroup]="noteForm" (ngSubmit)="submitForm()">
+                    <div
+                      [@fade]=
+                        "(title!['invalid'] && title!['touched']) ||
+                              (body!['invalid'] && body!['touched']) ? 'visible' : 'hidden'"
+                      class="invalid-message mt-4 mb-3">
+                      <div class="row text-center py-2 mx-auto" id="invalid-message"
+                           style="background-color: #A73E40; border-radius:5px; width: fit-content">
+                        <span>Please fill required fields marked with *</span>
+                      </div>
+                    </div>
+
+                    <div class="row mt-2">
+                      <label for="titleEdit" class="form-label">Title*</label>
+                      <input #titleRef class="form-control shadow" type="text" id="titleEdit" formControlName="title"
+                             style="border-width: 2px">
+                    </div>
+                    <div class="row mt-2 mb-4">
+                      <label for="bodyEdit" class="form-label">Note*</label>
+                      <textarea #bodyRef class="form-control scrollable-textarea shadow" rows="15" id="bodyEdit"
+                                formControlName="body"
+                                style="border-width: 2px"></textarea>
+                    </div>
+
+                  </form>
+                </div>
+                <div class="row mt-3 mb-5">
+                  <div class="col d-flex justify-content-end">
+                    <button (click)="submitForm()" class="btn btn-primary" [disabled]="noteForm.invalid" style="background-color: #4A7E3B">
+                      Save
+                    </button>
+                  </div>
+                  <div class="col">
+                    <button (click)="cancel()" class="btn btn-primary"
+                            style="background-color: #A73E40">Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--{{note | json}}-->
+
+

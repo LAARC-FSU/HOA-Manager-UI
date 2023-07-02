@@ -219,10 +219,14 @@
                       <reusable-list-member-add [items]="memInfo.notes" [isNotes]="true" [objectMem]="1" [height]="45"></reusable-list-member-add>
                     </div>
                     <div class="col">
-                      <reusable-list-member-add [items]="memInfo.notes" [isNotes]="true" [isView]="true" [height]="45"></reusable-list-member-add>
+                      <reusable-list-member-add [items]="memInfo.notes" [isNotes]="true" [isView]="true" [height]="45" (indexViewNote)="viewNote($event)"></reusable-list-member-add>
+
                     </div>
                     <div class="col">
                       <reusable-list-member-add [items]="memInfo.notes" [isNotes]="true" [isDeleteNote]="true" [height]="45" (indexProperty)="deleteNote($event)"></reusable-list-member-add>
+                    </div>
+                    <div>
+                      <view-note-dialog [note]="noteToView"></view-note-dialog>
                     </div>
                   </div>
                 </div>

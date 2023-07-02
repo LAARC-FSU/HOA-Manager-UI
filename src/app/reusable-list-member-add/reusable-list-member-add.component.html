@@ -24,7 +24,7 @@
           [style.height]="setHeight()"  [style.width]="setWidth()" style="color:#454E5C; border-radius: 0">
         <div *ngIf="objectMem === 0">{{item.title}}</div>
         <div *ngIf="objectMem === 1">{{item.date}}</div>
-        <div *ngIf="isView" class="d-grid justify-content-center"><button class="btn btn-toolbar btn-sm" (click)="viewNote(i)" style="height: 30px">View</button></div>
+        <div *ngIf="isView" class="d-grid justify-content-center"><button class="btn btn-toolbar btn-sm" (click)="viewNote(i)" data-bs-toggle="modal" data-bs-target="#view-note" style="height: 30px">View</button></div>
         <div *ngIf="isDeleteNote" class="d-grid justify-content-center"><button class="btn btn-primary btn-sm" (click)="deleteProperty(i)" style="background-color: #A73E40; height: 30px">Delete</button></div>
       </li>
       <div *ngIf="(i + 1) === initialPgBrk || (i + (initialPgBrk + 1)) % itemsPerPage === 0" class="pageBrk"></div>
