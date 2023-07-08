@@ -50,8 +50,6 @@ export class LoginPortalComponent {
 
   }
 
-
-
   postUser(){
     const user = this.login.value;
 
@@ -59,10 +57,6 @@ export class LoginPortalComponent {
       username: user.email,
       password: user.password
     }
-
-    //let formObj = JSON.stringify(this.login);
-    //let serializedForm = JSON.stringify((formObj));
-
 
     console.log("It works");
 
@@ -81,12 +75,8 @@ export class LoginPortalComponent {
             this.router.navigate(["/member-dashboard"]);
           }
         }
-
-
-    }
+      }
     );
-
-
   }
 
   signUp = new FormGroup({
@@ -119,15 +109,8 @@ export class LoginPortalComponent {
   get newPasswordForgotPass(){return this.forgotPassword.get('newPasswordForgotPass');}
   get confirmPasswordForgotPass(){return this.forgotPassword.get('confirmPasswordForgotPass');}
 
-
-
-
-
-
-
   private mode = Mode.login;
   private dontMatch: boolean = false;
-
 
   getMatchingValidator(){
     return this.dontMatch

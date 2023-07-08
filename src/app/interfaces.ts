@@ -3,6 +3,11 @@ export interface Shift {
   start: string;
   end: string;
 }
+export interface PostShift{
+  start: string;
+  end: string;
+  enabled:boolean;
+}
 export interface Schedule {
   timeFrameStr:string;
   timeFrame: Date[];
@@ -11,6 +16,15 @@ export interface Schedule {
   thirdShiftTime: Shift;
   schedules: {[key:string]: empSchObj};
 }
+
+export interface ScheduleAdapter{
+    timeFrame: Date[];
+    timeFrameStr:string;
+    shift:{firstShiftTime:PostShift,secondShiftTime:PostShift,thirdShiftTime:PostShift};
+    schedules: empSchObj[];
+    posted:boolean;
+}
+
  export interface empSchObj {
    empName: string;
    empSun: string;

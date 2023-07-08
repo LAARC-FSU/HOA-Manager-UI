@@ -3,6 +3,8 @@ import {ScheduleService} from "../schedule.service";
 import {Router} from "@angular/router";
 import {DatePipe} from "@angular/common";
 import {Schedule} from "../interfaces";
+import {ScheduleAdapter} from "../interfaces";
+import {PostShift} from "../interfaces";
 
 @Component({
   selector: 'make-schedule',
@@ -18,6 +20,14 @@ export class MakeScheduleComponent implements OnInit {
     thirdShiftTime: {id: 'third shift', start: '', end: ''},
     schedules: {}
   };
+
+  scheduleAdapter: ScheduleAdapter = {
+    timeFrameStr: "",
+    timeFrame: [],
+    shift: {firstShiftTime: {start: '', end: '', enabled: true}, secondShiftTime: {start: '', end: '', enabled: true}, thirdShiftTime: {start: '', end: '', enabled: true}},
+    schedules: [],
+    posted: false
+  }
   weekDaysHeader = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   @Output() sendSchedule = new EventEmitter;
   shifts: string[] = ['off'];
@@ -41,10 +51,24 @@ export class MakeScheduleComponent implements OnInit {
   }
 
   saveSchedule() {
-    this.router.navigateByUrl('schedule-dashboard');
-    this.data.saveSchedule(this.schedule);
+    //this.router.navigateByUrl('schedule-dashboard');
+    //this.data.saveSchedule(this.schedule);
+    this.DataTransfer();
   }
 
+  DataTransfer(){
+    this.scheduleAdapter.timeFrameStr = this.schedule.timeFrameStr;
+    this.scheduleAdapter.timeFrame = this.schedule.timeFrame;
+    this.scheduleAdapter.shift.firstShiftTime.start=this.schedule.firstShiftTime.start;
+    this.scheduleAdapter.shift.firstShiftTime.end=this.schedule.firstShiftTime.end;
+    this.scheduleAdapter.shift.secondShiftTime.start=this.schedule.secondShiftTime.start;
+    this.scheduleAdapter.shift.secondShiftTime.end=this.schedule.secondShiftTime.end;
+    this.scheduleAdapter.shift.thirdShiftTime.start=this.schedule.thirdShiftTime.start;
+    this.scheduleAdapter.shift.thirdShiftTime.end=this.schedule.thirdShiftTime.end;
+    for (const keyKey in this.schedule.schedules){
+      this.scheduleAdapter.schedules.push(this.schedule.schedules[keyKey])
+    }
+  }
   postSchedule() {
     this.data.updateSchedule(this.schedule)
     this.saveSchedule()
