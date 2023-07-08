@@ -1,7 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {note, property, userInfo} from "../interfaces";
 import {states} from "../interfaces";
+import {MemberSearchServiceService} from "../member-search-service.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'member-add',
@@ -9,7 +11,10 @@ import {states} from "../interfaces";
   styleUrls: ['./member-add.component.scss']
 })
 export class MemberAddComponent {
+  @ViewChild('successModal') successModal!: ElementRef;
+
   image: any = "assets/memberPhotoPlaceholder.svg";
+  success = true;
   emailInitText = 'User Id';
   index: any = null;
   noteToViewIndex = 0;
@@ -30,13 +35,15 @@ export class MemberAddComponent {
     homePhone: '',
     email: this.emailInitText,
     active: false,
-    id: '000000',
+    id: String(this.addMember.getMemCount() + 1),
     properties: [],
-    notes: []
+    notes: [],
+    photo: this.image
   };
   states: string[] = states;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private addMember: MemberSearchServiceService, private router: Router) {
+
   }
 
   form: FormGroup = this.fb.group({
@@ -94,8 +101,30 @@ export class MemberAddComponent {
   get state(): AbstractControl | null {
     return this.form.get('state');
   }
+  closeModal(){
+    const backdrop = document.getElementsByClassName('modal-backdrop')[0];
+    backdrop.setAttribute('hidden', 'true')
+    this.successModal.nativeElement.style.display = 'none';
 
+    // this.successMessage()
+  }
   submitForm(): void {
+    debugger
+    this.updateImg();
+    if (this.form.valid){
+      if (this.addMember.storeMem(this.memInfo)){
+        this.successMessage();
+        setTimeout(() => {
+          // const modal = this.successModal.nativeElement;
+          // console.log(this.successModal?.nativeElement)
+          this.closeModal()
+          this.router.navigateByUrl('main-dashboard');
+        }, 1000);
+      }
+    }
+  }
+  successMessage(){
+    this.success = !this.success;
   }
 
   onChange() {
@@ -154,7 +183,9 @@ export class MemberAddComponent {
       this.memInfo.notes.push(noteClone);
     }
   }
-
+  updateImg(){
+    this.memInfo.photo = this.image;
+  }
   getImage(event: any) {
     this.image = event;
   }

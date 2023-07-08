@@ -5,24 +5,15 @@ import {
   Output
 } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {trigger, state, style, transition, animate} from '@angular/animations';
 import {note} from "../interfaces";
 import {DatePipe} from "@angular/common";
+import {fadeAnimation} from "../animations";
 
 @Component({
   selector: 'add-note-dialog',
   templateUrl: './add-note-dialog.component.html',
   styleUrls: ['./add-note-dialog.component.scss'],
-  animations: [
-    trigger('fade', [
-      state('visible', style({opacity: 1, height: '*'})),
-      state('hidden', style({opacity: 0, height: '0'})),
-      transition('visible <=> hidden', [
-        animate('500ms ease-in-out'),
-        animate('500ms')
-      ])
-    ])
-  ]
+  animations: [ fadeAnimation]
 })
 export class AddNoteDialogComponent {
   @Output() note = new EventEmitter();

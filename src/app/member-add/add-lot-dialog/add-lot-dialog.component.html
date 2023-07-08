@@ -14,7 +14,7 @@
 
               </div>
               <div class="col d-flex justify-content-end me-4">
-                <button (click)="cancel()" class="btn-close btn-close-white" data-bs-toggle="modal"></button>
+                <button (click)="cancel()" class="btn-close btn-close-white" data-bs-toggle="modal" data-bs-target="#add-lot"></button>
               </div>
             </div>
             <div class="row">
@@ -83,10 +83,10 @@
                 </div>
                 <div class="row mt-3 mb-5">
                   <div class="col d-flex justify-content-end">
-                    <button (click)="submitForm()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addlot" [disabled]="lotForm.invalid" style="background-color: #4A7E3B">Save</button>
+                    <button (click)="submitForm()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-lot" [disabled]="lotForm.invalid" style="background-color: #4A7E3B">Save</button>
                   </div>
                   <div class="col">
-                    <button (click)="cancel()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addlot" style="background-color: #A73E40">Cancel</button>
+                    <button (click)="cancel()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-lot" style="background-color: #A73E40">Cancel</button>
                   </div>
                 </div>
               </div>

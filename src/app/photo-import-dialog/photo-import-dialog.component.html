@@ -11,7 +11,7 @@
               <div class="col d-flex justify-content-center">
               </div>
               <div class="col d-flex justify-content-end me-4">
-                <button class="btn-close btn-close-white" data-bs-toggle="modal"></button>
+                <button class="btn-close btn-close-white" data-bs-toggle="modal" data-bs-target="#clockInOutModal"></button>
               </div>
             </div>
             <div class="row">
@@ -42,7 +42,7 @@
                         <label for="fileInput" class="custom-button">Import Photo</label>
                       </div>
                       <div class="col">
-                        <button (click)="saveImg()" class="btn btn-primary custom-button" type="button" data-bs-toggle="modal" [disabled]="preview === null">Save</button>
+                        <button (click)="saveImg()" class="btn btn-primary custom-button" type="button" data-bs-toggle="modal" data-bs-target="#clockInOutModal" [disabled]="preview === null">Save</button>
                       </div>
                     </div>
                   </div>

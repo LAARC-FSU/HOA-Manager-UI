@@ -14,6 +14,7 @@ import {AddPropertyComponent} from "./add-property/add-property.component";
 import {FindPropertyComponent} from "./find-property/find-property.component";
 import {FindMemeberComponent} from "./find-member/find-memeber.component";
 import {FindEmployeeComponent} from "./find-employee/find-employee.component";
+import {MemberAddComponent} from "./member-add/member-add.component";
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'find-property', component: FindPropertyComponent},
   {path: 'view-update-members', component: FindMemeberComponent},
   {path: 'employees', component: FindEmployeeComponent},
+  {path: 'add-member', component: MemberAddComponent}
 ];
 
 @NgModule({

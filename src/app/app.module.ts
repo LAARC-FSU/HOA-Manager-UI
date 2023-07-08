@@ -47,7 +47,7 @@ import { EmployeeCredentialsMakerComponent } from './employee-credentials-maker/
 import {HttpClientModule} from "@angular/common/http";
 import { MemberAddComponent } from './member-add/member-add.component';
 import { ReusableListMemberAddComponent } from './reusable-list-member-add/reusable-list-member-add.component';
-import { AddLotDialogComponent } from './add-lot-dialog/add-lot-dialog.component';
+import { AddLotDialogComponent } from './member-add/add-lot-dialog/add-lot-dialog.component';
 import { AddNoteDialogComponent } from './add-note-dialog/add-note-dialog.component';
 import { ViewNoteDialogComponent } from './view-note-dialog/view-note-dialog.component';
 

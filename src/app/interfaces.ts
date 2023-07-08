@@ -50,6 +50,7 @@ export interface userInfo {
   id: string,
   properties: property [],
   notes: note []
+  photo: string
 }
 
 export interface property {

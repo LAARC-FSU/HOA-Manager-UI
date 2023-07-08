@@ -1,24 +1,15 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {property} from "../interfaces";
-import {states} from "../interfaces";
-import {trigger, state, style, transition, animate} from '@angular/animations';
+import {property} from "../../interfaces";
+import {states} from "../../interfaces";
+import {fadeAnimation} from "../../animations";
 
 
 @Component({
   selector: 'add-lot-dialog',
   templateUrl: './add-lot-dialog.component.html',
   styleUrls: ['./add-lot-dialog.component.scss'],
-  animations: [
-    trigger('fade', [
-      state('visible', style({opacity: 1, height: '*'})),
-      state('hidden', style({opacity: 0, height: '0'})),
-      transition('visible <=> hidden', [
-        animate('500ms ease-in-out'),
-        animate('500ms')
-      ])
-    ])
-  ]
+  animations: [ fadeAnimation ]
 })
 export class AddLotDialogComponent {
   @Input()  viewProperty = true;
