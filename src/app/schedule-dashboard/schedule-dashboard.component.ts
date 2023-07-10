@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ScheduleService} from "../schedule.service";
-import {Schedule} from "../interfaces";
+import {Schedule, ScheduleAdapter} from "../interfaces";
 import {Router} from "@angular/router";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'schedule-dashboard',
@@ -18,22 +19,41 @@ export class ScheduleDashboardComponent implements OnInit {
     schedules: {}
   };
   activeScheduleStr = 'No Active Schedule';
+  activeScheduleId = "";
   savedSchedules: Schedule[] = [];
 
-  constructor(private router:Router, private currSchedule: ScheduleService) {
-    if (localStorage.getItem('saved')) {
-      this.savedSchedules = JSON.parse(localStorage.getItem('saved')!)
-    }
-    if (localStorage.getItem('active')) {
-      this.activeScheduleStr = JSON.parse(localStorage.getItem('active')!).timeFrameStr
-    }
-    if (this.savedSchedules.length === 0){
-      this.activeScheduleStr = 'No Active Schedule';
-    }
+  savedSchedulesStr: ScheduleAdapter[] = [];
+
+  constructor(private router:Router, private currSchedule: ScheduleService, private http:HttpClient) {
+
   }
 
   ngOnInit() {
+    let token = localStorage.getItem("token")
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
     this.currSchedule.currSchedule.subscribe(currSchedule => this.activeSchedule = currSchedule);
+    const url = 'http://3.136.16.135:8080/schedule/get-schedule';
+    this.http.get(url,httpOptions).subscribe(response => {
+      let data = Object.values(response);
+      this.savedSchedulesStr = data[0];
+      this.savedSchedules = data[0];
+      if (this.savedSchedules.length === 0){
+        this.activeScheduleStr = 'No Active Schedule';
+      }else{
+        for(let i = 0; i < this.savedSchedulesStr.length;i++){
+          let obj = this.savedSchedulesStr[i];
+          if(obj.posted === true){
+            this.activeScheduleStr = obj.timeFrameStr;
+            this.activeScheduleId = obj.id;
+          }
+        }
+      }
+    })
   }
 
   toView(){
@@ -63,6 +83,23 @@ export class ScheduleDashboardComponent implements OnInit {
       this.activeSchedule = this.savedSchedules[index];
       this.activeScheduleStr = this.activeSchedule.timeFrameStr;
       this.currSchedule.updateSchedule(this.savedSchedules[index])
+
+      let token = localStorage.getItem("token")
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token
+        })
+      };
+      let variable = this.savedSchedulesStr[index].id.toString();
+      if(this.activeScheduleId !== ""){
+        variable = variable + "/" + this.activeScheduleId;
+      }else{
+        variable = variable + "/0"
+      }
+      const url = 'http://3.136.16.135:8080/schedule/update/' + variable;
+      this.http.put(url,{}, httpOptions).subscribe(response => console.log(response));
+      this.activeScheduleId = this.savedSchedulesStr[index].id;
     }
   }
 }

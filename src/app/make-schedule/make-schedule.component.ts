@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {DatePipe} from "@angular/common";
 import {Schedule} from "../interfaces";
 import {ScheduleAdapter} from "../interfaces";
-import {PostShift} from "../interfaces";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'make-schedule',
@@ -22,6 +22,7 @@ export class MakeScheduleComponent implements OnInit {
   };
 
   scheduleAdapter: ScheduleAdapter = {
+    id: "",
     timeFrameStr: "",
     timeFrame: [],
     shift: {firstShiftTime: {start: '', end: '', enabled: true}, secondShiftTime: {start: '', end: '', enabled: true}, thirdShiftTime: {start: '', end: '', enabled: true}},
@@ -43,7 +44,7 @@ export class MakeScheduleComponent implements OnInit {
   ];
   employeeName =  '';
 
-  constructor(private data: ScheduleService, private router: Router, private datePipe: DatePipe) {
+  constructor(private http: HttpClient, private data: ScheduleService, private router: Router, private datePipe: DatePipe) {
   }
 
   ngOnInit() {
@@ -51,12 +52,24 @@ export class MakeScheduleComponent implements OnInit {
   }
 
   saveSchedule() {
-    //this.router.navigateByUrl('schedule-dashboard');
-    //this.data.saveSchedule(this.schedule);
     this.DataTransfer();
+    let token = localStorage.getItem("token")
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
+
+    //this.data.saveSchedule(this.schedule);
+    const url = 'http://3.136.16.135:8080/schedule/make-schedule';
+    const data = this.scheduleAdapter;
+    this.http.post(url,data,httpOptions).subscribe(response => {console.log(response);
+      })
+    this.router.navigateByUrl('schedule-dashboard');
   }
 
-  DataTransfer(){
+   DataTransfer(){
     this.scheduleAdapter.timeFrameStr = this.schedule.timeFrameStr;
     this.scheduleAdapter.timeFrame = this.schedule.timeFrame;
     this.scheduleAdapter.shift.firstShiftTime.start=this.schedule.firstShiftTime.start;

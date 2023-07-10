@@ -18,6 +18,7 @@ export interface Schedule {
 }
 
 export interface ScheduleAdapter{
+    id: string;
     timeFrame: Date[];
     timeFrameStr:string;
     shift:{firstShiftTime:PostShift,secondShiftTime:PostShift,thirdShiftTime:PostShift};
