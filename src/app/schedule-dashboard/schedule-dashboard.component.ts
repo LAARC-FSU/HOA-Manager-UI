@@ -66,6 +66,7 @@ export class ScheduleDashboardComponent implements OnInit {
     // TODO
   }
   deleteSchedule(index:number){
+    let variable = this.savedSchedulesStr[index].id.toString();
     if (this.savedSchedules[index].timeFrameStr === this.activeSchedule.timeFrameStr){
       this.activeSchedule = this.savedSchedules[0];
       this.currSchedule.updateSchedule(this.activeSchedule);
@@ -73,6 +74,17 @@ export class ScheduleDashboardComponent implements OnInit {
     }
     this.savedSchedules.splice(index, 1);
     this.currSchedule.deleteSchedule(index);
+
+    let token = localStorage.getItem("token")
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
+
+    const url = 'http://3.136.16.135:8080/schedule/delete/' + variable;
+    this.http.delete(url, httpOptions).subscribe(response => console.log(response));
     if (this.savedSchedules.length === 0){
       this.activeScheduleStr = 'No Active Schedule';
     }
