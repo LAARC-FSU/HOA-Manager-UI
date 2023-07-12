@@ -24,6 +24,7 @@ export class ScheduleDashboardComponent implements OnInit {
 
   savedSchedulesStr: ScheduleAdapter[] = [];
 
+
   constructor(private router:Router, private currSchedule: ScheduleService, private http:HttpClient) {
 
   }
@@ -114,4 +115,5 @@ export class ScheduleDashboardComponent implements OnInit {
       this.activeScheduleId = this.savedSchedulesStr[index].id;
     }
   }
+  protected readonly localStorage = localStorage;
 }

@@ -51,6 +51,7 @@ export interface ScheduleAdapter{
  }
 
  export interface JWT {
+   name: string;
   token: string;
  }
 

@@ -151,6 +151,7 @@ export class ScheduleViewComponent implements OnInit {
         return 'off'
     }
   }
+  protected readonly localStorage = localStorage;
 }
 
 

@@ -44,6 +44,7 @@ export class MakeScheduleComponent implements OnInit {
   ];
   employeeName =  '';
 
+
   constructor(private http: HttpClient, private data: ScheduleService, private router: Router, private datePipe: DatePipe) {
   }
 
@@ -142,5 +143,6 @@ export class MakeScheduleComponent implements OnInit {
     let saturday = this.schedule.timeFrame[6];
     this.schedule.timeFrameStr = this.formatDate(sunday) + ' ~ ' + this.formatDate(saturday);
   }
+  protected readonly localStorage = localStorage;
 }
 

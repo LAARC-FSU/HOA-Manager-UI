@@ -15,4 +15,6 @@ export class AddPropertyComponent implements OnInit {
   }
   constructor() {}
   ngOnInit(): void {}
+
+  protected readonly localStorage = localStorage;
 }

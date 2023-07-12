@@ -62,12 +62,11 @@ export class LoginPortalComponent {
 
     this.http.post<JWT>('http://3.136.16.135:8080/login', body).subscribe((data) => {
       console.log(data);
-
       localStorage.setItem("token", data.token);
+      localStorage.setItem("username", data.name);
 
         if(localStorage.getItem("token")){
           this.jwtAccess = jwtDecode(data.token);
-          localStorage.setItem("username", this.jwtAccess.subject);
           if(this.jwtAccess.role == "ADMINISTRATOR" || this.jwtAccess.role == "EMPLOYEE"){
             this.router.navigate(["/main-dashboard"]);
           }
