@@ -47,7 +47,7 @@ export class ScheduleDashboardComponent implements OnInit {
       }else{
         for(let i = 0; i < this.savedSchedulesStr.length;i++){
           let obj = this.savedSchedulesStr[i];
-          if(obj.posted === true){
+          if(obj.posted){
             this.activeScheduleStr = obj.timeFrameStr;
             this.activeScheduleId = obj.id;
           }

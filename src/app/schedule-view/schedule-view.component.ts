@@ -5,6 +5,8 @@ import {empWorkTime} from "../interfaces";
 import {Renderer2} from "@angular/core";
 import {DatePipe} from "@angular/common";
 import {Router} from "@angular/router";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {firstValueFrom} from 'rxjs';
 
 
 @Component({
@@ -32,7 +34,7 @@ export class ScheduleViewComponent implements OnInit {
     empClkOut: new Date(),
     empLunchOut: new Date(),
     empLunchIn: new Date(),
-    empDayHours: [0,0,0,0,0,0,0],
+    empDayHours: [0, 0, 0, 0, 0, 0, 0],
     empWeekHours: 0,
   };
 
@@ -45,17 +47,42 @@ export class ScheduleViewComponent implements OnInit {
     schedules: {}
   };
 
-  constructor(private data: ScheduleService, private datePipe: DatePipe, private router: Router, private renderer: Renderer2
-  ) {
-    if (localStorage.getItem('active')) {
-      this.schedule = JSON.parse(localStorage.getItem('active')!);
-    }
-    this.makeView();
-    this.getDates();
+  temp1: any[] = [];
+  i: number = 0;
+
+  constructor(private data: ScheduleService, private datePipe: DatePipe, private router: Router, private renderer: Renderer2, private http: HttpClient) {
+    this.getData().then(r => this.makeView());
   }
 
   ngOnInit() {
+
     this.data.currSchedule.subscribe(schedule => this.schedule = schedule)
+
+    this.getDates();
+
+  }
+
+  async getData() {
+    if (localStorage.getItem('active')) {
+      let temp = JSON.parse(localStorage.getItem('active')!);
+      let variable = temp.id.toString();
+      let token = localStorage.getItem("token")
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token
+        })
+      };
+      const url = 'http://3.136.16.135:8080/schedule/current-schedule/' + variable;
+      const data = await firstValueFrom(this.http.get(url, httpOptions));
+      this.temp1 = Object.values(data);
+      this.schedule.timeFrameStr = this.temp1[0];
+      this.schedule.timeFrame = this.temp1[1];
+      this.schedule.firstShiftTime = this.temp1[2];
+      this.schedule.secondShiftTime = this.temp1[3];
+      this.schedule.thirdShiftTime = this.temp1[4];
+      this.schedule.schedules = this.temp1[5];
+    }
   }
 
   toScheduleDash() {
