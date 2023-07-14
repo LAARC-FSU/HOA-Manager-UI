@@ -21,7 +21,7 @@
           <td>{{result.id}}</td>
           <td>{{result.phone}}</td>
           <td>{{result.address}}</td>
-          <td><button class="btn btn-info" style="background-color: transparent">view/edit</button></td>
+          <td><button (click)="view(rowIndex)" class="btn btn-info" style="background-color: transparent">view/edit</button></td>
           <td><button (click)="delete(rowIndex)" class="btn btn-primary" style="background-color: #A73E40; color: white">Remove</button></td>
         </tr>
         </tbody>

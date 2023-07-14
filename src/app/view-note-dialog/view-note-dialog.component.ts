@@ -17,13 +17,14 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
     ])
   ]
 })
-export class ViewNoteDialogComponent{
+export class ViewNoteDialogComponent {
+
   @Input() note = {
     title: '',
     date: '',
-    body: '',
+    body: ''
   }
-
+  @Input('isView') isView = false;
   @Output() notNew = new EventEmitter;
   @Output() eraseNoteToView = new EventEmitter;
   @ViewChild('titleRef') titleRef!: ElementRef<HTMLInputElement>;
@@ -74,5 +75,8 @@ export class ViewNoteDialogComponent{
       title: this.note.title,
       body: this.note.body
     });
+  }
+  getDate(){
+    return this.note.date
   }
 }

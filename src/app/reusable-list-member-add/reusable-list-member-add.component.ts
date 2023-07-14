@@ -9,6 +9,7 @@ export class ReusableListMemberAddComponent {
   @Input() height = 0; // optional
   @Input() width = 0; // optional
   @Input() items: any[] = [];
+  @Input()  isEdit = false;
   @Input() itemsPerPage = 0; // after the first page, the number of items you can fit on a page
   @Input() initialPgBrk = 0; // the first number of items you can fit in the first page
   @Input() isDeleteProperty = false; // it adds a delete button to the property list row

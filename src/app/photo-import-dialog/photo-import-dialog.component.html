@@ -1,6 +1,6 @@
 <!--<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clockInOutModal">Lunch Dialog</button>-->
 
-<div class="modal fade" id="clockInOutModal">
+<div class="modal fade" id="photoImportDlg">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content my-0">
       <div class="container-fluid" style="font-family: montserrat,serif; width: 500px; height: 500px ">
@@ -11,7 +11,7 @@
               <div class="col d-flex justify-content-center">
               </div>
               <div class="col d-flex justify-content-end me-4">
-                <button class="btn-close btn-close-white" data-bs-toggle="modal" data-bs-target="#clockInOutModal"></button>
+                <button class="btn-close btn-close-white" data-bs-toggle="modal" data-bs-target="#photoImportDlg"></button>
               </div>
             </div>
             <div class="row">
@@ -42,7 +42,7 @@
                         <label for="fileInput" class="custom-button">Import Photo</label>
                       </div>
                       <div class="col">
-                        <button (click)="saveImg()" class="btn btn-primary custom-button" type="button" data-bs-toggle="modal" data-bs-target="#clockInOutModal" [disabled]="preview === null">Save</button>
+                        <button (click)="saveImg()" class="btn btn-primary custom-button" type="button" data-bs-toggle="modal" data-bs-target="#photoImportDlg" [disabled]="preview === null">Save</button>
                       </div>
                     </div>
                   </div>

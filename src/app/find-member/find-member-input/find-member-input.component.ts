@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import type { OnInit } from '@angular/core';
 import { searchQuery } from "../../interfaces";
-import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup} from "@angular/forms";
 import {fadeAnimation} from "../../animations";
 
 @Component({
@@ -24,11 +24,11 @@ export class FindMemberInputComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   memSearch: FormGroup = this.fb.group({
-    firstName: ['', Validators.required, Validators.name],
-    lastName: ['', Validators.required, Validators.name],
-    id: ['', Validators.required, Validators.min(1)],
-    phone: ['', Validators.required],
-    address: ['', Validators.required]
+    firstName: [''],
+    lastName: [''],
+    id: [''],
+    phone: [''],
+    address: ['']
   });
 
   get firstName(): AbstractControl | null {
@@ -50,7 +50,7 @@ export class FindMemberInputComponent implements OnInit {
     if (
       this.firstName?.value === '' &&
       this.lastName?.value === '' &&
-      this.id?.value === 0 &&
+      this.id?.value === '' &&
       this.phone?.value === '' &&
       this.address?.value === ''
 

@@ -19,18 +19,24 @@
                 <span>Personal Information</span>
               </div>
               <div class="col me-3" style="display: grid; place-items: end">
-                <button (click)="submitForm()" class="btn btn-primary btn-sm"
+                <button *ngIf="!isView" (click)="submitForm()" class="btn btn-primary btn-sm"
                         data-bs-toggle="modal"
                         [attr.data-bs-target]="form.invalid ? '#invalidMessage' : '#success'"
                         style="background-color: #F5F5F5; color: black; width: 150px">
                   Save Member
+                </button>
+                <button *ngIf="isView" (click)="isEditing()" class="btn btn-primary btn-sm"
+                        data-bs-toggle="modal"
+                        style="background-color: #F5F5F5; color: black; width: 150px">
+                  Edit
                 </button>
                 <div class="modal fade" #successModal id="success">
                   <div class="modal-dialog modal-dialog-centered" style="width: 300px">
                     <div class="modal-content shadow">
                       <div class="modal-body row" style="background-color: #4A7E3B; color: white; border-radius: 10px">
                         <div class="col d-flex justify-content-center">
-                          <img src="assets/check-mark.svg" alt="Image" class="img-fluid " style="aspect-ratio: 1; height: 80px; box-shadow: white">
+                          <img src="assets/check-mark.svg" alt="Image" class="img-fluid "
+                               style="aspect-ratio: 1; height: 80px; box-shadow: white">
                         </div>
                         <div class="col d-flex align-items-center justify-content-start">
                           <h4>Member Saved</h4>
@@ -45,7 +51,7 @@
                       <div class="modal-header">
                         <div class="container">
                           <div class="row">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="invalidMessage"></button>
                           </div>
                           <div class="row text-center">
                             <p>
@@ -67,24 +73,24 @@
               <div class="col-9 me-2"
                    style="background-color: #F5F5F5; color: black; display: grid; place-content: center">
                 <form [formGroup]="form" (ngSubmit)="submitForm()" (change)="onChange()">
-                  <div class="row employee-name">
+                  <div class="row employee-name text-nowrap">
 
                     <div class="col first-name">
                       <div *ngIf="!isView">
                         <label for="firstName" class="form-label">First Name*</label>
-                        <input  class="form-control shadow" type="text" id="firstName" formControlName="firstName"
-                                style="border-width: 2px">
+                        <input class="form-control shadow" type="text" id="firstName" formControlName="firstName"
+                               style="border-width: 2px">
                       </div>
                       <div *ngIf="isView">
                         <label for="firstName" class="form-label">First Name</label>
-                        <p  class="form-control">{{memToView.firstName}}</p>
+                        <p class="form-control">{{memToView.firstName}}</p>
                       </div>
                     </div>
 
                     <div class="col middle-name">
                       <div *ngIf="!isView">
                         <label for="middleName" class="form-label">Middle Name</label>
-                        <input  class="form-control shadow" type="text" id="middleName" formControlName="middleName"
+                        <input class="form-control shadow" type="text" id="middleName" formControlName="middleName"
                                style="border-width: 2px">
                       </div>
                       <div *ngIf="isView && memToView.middleName">
@@ -107,7 +113,7 @@
 
                   </div>
 
-                  <div class="row employee-address mt-3">
+                  <div class="row employee-address mt-3 text-nowrap">
 
                     <div class="col address">
                       <div *ngIf="!isView">
@@ -134,42 +140,71 @@
                     </div>
 
                     <div class="col state">
-
-                      <label for="state" class="form-label">State*</label>
-                      <select class="form-control shadow" name="" id="state" formControlName="state"
-                              style="border-width: 2px">
-                        <option value="">Select a state</option>
-                        <option *ngFor="let state of states" [value]="state">{{ state }}</option>
-                      </select>
+                      <div *ngIf="!isView">
+                        <label for="state" class="form-label">State*</label>
+                        <select class="form-control shadow" name="" id="state" formControlName="state"
+                                style="border-width: 2px">
+                          <option value="">Select a state</option>
+                          <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+                        </select>
+                      </div>
+                      <div *ngIf="isView">
+                        <label for="state" class="form-label">State</label>
+                        <p class="form-control">{{memToView.state}}</p>
+                      </div>
                     </div>
 
                     <div class="col zip-code">
-                      <label for="zip" class="form-label">Zipcode*</label>
-                      <input class="form-control shadow" type="text" id="zip" formControlName="zip"
-                             style="border-width: 2px">
+                      <div *ngIf="!isView">
+                        <label for="zip" class="form-label">Zipcode*</label>
+                        <input class="form-control shadow" type="text" id="zip" formControlName="zip"
+                               style="border-width: 2px">
+                      </div>
+                      <div *ngIf="isView">
+                        <label for="zip" class="form-label">Zipcode</label>
+                        <p class="form-control">{{memToView.zipCode}}</p>
+                      </div>
+
                     </div>
                   </div>
-                  <div class="row employee-contact mt-3">
+                  <div class="row employee-contact mt-3 text-nowrap">
+
                     <div class="col phone">
-                      <label for="phone" class="form-label">Phone</label>
-                      <input class="form-control shadow" type="text" id="phone" formControlName="phone"
-                             style="border-width: 2px">
+                      <div *ngIf="!isView">
+                        <label for="phone" class="form-label">Phone*</label>
+                        <input class="form-control shadow" type="text" id="phone" formControlName="phone"
+                               style="border-width: 2px">
+                      </div>
+                      <div *ngIf="isView">
+                        <label for="phone" class="form-label">Phone</label>
+                        <p class="form-control">{{memToView.phone}}</p>
+                      </div>
                     </div>
+
                     <div class="col email">
-                      <label for="email" class="form-label">Email*</label>
-                      <input class="form-control shadow" type="text" id="email" formControlName="email"
-                             style="border-width: 2px">
+                      <div *ngIf="!isView">
+                        <label for="email" class="form-label">Email*</label>
+                        <input class="form-control shadow" type="text" id="email" formControlName="email"
+                               style="border-width: 2px">
+                      </div>
+                      <div *ngIf="isView">
+                        <label for="email" class="form-label">Email</label>
+                        <p class="form-control">{{memToView.email}}</p>
+                      </div>
                     </div>
+
                   </div>
                 </form>
               </div>
               <div class="col ms-1 p-4" style="background-color: #F5F5F5">
                 <div class="row-cols d-flex justify-content-center py-3">
-                  <img alt="" class="shadow" [src]=image
+                  <img *ngIf="!isView" alt="" class="shadow" [src]= "image"
+                       style="width: 200px; border-radius: 100px; border: 5px solid #828FA0;">
+                  <img *ngIf="isView" alt="" class="shadow" [src]= "memToView.photo"
                        style="width: 200px; border-radius: 100px; border: 5px solid #828FA0;">
                 </div>
                 <div class="row-1 d-grid  mt-3">
-                  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clockInOutModal">Upload
+                  <button *ngIf="!isView" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#photoImportDlg">Upload
                     Image
                   </button>
                   <photo-import-dialog [circleCropper]="true" (croppedImg)=getImage($event)></photo-import-dialog>
@@ -189,7 +224,9 @@
           <span>Lots Owned</span>
         </div>
         <div class="col d-grid justify-content-end me-5">
-          <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#add-lot" style="background-color: #F5F5F5; width: 150px">Add</button>
+          <button *ngIf="!isView" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#add-lot"
+                  style="background-color: #F5F5F5; width: 150px">Add
+          </button>
         </div>
         <add-lot-dialog (property)="addLot($event)"></add-lot-dialog>
       </div>
@@ -218,22 +255,28 @@
                 <div class="content">
                   <div class="row g-0">
                     <div class="col-6">
-                      <reusable-list-member-add [items]="memInfo.properties" [objectMem]="0" [height]="45"></reusable-list-member-add>
+                      <reusable-list-member-add [items]="isView || editing ? memToView.properties : memInfo.properties" [objectMem]="0"
+                                                [height]="45"></reusable-list-member-add>
                     </div>
                     <div class="col text-center">
-                      <reusable-list-member-add [items]="memInfo.properties" [objectMem]="1" [height]="45"></reusable-list-member-add>
+                      <reusable-list-member-add [items]="isView || editing ? memToView.properties : memInfo.properties" [objectMem]="1"
+                                                [height]="45"></reusable-list-member-add>
                     </div>
                     <div class="col text-center">
-                      <reusable-list-member-add [items]="memInfo.properties" [objectMem]="2" [height]="45"></reusable-list-member-add>
+                      <reusable-list-member-add [items]="isView || editing ? memToView.properties : memInfo.properties" [objectMem]="2"
+                                                [height]="45"></reusable-list-member-add>
                     </div>
                     <div class="col text-center">
-                      <reusable-list-member-add [items]="memInfo.properties" [objectMem]="3" [height]="45"></reusable-list-member-add>
+                      <reusable-list-member-add [items]="isView || editing ? memToView.properties : memInfo.properties" [objectMem]="3"
+                                                [height]="45"></reusable-list-member-add>
                     </div>
                     <div class="col text-center">
-                      <reusable-list-member-add [items]="memInfo.properties" [objectMem]="4" [height]="45"></reusable-list-member-add>
+                      <reusable-list-member-add [items]="isView || editing ? memToView.properties : memInfo.properties" [objectMem]="4"
+                                                [height]="45"></reusable-list-member-add>
                     </div>
-                    <div class="col">
-                      <reusable-list-member-add [items]="memInfo.properties" [isDeleteProperty]="true" [height]="45" (indexProperty)="deleteProperty($event)"></reusable-list-member-add>
+                    <div *ngIf="!isView" class="col">
+                      <reusable-list-member-add [items]="isView || editing ? memToView.properties : memInfo.properties" [isDeleteProperty]="true" [height]="45"
+                                                (indexProperty)="deleteProperty($event)"></reusable-list-member-add>
                     </div>
                   </div>
                 </div>
@@ -251,7 +294,9 @@
           <span>Notes</span>
         </div>
         <div class="col d-grid justify-content-end me-5">
-          <button  class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#add-note" style="background-color: #F5F5F5; width: 150px">Add</button>
+          <button *ngIf="!isView" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#add-note"
+                  style="background-color: #F5F5F5; width: 150px">Add
+          </button>
           <add-note-dialog (note)="addNote($event)"></add-note-dialog>
         </div>
       </div>
@@ -264,20 +309,25 @@
                 <div class="content">
                   <div class="row g-0">
                     <div class="col-6">
-                      <reusable-list-member-add [items]="memInfo.notes" [isNotes]="true" [objectMem]="0" [height]="45"></reusable-list-member-add>
+                      <reusable-list-member-add [items]="isView || editing ? memToView.notes : memInfo.notes" [isNotes]="true" [objectMem]="0"
+                                                [height]="45"></reusable-list-member-add>
                     </div>
                     <div class="col text-center">
-                      <reusable-list-member-add [items]="memInfo.notes" [isNotes]="true" [objectMem]="1" [height]="45"></reusable-list-member-add>
+                      <reusable-list-member-add [items]="isView || editing ? memToView.notes : memInfo.notes" [isNotes]="true" [objectMem]="1"
+                                                [height]="45"></reusable-list-member-add>
                     </div>
                     <div class="col">
-                      <reusable-list-member-add [items]="memInfo.notes" [isNotes]="true" [isView]="true" [height]="45" (indexViewNote)="viewNote($event)"></reusable-list-member-add>
+                      <reusable-list-member-add [items]="isView || editing ? memToView.notes : memInfo.notes" [isNotes]="true" [isView]="true" [height]="45"
+                                                (indexViewNote)="viewNote($event)"></reusable-list-member-add>
 
                     </div>
-                    <div class="col">
-                      <reusable-list-member-add [items]="memInfo.notes" [isNotes]="true" [isDeleteNote]="true" [height]="45" (indexProperty)="deleteNote($event)"></reusable-list-member-add>
+                    <div *ngIf="!isView" class="col">
+                      <reusable-list-member-add [items]="isView || editing ? memToView.notes : memInfo.notes" [isNotes]="true" [isDeleteNote]="true"
+                                                [height]="45"
+                                                (indexProperty)="deleteNote($event)"></reusable-list-member-add>
                     </div>
                     <div>
-                      <view-note-dialog [note]="noteToView"></view-note-dialog>
+                      <view-note-dialog [note]="noteToView" [isView]="isView "></view-note-dialog>
                     </div>
                   </div>
                 </div>

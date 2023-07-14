@@ -30,26 +30,7 @@ export class MemberSearchServiceService {
       try {
         if (this.members.size > 0){
           this.members.forEach((value) => {
-            // debugger
-            // let test1 = target.firstName !== undefined && target.firstName !== '' && value.firstName.toLowerCase()?.includes(target.firstName.toLowerCase());
-            // let test2 =  target.lastName !== undefined && target.lastName !== '' && value.lastName.toLowerCase()?.includes(target.lastName.toLowerCase());
-            // let test3 =  target.phone !== undefined && target.phone !== '' && value.phone?.includes(target.phone);
-            // let test4 = target.address !== undefined && target.address !== '' && value.address.toLowerCase()?.includes(target.address.toLowerCase());
-            // let test5 =  target.id.toString() !== undefined && target.id.toString() !== '' && value.id?.includes(target.id.toString());
-            // let final = (
-            //   target.firstName !== undefined && target.firstName !== '' && value.firstName.toLowerCase()?.includes(target.firstName.toLowerCase()) ||
-            //   target.lastName !== undefined && target.lastName !== '' && value.lastName.toLowerCase()?.includes(target.lastName.toLowerCase()) ||
-            //   target.phone !== undefined && target.phone !== '' && value.phone?.includes(target.phone) ||
-            //   target.address !== undefined && target.address !== '' && value.address.toLowerCase()?.includes(target.address.toLowerCase()) ||
-            //   target.id.toString() !== undefined && target.id.toString() !== '' && value.id?.includes(target.id.toString()))
-
-
             if (
-              // value.firstName.toLowerCase() === target.firstName.toLowerCase() ||
-              // value.lastName.toLowerCase() === target.lastName.toLowerCase() ||
-              // value.phone === target.phone ||
-              // value.address.toLowerCase() === target.address.toLowerCase() ||
-              // value.id === target.id?.toString()
               target.firstName !== undefined && target.firstName !== '' && value.firstName.toLowerCase()?.includes(target.firstName.toLowerCase()) ||
               target.lastName !== undefined && target.lastName !== '' && value.lastName.toLowerCase()?.includes(target.lastName.toLowerCase()) ||
               target.phone !== undefined && target.phone !== '' && value.phone?.includes(target.phone) ||
