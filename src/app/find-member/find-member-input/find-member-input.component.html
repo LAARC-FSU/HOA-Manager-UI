@@ -1,27 +1,40 @@
-<div class="container">
-  <div class="row" style="padding-top: 10px">
-    <div class="col">
-      <label for="name1">First Name</label>
-      <input class="shadow" type="text" id="name1" style="max-width: 200px">
-    </div>
-    <div class="col">
-      <label for="name2">Last Name</label>
-      <input class="shadow" type="text" id="name2" style="max-width: 200px">
-    </div>
-    <div class="col">
-      <label for="memberid">Member ID</label>
-      <input class="shadow" type="text" id="memberid" style="max-width: 200px">
-    </div>
-    <div class="col">
-      <label for="phone">Phone Number</label>
-      <input class="shadow" type="text" id="phone" style="max-width: 200px">
-    </div>
-    <div class="col">
-      <label for="address">Address</label>
-      <input class="shadow" type="text" id="address" style="max-width:250px">
-    </div>
-    <div class="col" style="padding-top: 30px">
-      <button type="button" style="min-width: 152px; border-radius: 10px;background-color: #E1EBF6">Search</button>
-    </div>
+<div
+  [@fade]="invalidSearch ? 'visible' : 'hidden'"
+  class="invalid-message">
+  <div class="row text-center my-2 mx-auto py-2" id="invalid-message" style="background-color: #A73E40; color: white; border-radius:5px; width: fit-content">
+    <span>Please fill at least one field to perform the search</span>
   </div>
+</div>
+<div class="container p-2 mt-3 mb-5">
+  <form [formGroup]="memSearch" (ngSubmit)="search()" (keyup.enter)="search()" (change)="onChange()">
+
+    <div class="row text-center" style="color: white">
+      <h2>Member Search</h2>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="name1">First Name</label>
+        <input class="form-control shadow" type="text" id="name1" formControlName="firstName">
+      </div>
+      <div class="col">
+        <label for="name2">Last Name</label>
+        <input class="form-control shadow" type="text" id="name2" formControlName="lastName">
+      </div>
+      <div class="col">
+        <label for="memberId">Member ID</label>
+        <input class="form-control shadow" type="text" id="memberId" formControlName="id">
+      </div>
+      <div class="col">
+        <label for="phone">Phone Number</label>
+        <input class="form-control shadow" type="text" id="phone" formControlName="phone">
+      </div>
+      <div class="col-3 text-center">
+        <label for="address">Address</label>
+        <input class="form-control shadow" type="text" id="address" formControlName="address">
+      </div>
+      <div class="col" style="padding-top: 30px">
+        <button (click)="search()" class="btn btn-primary" type="button" style="min-width: 152px; border-radius: 10px;background-color: #E1EBF6; color: black">Search</button>
+      </div>
+    </div>
+  </form>
 </div>

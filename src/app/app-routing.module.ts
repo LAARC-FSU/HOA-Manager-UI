@@ -12,7 +12,7 @@ import {NgForOf} from "@angular/common";
 import {ClockInOutDialogComponent} from "./clock-in-out-dialog/clock-in-out-dialog.component";
 import {AddPropertyComponent} from "./add-property/add-property.component";
 import {FindPropertyComponent} from "./find-property/find-property.component";
-import {FindMemeberComponent} from "./find-member/find-memeber.component";
+import {FindMemberComponent} from "./find-member/find-member.component";
 import {FindEmployeeComponent} from "./find-employee/find-employee.component";
 import {MemberAddComponent} from "./member-add/member-add.component";
 
@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: 'clock-in-out-dialog', component: ClockInOutDialogComponent},
   {path: 'add-property', component: AddPropertyComponent},
   {path: 'find-property', component: FindPropertyComponent},
-  {path: 'view-update-members', component: FindMemeberComponent},
+  {path: 'view-update-members', component: FindMemberComponent},
   {path: 'employees', component: FindEmployeeComponent},
   {path: 'add-member', component: MemberAddComponent}
 ];

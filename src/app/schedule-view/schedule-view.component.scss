@@ -30,8 +30,8 @@ button{
   button{
     visibility: hidden;
   }
-  .header{
-    visibility: hidden;
+  app-header{
+    //visibility: hidden;
+    display: none;
   }
-
 }

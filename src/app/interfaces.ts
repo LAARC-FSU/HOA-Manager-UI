@@ -1,3 +1,5 @@
+
+
 export interface Shift {
   id: string
   start: string;
@@ -43,8 +45,7 @@ export interface userInfo {
   city: string,
   state: string,
   zipCode: string,
-  cellPhone: string,
-  homePhone: string,
+  phone: string,
   email: string,
   active: boolean,
   id: string,
@@ -119,3 +120,10 @@ export const states: string[] = [
   'Wisconsin',
   'Wyoming'
 ];
+export interface searchQuery{
+  firstName: string,
+  lastName: string,
+  id: number,
+  phone: string,
+  address: string
+}

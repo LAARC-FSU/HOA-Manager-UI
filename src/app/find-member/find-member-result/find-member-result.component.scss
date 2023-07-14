@@ -1,6 +1,24 @@
-.container-fluid{
-  position: absolute;
-  min-width: 1335px;
-  max-width: 1335px;
-  left: 45px;
+img {
+  aspect-ratio: 1;
+  height: 100px;
+  border-radius: 50%;
+  border: solid 2px #828FA0;
+}
+.image{
+  display: grid;
+  place-content: center;
+}
+td{
+ text-align: center;
+  vertical-align: middle;
+}
+tr{
+  margin: auto;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #E1EBF6;
+}
+thead{
+  background-color: #828FA0;
+  color: white;
 }

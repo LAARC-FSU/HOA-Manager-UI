@@ -28,7 +28,7 @@ import {TransactionComponent} from "./add-property/transactions/transaction.comp
 import {NotesComponents} from "./add-property/notes/notes.components";
 import {TransactionInputComponents} from "./transaction-input/transaction-input.components";
 import {FindPropertyComponent} from "./find-property/find-property.component";
-import {FindMemeberComponent} from "./find-member/find-memeber.component";
+import {FindMemberComponent} from "./find-member/find-member.component";
 import { FullCalendarModule} from "@fullcalendar/angular";
 import { MemberCalendarComponent} from "./member-calendar/member-calendar.component";
 import { MemberTimeGridComponent} from "./member-calendar/member-time-grid/member-time-grid.component";
@@ -78,7 +78,7 @@ import { ViewNoteDialogComponent } from './view-note-dialog/view-note-dialog.com
     NotesComponents,
     TransactionInputComponents,
     FindPropertyComponent,
-    FindMemeberComponent,
+    FindMemberComponent,
     FindMemberInputComponent,
     MemberCalendarComponent,
     MemberTimeGridComponent,

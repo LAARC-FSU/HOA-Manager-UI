@@ -68,34 +68,73 @@
                    style="background-color: #F5F5F5; color: black; display: grid; place-content: center">
                 <form [formGroup]="form" (ngSubmit)="submitForm()" (change)="onChange()">
                   <div class="row employee-name">
+
                     <div class="col first-name">
-                      <label for="firstName" class="form-label">First Name*</label>
-                      <input class="form-control shadow" type="text" id="firstName" formControlName="firstName"
-                             style="border-width: 2px">
+                      <div *ngIf="!isView">
+                        <label for="firstName" class="form-label">First Name*</label>
+                        <input  class="form-control shadow" type="text" id="firstName" formControlName="firstName"
+                                style="border-width: 2px">
+                      </div>
+                      <div *ngIf="isView">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <p  class="form-control">{{memToView.firstName}}</p>
+                      </div>
                     </div>
+
                     <div class="col middle-name">
-                      <label for="middleName" class="form-label">Middle Name</label>
-                      <input class="form-control shadow" type="text" id="middleName" formControlName="middleName"
-                             style="border-width: 2px">
+                      <div *ngIf="!isView">
+                        <label for="middleName" class="form-label">Middle Name</label>
+                        <input  class="form-control shadow" type="text" id="middleName" formControlName="middleName"
+                               style="border-width: 2px">
+                      </div>
+                      <div *ngIf="isView && memToView.middleName">
+                        <label for="middleName" class="form-label">Middle Name</label>
+                        <p class="form-control">{{memToView.middleName}}</p>
+                      </div>
                     </div>
+
                     <div class="col last-name">
-                      <label for="lastName" class="form-label">last Name*</label>
-                      <input class="form-control shadow" type="text" id="lastName" formControlName="lastName"
-                             style="border-width: 2px">
+                      <div *ngIf="!isView">
+                        <label for="lastName" class="form-label">last Name*</label>
+                        <input class="form-control shadow" type="text" id="lastName" formControlName="lastName"
+                               style="border-width: 2px">
+                      </div>
+                      <div *ngIf="isView">
+                        <label for="lastName" class="form-label">last Name</label>
+                        <p class="form-control">{{memToView.lastName}}</p>
+                      </div>
                     </div>
+
                   </div>
+
                   <div class="row employee-address mt-3">
+
                     <div class="col address">
-                      <label for="address" class="form-label">Address*</label>
-                      <input class="form-control shadow" type="text" id="address" formControlName="address"
-                             style="border-width: 2px">
+                      <div *ngIf="!isView">
+                        <label for="address" class="form-label">Address*</label>
+                        <input class="form-control shadow" type="text" id="address" formControlName="address"
+                               style="border-width: 2px">
+                      </div>
+                      <div *ngIf="isView">
+                        <label for="address" class="form-label">Address</label>
+                        <p class="form-control">{{memToView.address}}</p>
+                      </div>
                     </div>
+
                     <div class="col city">
-                      <label for="city" class="form-label">City*</label>
-                      <input class="form-control shadow" type="text" id="city" formControlName="city"
-                             style="border-width: 2px">
+                      <div *ngIf="!isView">
+                        <label for="city" class="form-label">City*</label>
+                        <input class="form-control shadow" type="text" id="city" formControlName="city"
+                               style="border-width: 2px">
+                      </div>
+                      <div *ngIf="isView">
+                        <label for="city" class="form-label">City</label>
+                        <p class="form-control">{{memToView.city}}</p>
+                      </div>
                     </div>
+
                     <div class="col state">
+
                       <label for="state" class="form-label">State*</label>
                       <select class="form-control shadow" name="" id="state" formControlName="state"
                               style="border-width: 2px">
@@ -103,6 +142,7 @@
                         <option *ngFor="let state of states" [value]="state">{{ state }}</option>
                       </select>
                     </div>
+
                     <div class="col zip-code">
                       <label for="zip" class="form-label">Zipcode*</label>
                       <input class="form-control shadow" type="text" id="zip" formControlName="zip"
@@ -110,14 +150,9 @@
                     </div>
                   </div>
                   <div class="row employee-contact mt-3">
-                    <div class="col cell-phone">
-                      <label for="cell" class="form-label">Cell Phone*</label>
-                      <input class="form-control shadow" type="text" id="cell" formControlName="cell"
-                             style="border-width: 2px">
-                    </div>
-                    <div class="col home-phone">
-                      <label for="homePhone" class="form-label">Home Phone</label>
-                      <input class="form-control shadow" type="text" id="homePhone" formControlName="homePhone"
+                    <div class="col phone">
+                      <label for="phone" class="form-label">Phone</label>
+                      <input class="form-control shadow" type="text" id="phone" formControlName="phone"
                              style="border-width: 2px">
                     </div>
                     <div class="col email">

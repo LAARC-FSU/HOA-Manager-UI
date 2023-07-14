@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output, Input} from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {empWorkTime} from "../interfaces";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'clock-in-out-dialog',
@@ -30,7 +31,7 @@ export class ClockInOutDialogComponent implements OnInit{
     empDayHours: [0,0,0,0,0,0,0]
   }
 
-  constructor(private datePipe: DatePipe) {
+  constructor(private datePipe: DatePipe, private http: HttpClient) {
   }
 
   ngOnInit() {
@@ -47,6 +48,22 @@ export class ClockInOutDialogComponent implements OnInit{
     this.endActive = true;
     this.lunchOutActive = true;
 
+    // let token = localStorage.getItem("token")
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     'Authorization': 'Bearer ' + token
+    //   })
+    // };
+    //
+    // const data = {
+    //   time: (new Date()).toISOString(),
+    //   activityType: 'CLOCK_IN'
+    // }
+    //
+    // const url = 'http://3.136.16.135:8080/employee-clock';
+    // this.http.post(url,data,httpOptions).subscribe(response => {console.log(response);
+    // })
   }
 
   lunchOut() {

@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {note, property, userInfo} from "../interfaces";
 import {states} from "../interfaces";
@@ -10,9 +10,8 @@ import {Router} from "@angular/router";
   templateUrl: './member-add.component.html',
   styleUrls: ['./member-add.component.scss']
 })
-export class MemberAddComponent {
+export class MemberAddComponent{
   @ViewChild('successModal') successModal!: ElementRef;
-
   image: any = "assets/memberPhotoPlaceholder.svg";
   success = true;
   emailInitText = 'User Id';
@@ -23,6 +22,25 @@ export class MemberAddComponent {
     date: '',
     body: ''
   };
+
+  @Input('isView') isView = false;
+  @Input('memToView') memToView: userInfo = {
+    firstName: 'Alfredo',
+    middleName: '',
+    lastName: 'Borroto',
+    address: '',
+    city: '',
+    state: '',
+    zipCode: '',
+    phone: '',
+    email: this.emailInitText,
+    active: false,
+    id: String(this.addMember.getMemCount() + 1),
+    properties: [],
+    notes: [],
+    photo: this.image
+  };
+
   memInfo: userInfo = {
     firstName: '',
     middleName: '',
@@ -31,8 +49,7 @@ export class MemberAddComponent {
     city: '',
     state: '',
     zipCode: '',
-    cellPhone: '',
-    homePhone: '',
+    phone: '',
     email: this.emailInitText,
     active: false,
     id: String(this.addMember.getMemCount() + 1),
@@ -54,8 +71,7 @@ export class MemberAddComponent {
     city: ['', Validators.required],
     state: ['', Validators.required],
     zip: ['', Validators.required],
-    cell: ['', Validators.required],
-    homePhone: [''],
+    phone: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]]
   });
 
@@ -85,34 +101,30 @@ export class MemberAddComponent {
     return this.form.get('zip');
   }
 
-  get cellPhone(): AbstractControl | null {
-    return this.form.get('cell');
-  }
-
-  get homePhone(): AbstractControl | null {
-    return this.form.get('homePhone');
+  get phone(): AbstractControl | null {
+    return this.form.get('phone');
   }
 
   get email(): AbstractControl | null {
     return this.form.get('email');
   }
 
-
   get state(): AbstractControl | null {
     return this.form.get('state');
   }
-  closeModal(){
+
+  closeModal() {
     const backdrop = document.getElementsByClassName('modal-backdrop')[0];
     backdrop.setAttribute('hidden', 'true')
     this.successModal.nativeElement.style.display = 'none';
 
     // this.successMessage()
   }
+
   submitForm(): void {
-    debugger
     this.updateImg();
-    if (this.form.valid){
-      if (this.addMember.storeMem(this.memInfo)){
+    if (this.form.valid) {
+      if (this.addMember.storeMem(this.memInfo)) {
         this.successMessage();
         setTimeout(() => {
           // const modal = this.successModal.nativeElement;
@@ -123,7 +135,8 @@ export class MemberAddComponent {
       }
     }
   }
-  successMessage(){
+
+  successMessage() {
     this.success = !this.success;
   }
 
@@ -134,36 +147,37 @@ export class MemberAddComponent {
     this.memInfo.address = this.address!.value;
     this.memInfo.city = this.city!.value;
     this.memInfo.zipCode = this.zipCode!.value;
-    this.memInfo.cellPhone = this.cellPhone!.value;
-    this.memInfo.homePhone = this.homePhone!.value;
+    this.memInfo.phone = this.phone!.value;
     this.memInfo.email = this.email!.value;
     this.memInfo.state = this.state!.value;
   }
 
 
-  deleteProperty(i:any) {
+  deleteProperty(i: any) {
     if (this.index !== -1) {
       this.memInfo.properties.splice(i, 1);
     }
   }
-  addLot(e:property){
+
+  addLot(e: property) {
     let propertyClone: property = {...e};
     this.memInfo.properties.push(propertyClone);
   }
-  deleteNote(i:any) {
+
+  deleteNote(i: any) {
     if (this.index !== -1) {
       this.memInfo.notes.splice(i, 1);
     }
   }
 
-  viewNote(i:any){
+  viewNote(i: any) {
     if (this.index !== -1) {
       this.noteToViewIndex = i;
-      this.noteToView =  this.memInfo.notes[i];
+      this.noteToView = this.memInfo.notes[i];
     }
   }
 
-  eraseNoteView(){
+  eraseNoteView() {
     debugger
     this.noteToView = {
       title: '',
@@ -173,19 +187,21 @@ export class MemberAddComponent {
     this.noteToViewIndex = 0;
   }
 
-  addNote(e:note){
-    if (this.noteToViewIndex !== 0){
+  addNote(e: note) {
+    if (this.noteToViewIndex !== 0) {
       this.memInfo.notes[this.noteToViewIndex] = this.noteToView;
       this.eraseNoteView();
 
-    }else{
+    } else {
       let noteClone: note = {...e};
       this.memInfo.notes.push(noteClone);
     }
   }
-  updateImg(){
+
+  updateImg() {
     this.memInfo.photo = this.image;
   }
+
   getImage(event: any) {
     this.image = event;
   }
