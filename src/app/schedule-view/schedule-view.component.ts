@@ -26,8 +26,8 @@ export class ScheduleViewComponent implements OnInit {
 
   // test
   activeEmp: empWorkTime = {
-    empName: 'Alfredo Borroto',
-    empPhotoUrl: 'assets/profilepic.jpg',
+    empName: 'Leandro Yabut',
+    empPhotoUrl: 'assets/leandro_pic.jpg',
     empClkIn: new Date(),
     empClkOut: new Date(),
     empLunchOut: new Date(),

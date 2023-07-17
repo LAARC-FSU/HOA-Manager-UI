@@ -18,8 +18,8 @@ import {MemberAddComponent} from "./member-add/member-add.component";
 
 
 const routes: Routes = [
-  //{path: '', redirectTo: '/log-in', pathMatch:'full'},
-  {path: '', redirectTo: '/main-dashboard', pathMatch:'full'},
+  {path: '', redirectTo: '/log-in', pathMatch:'full'},
+  {path: 'main-dashboard', component: MainDashboardComponent},
   {path: 'make-schedule', component: MakeScheduleComponent},
   {path: 'view-schedule', component: ScheduleViewComponent},
   {path: 'schedule-dashboard', component: ScheduleDashboardComponent},

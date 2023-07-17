@@ -2,7 +2,7 @@
 
   <span class="navbarRight">
     <span class="navbar-brand d-inline-flex">
-      <a class="navbar-logo align-self-center" href="#"><img class="d-block" src="./assets/Icons/whiteLogo.svg" alt=""></a>
+      <a  class="navbar-logo align-self-center" href=""><img (click)="backToDash()" class="d-block" src="./assets/Icons/whiteLogo.svg" alt=""></a>
       <span class="navbar-title align-self-center px-4">
         <ng-content select=".pageTitle"></ng-content>
       </span>
@@ -10,7 +10,8 @@
   </span>
 
   <span class="navbarLeft">
-    <a class="navbar-text fw-light text-decoration-none px-4" href="/previous-page" onclick="history.back(); return false;">Dashboard</a>
+  <a class="navbar-text fw-light text-decoration-none px-4" (click)="backToDash()" style="cursor: pointer;">Dashboard</a>
+    <a class="navbar-text fw-light text-decoration-none px-4" href="/previous-page" onclick="history.back(); return false;">Back</a>
     <a class="navbar-text fw-light text-decoration-none p-0" href="#">Log Out</a>
     <span class="navbar-text px-4">{{today|date:'mediumDate' }}</span>
   </span>

@@ -7,6 +7,7 @@ import {
 import {fadeInOutAnimation} from "./animations";
 import {LoginPortalValidators} from "./login-portal-validators";
 import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 
 class JWT {
@@ -31,7 +32,7 @@ export class LoginPortalComponent {
     username: "rgrobbins@student.fullsail.edu",
     password: "P@ssword123"
   }
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router:Router) {
     this.http.post('http://ec2-3-136-16-135.us-east-2.compute.amazonaws.com:8080/', this.body)
       .subscribe((response) => {
         console.log(response)
@@ -148,6 +149,8 @@ export class LoginPortalComponent {
   toSignUp() {
     this.mode = Mode.signup;
     this.formReset(this.login);
+    this.email?.setValue('');
+    this.password?.setValue('')
   }
 
   toForgotEmail() {
@@ -161,9 +164,14 @@ export class LoginPortalComponent {
   }
 
   signIn() {
-    this.login.setErrors({
-      invalidLogin: true
-    });
+    if (this.email?.value !== 'lyabut@student.fullsail.edu' && this.password?.value != 'P@ssword123'){
+      this.login.setErrors({
+        invalidLogin: true
+      });
+    }else{
+      this.router.navigateByUrl('main-dashboard')
+    }
+
   }
 
   exit() {

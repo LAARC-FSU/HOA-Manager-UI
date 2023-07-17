@@ -12,7 +12,7 @@
                   <span>{{empWorkTime.empName}}</span>
                 </div>
                 <div class="col d-flex justify-content-end me-4">
-                  <button class="btn-close btn-close-white" data-bs-toggle="modal"></button>
+                  <button class="btn-close btn-close-white" data-bs-toggle="modal" data-bs-target="#clockInOutModal"></button>
                 </div>
               </div>
               <div class="row">
@@ -32,13 +32,28 @@
                       <span class="mx-5" id="currTime"><clock [color]="clockColor"></clock></span>
                     </div>
 
+                    <div class="row-cols text-center my-4" style="color: black">
+                      <div class="row">
+                        <label *ngIf="clockInStr" for="clockIn">clocked in at: {{clockInStr}}</label>
+                      </div>
+                      <div class="row">
+                        <label *ngIf="lunchOutStr" for="clockOut">out to lunch at: {{lunchOutStr}}</label>
+                      </div>
+                      <div class="row">
+                        <label *ngIf="lunchInStr" for="clockOut">in from lunch at: {{lunchInStr}}</label>
+                      </div>
+                      <div class="row">
+                        <label *ngIf="clockOutStr" for="clockOut">clocked out at: {{clockOutStr}}</label>
+                      </div>
+                    </div>
+
                     <div class="row-cols d-flex justify-content-center my-4">
-                      <button (click)="clockIn()" type="button" class=" btn btn-success me-3" [disabled]="!startActive" style="background-color: #4A7E3B">Start Day</button>
-                      <button (click)="clockOut()" type="button" class=" btn btn-danger ms-3" [disabled]="!endActive" style="background-color: #A73E40">End Day</button>
+                      <button (click)="clockIn()" type="button" id="clockOut" class=" btn btn-success me-3" [disabled]="!startActive" style="background-color: #4A7E3B">Start Day</button>
+                      <button (click)="clockOut()" type="button" id="clockIn" class=" btn btn-danger ms-3" [disabled]="!endActive" style="background-color: #A73E40">End Day</button>
                     </div>
                     <div class="row-cols d-flex justify-content-center my-4">
-                      <button (click)="lunchOut()" type="button" class=" btn btn-secondary me-3" [disabled]="!lunchOutActive" style="background-color: #454E5C">Out to lunch</button>
-                      <button (click)="lunchIn()" type="button" class=" btn btn-secondary ms-3" [disabled]="!lunchInActive" style="background-color: #454E5C">Back from lunch</button>
+                      <button (click)="lunchOut()" type="button" id="lunchOut" class=" btn btn-secondary me-3" [disabled]="!lunchOutActive" style="background-color: #454E5C">Out to lunch</button>
+                      <button (click)="lunchIn()" type="button" id="lunchIn" class=" btn btn-secondary ms-3" [disabled]="!lunchInActive" style="background-color: #454E5C">Back from lunch</button>
                     </div>
 
                     <div class="row"></div>
