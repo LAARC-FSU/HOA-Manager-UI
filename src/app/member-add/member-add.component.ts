@@ -209,6 +209,7 @@ export class MemberAddComponent implements OnInit {
   }
 
   deleteNote(i: any) {
+    debugger
     if (!this.isView) {
       if (this.index !== -1) {
         this.memInfo.notes.splice(i, 1);
