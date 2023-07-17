@@ -26,6 +26,6 @@ export const DASHBOARDBUTTONS: DashboardButton[] = [
 export const HOAMODULES: HOAModule[] = [
   { title:'Employee Module', buttons: [DASHBOARDBUTTONS[0], DASHBOARDBUTTONS[5]], image: '/assets/Icons/badgeIcon.svg' },
   { title:'Property Module', buttons: [DASHBOARDBUTTONS[1], DASHBOARDBUTTONS[2]], image: '/assets/Icons/propIcon.svg' },
-  { title:'Admin Module', buttons: [DASHBOARDBUTTONS[3], DASHBOARDBUTTONS[4], DASHBOARDBUTTONS[5]], image: '/assets/Icons/adminIcon.svg' },
-  { title:'Member Module', buttons: [DASHBOARDBUTTONS[6], DASHBOARDBUTTONS[7], DASHBOARDBUTTONS[8]], image: '/assets/Icons/memberIcon.svg' }
+  { title:'Admin Module', buttons: [DASHBOARDBUTTONS[3], DASHBOARDBUTTONS[4]], image: '/assets/Icons/adminIcon.svg' },
+  { title:'Member Module', buttons: [DASHBOARDBUTTONS[6], DASHBOARDBUTTONS[7]], image: '/assets/Icons/memberIcon.svg' }
 ];
