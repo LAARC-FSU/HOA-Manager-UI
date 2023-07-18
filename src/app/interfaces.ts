@@ -152,3 +152,10 @@ export interface searchQueryProperty{
    photo: string,
    notes: note[]
  }
+
+ export interface timeStamps{
+   clockInStr : string,
+   clockOutStr : string,
+   lunchOutStr : string,
+   lunchInStr : string
+ }

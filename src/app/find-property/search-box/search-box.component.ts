@@ -47,6 +47,7 @@ export class SearchBoxComponent implements OnInit {
     return this.propertySearch.get('numberOfBuildings');
   }
   search(){
+    debugger
     if (
       this.lot?.value === '' &&
       this.block?.value === '' &&

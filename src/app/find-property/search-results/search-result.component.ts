@@ -27,12 +27,12 @@ export class SearchResultComponent {
   }
   view(e:any){
     const isView = true;
-    const memToView = JSON.stringify(this.results[e]);
+    const propertyToView = JSON.stringify(this.results[e]);
 
     this.router.navigate(['add-property'], {
       queryParams:{
         input1: isView,
-        input2: memToView
+        input2: propertyToView
       }
     });
   }

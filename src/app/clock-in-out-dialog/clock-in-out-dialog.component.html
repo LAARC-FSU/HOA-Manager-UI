@@ -34,16 +34,16 @@
 
                     <div class="row-cols text-center my-4" style="color: black">
                       <div class="row">
-                        <label *ngIf="clockInStr" for="clockIn">clocked in at: {{clockInStr}}</label>
+                        <label *ngIf="timeStamps.clockInStr" for="clockIn">clocked in at: {{timeStamps.clockInStr}}</label>
                       </div>
                       <div class="row">
-                        <label *ngIf="lunchOutStr" for="clockOut">out to lunch at: {{lunchOutStr}}</label>
+                        <label *ngIf="timeStamps.lunchOutStr" for="clockOut">out to lunch at: {{timeStamps.lunchOutStr}}</label>
                       </div>
                       <div class="row">
-                        <label *ngIf="lunchInStr" for="clockOut">in from lunch at: {{lunchInStr}}</label>
+                        <label *ngIf="timeStamps.lunchInStr" for="clockOut">in from lunch at: {{timeStamps.lunchInStr}}</label>
                       </div>
                       <div class="row">
-                        <label *ngIf="clockOutStr" for="clockOut">clocked out at: {{clockOutStr}}</label>
+                        <label *ngIf="timeStamps.clockOutStr" for="clockOut">clocked out at: {{timeStamps.clockOutStr}}</label>
                       </div>
                       <div class="row">
                         <span *ngIf="timeWorked"><b>you worked: {{timeWorked}} hours</b></span>

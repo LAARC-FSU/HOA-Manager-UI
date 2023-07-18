@@ -13,4 +13,9 @@ export class HeaderComponent {
 backToDash(){
   this.router.navigateByUrl('main-dashboard')
 }
+clearEmpTime(){
+    localStorage.removeItem('currEmp');
+    localStorage.removeItem('clockInOutState');
+    localStorage.removeItem('timeStamps');
+}
 }

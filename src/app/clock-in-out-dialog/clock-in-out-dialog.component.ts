@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output, Input, OnDestroy} from '@angular/core';
 import {DatePipe} from "@angular/common";
-import {empWorkTime} from "../interfaces";
+import {empWorkTime, timeStamps} from "../interfaces";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ClockInOutServiceService} from "../clock-in-out-service.service";
 
@@ -11,11 +11,7 @@ import {ClockInOutServiceService} from "../clock-in-out-service.service";
 })
 
 export class ClockInOutDialogComponent implements OnInit, OnDestroy {
-  clockInStr = '';
-  clockOutStr = '';
-  lunchOutStr = '';
-  lunchInStr = '';
-  timeWorked = '';
+
   currState: State = -1;
   clockColor: string = '';
   currDate: Date = new Date();
@@ -26,7 +22,13 @@ export class ClockInOutDialogComponent implements OnInit, OnDestroy {
   lunchOutActive: boolean = false;
   lunchInActive: boolean = false;
   @Output() sendWorkTime: EventEmitter<empWorkTime> = new EventEmitter();
-
+  timeStamps: timeStamps = {
+  clockInStr : '',
+  clockOutStr : '',
+  lunchOutStr : '',
+  lunchInStr : ''
+}
+  timeWorked = '';
   empWorkTime: empWorkTime = {
     empName: 'Leandro Yabut',
     empPhotoUrl: 'assets/leandro_pic.jpg',
@@ -48,55 +50,58 @@ export class ClockInOutDialogComponent implements OnInit, OnDestroy {
 
     this.currState = this.service.getState();
     this.empWorkTime = this.service.getCurrEmp();
+    this.timeStamps = this.service.getTimeStamps();
+
     switch (this.currState) {
       case State.clockedIn:
         this.startActive = false;
         this.endActive = true;
         this.lunchOutActive = true;
         this.lunchInActive = false;
-        this.clockInStr = this.formatTime(this.empWorkTime.empClkIn)
+        this.timeStamps.clockInStr = this.formatTime(this.empWorkTime.empClkIn)
         break
       case State.lunchOut:
         this.startActive = false;
         this.endActive = true;
         this.lunchOutActive = false;
         this.lunchInActive = true;
-        this.lunchOutStr = this.formatTime(this.empWorkTime.empLunchOut)
+        this.timeStamps.lunchOutStr = this.formatTime(this.empWorkTime.empLunchOut)
         break
       case State.lunchIn:
         this.startActive = false;
         this.endActive = true;
         this.lunchOutActive = false;
         this.lunchInActive = false;
-        this.lunchInStr = this.formatTime(this.empWorkTime.empLunchIn)
+        this.timeStamps.lunchInStr = this.formatTime(this.empWorkTime.empLunchIn)
         break
       case State.clockedOut:
         this.startActive = true;
         this.endActive = false;
         this.lunchOutActive = false;
         this.lunchInActive = false;
-        this.clockOutStr = this.formatTime(this.empWorkTime.empClkOut)
+        this.timeStamps.clockOutStr = this.formatTime(this.empWorkTime.empClkOut)
         break
     }
     this.currDateStr = this.formatDate(this.currDate)!;
   }
 
   ngOnDestroy(){
-    this.service.saveState(this.currState, this.empWorkTime)
+    this.service.saveState(this.currState, this.empWorkTime, this.timeStamps)
   }
   formatDate(date: Date) {
     return this.datePipe.transform(date, 'EEEE, MMMM d, y')
   }
 
   clockIn() {
+    debugger
     this.empWorkTime.empClkIn = new Date();
-    this.clockInStr = this.formatTime(this.empWorkTime.empClkIn)
+    this.timeStamps.clockInStr = this.formatTime(this.empWorkTime.empClkIn)
 
     this.startActive = false;
     this.endActive = true;
     this.lunchOutActive = true;
     this.currState = State.clockedIn;
-    this.service.saveState(this.currState, this.empWorkTime)
+    this.service.saveState(this.currState, this.empWorkTime, this.timeStamps)
 
     // let token = localStorage.getItem("token")
     // const httpOptions = {
@@ -118,19 +123,19 @@ export class ClockInOutDialogComponent implements OnInit, OnDestroy {
 
   lunchOut() {
     this.empWorkTime.empLunchOut = new Date();
-    this.lunchOutStr = this.formatTime(this.empWorkTime.empLunchOut)
+    this.timeStamps.lunchOutStr = this.formatTime(this.empWorkTime.empLunchOut)
     this.lunchOutActive = false;
     this.lunchInActive = true;
     this.currState = State.lunchOut;
-    this.service.saveState(this.currState, this.empWorkTime)
+    this.service.saveState(this.currState, this.empWorkTime, this.timeStamps)
   }
 
   lunchIn() {
     this.empWorkTime.empLunchIn = new Date();
-    this.lunchInStr = this.formatTime(this.empWorkTime.empLunchIn)
+    this.timeStamps.lunchInStr = this.formatTime(this.empWorkTime.empLunchIn)
     this.lunchInActive = false;
     this.currState = State.lunchIn;
-    this.service.saveState(this.currState, this.empWorkTime)
+    this.service.saveState(this.currState, this.empWorkTime, this.timeStamps)
   }
 
   clockOut() {
@@ -143,13 +148,13 @@ export class ClockInOutDialogComponent implements OnInit, OnDestroy {
     }
 
     this.empWorkTime.empClkOut = new Date();
-    this.clockOutStr = this.formatTime(this.empWorkTime.empClkOut)
+    this.timeStamps.clockOutStr = this.formatTime(this.empWorkTime.empClkOut)
     this.calculateHours();
     this.endActive = false;
 
     this.startActive = true;
     this.currState = State.clockedOut;
-    this.service.saveState(this.currState, this.empWorkTime)
+    this.service.saveState(this.currState, this.empWorkTime, this.timeStamps)
   }
 
   calculateHours() {

@@ -27,7 +27,8 @@ export class PropertySearchService {
     let result: propertyInfo[] = [];
 
     this.retrieve();
-    try {
+    try
+    {
       if (this.properties.size > 0){
         this.properties.forEach((value) => {
           if (
@@ -67,7 +68,7 @@ export class PropertySearchService {
     try {
       this.tempObj = Object.fromEntries(this.properties.entries());
       this.tempStr = JSON.stringify(this.tempObj);
-      localStorage.setItem('members', this.tempStr)
+      localStorage.setItem('properties', this.tempStr)
     }
     catch (e){
       console.log('ERROR: ', e)

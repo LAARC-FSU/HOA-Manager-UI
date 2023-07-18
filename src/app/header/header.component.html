@@ -12,7 +12,7 @@
   <span class="navbarLeft">
   <a class="navbar-text fw-light text-decoration-none px-4" (click)="backToDash()" style="cursor: pointer;">Dashboard</a>
     <a class="navbar-text fw-light text-decoration-none px-4" href="/previous-page" onclick="history.back(); return false;">Back</a>
-    <a class="navbar-text fw-light text-decoration-none p-0" href="#">Log Out</a>
+    <a (click)="clearEmpTime()" class="navbar-text fw-light text-decoration-none p-0" href="#">Log Out</a>
     <span class="navbar-text px-4">{{today|date:'mediumDate' }}</span>
   </span>
 

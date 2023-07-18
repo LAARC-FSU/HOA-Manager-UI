@@ -30,8 +30,6 @@
 <!--  </div>-->
 <!--</div>-->
 
-----------------------------------------------------------------------------
-
 <div
   [@fade]="invalidSearch ? 'visible' : 'hidden'"
   class="invalid-message">
@@ -47,24 +45,24 @@
     </div>
     <div class="row">
       <div class="col-3">
-        <label for="name1">Address</label>
-        <input class="form-control shadow" type="text" id="name1" formControlName="firstName">
+        <label for="address">Address</label>
+        <input class="form-control shadow" type="text" id="address" formControlName="address">
       </div>
       <div class="col">
-        <label for="name2">Lot</label>
-        <input class="form-control shadow" type="text" id="name2" formControlName="lastName">
+        <label for="lot">Lot</label>
+        <input class="form-control shadow" type="text" id="lot" formControlName="lot">
       </div>
       <div class="col">
-        <label for="memberId">Unit</label>
-        <input class="form-control shadow" type="text" id="memberId" formControlName="id">
+        <label for="unit">Unit</label>
+        <input class="form-control shadow" type="text" id="unit" formControlName="unit">
       </div>
       <div class="col">
-        <label for="phone">Block</label>
-        <input class="form-control shadow" type="text" id="phone" formControlName="phone">
+        <label for="block">Block</label>
+        <input class="form-control shadow" type="text" id="block" formControlName="block">
       </div>
       <div class="col-2 text-center text-nowrap">
-        <label for="address">Number of Buildings</label>
-        <input class="form-control shadow" type="text" id="address" formControlName="address">
+        <label for="numberOfBuildings">Number of Buildings</label>
+        <input class="form-control shadow" type="text" id="numberOfBuildings" formControlName="numberOfBuildings">
       </div>
       <div class="col" style="padding-top: 30px">
         <button (click)="search()" class="btn btn-primary" type="button" style="min-width: 152px; border-radius: 10px;background-color: #E1EBF6; color: black">Search</button>

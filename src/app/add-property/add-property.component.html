@@ -128,7 +128,7 @@
                                  style="border-width: 2px">
                         </div>
                       </div>
-                      <div *ngIf="isView" class="row">
+                      <div *ngIf="isView && propertyToView.address" class="row">
                         <div class="col-3">
                           <label for="address" class="form-label">Address</label>
                         </div>
@@ -149,7 +149,7 @@
                                  style="border-width: 2px">
                         </div>
                       </div>
-                      <div *ngIf="isView" class="row">
+                      <div *ngIf="isView && propertyToView.zoning" class="row">
                         <div class="col-5">
                           <label for="zoning" class="form-label">Zoning</label>
                         </div>
@@ -173,13 +173,13 @@
                                  style="border-width: 2px">
                         </div>
                         <div class="col-3">
-                          <select class="form-select shadow" >
+                          <select class="form-select shadow" formControlName="lotAreaUnit">
                             <option selected>Unit</option>
                             <option *ngFor="let unit of unitsArea">{{unit}}</option>
                           </select>
                         </div>
                       </div>
-                      <div *ngIf="isView" class="row">
+                      <div *ngIf="isView && propertyToView.lotArea && propertyToView.lotArea !== ' ' " class="row">
                         <div class="col-3">
                           <label for="lotArea" class="form-label">Lot Area</label>
                         </div>
@@ -200,7 +200,7 @@
                                  style="border-width: 2px">
                         </div>
                       </div>
-                      <div *ngIf="isView" class="row">
+                      <div *ngIf="isView && propertyToView.zoningMap" class="row">
                         <div class="col-5">
                           <label for="zoningMap" class="form-label">Zoning Map:</label>
                         </div>
@@ -224,13 +224,13 @@
                                  style="border-width: 2px">
                         </div>
                         <div class="col-3">
-                          <select class="form-select shadow" >
+                          <select class="form-select shadow" formControlName="lotFrontageUnit">
                             <option selected>Unit</option>
                             <option *ngFor="let unit of unitsLength">{{unit}}</option>
                           </select>
                         </div>
                       </div>
-                      <div *ngIf="isView" class="row">
+                      <div *ngIf="isView && propertyToView.lotFrontage && propertyToView.lotFrontage !== ' '" class="row">
                         <div class="col-3">
                           <label for="lotFrontage" class="form-label">Lot Frontage</label>
                         </div>
@@ -251,7 +251,7 @@
                                  style="border-width: 2px">
                         </div>
                       </div>
-                      <div *ngIf="isView" class="row">
+                      <div *ngIf="isView && propertyToView.numOfBuildings" class="row">
                         <div class="col-5">
                           <label for="numOfBuildings" class="form-label">Number of Buildings:</label>
                         </div>
@@ -275,13 +275,13 @@
                                  style="border-width: 2px">
                         </div>
                         <div class="col-3">
-                          <select class="form-select shadow" >
+                          <select class="form-select shadow" formControlName="lotDepthUnit">
                             <option selected>Unit</option>
-                            <option *ngFor="let unit of unitsArea">{{unit}}</option>
+                            <option *ngFor="let unit of unitsLength">{{unit}}</option>
                           </select>
                         </div>
                       </div>
-                      <div *ngIf="isView" class="row">
+                      <div *ngIf="isView && propertyToView.lotDepth && propertyToView.lotDepth !== ' '" class="row">
                         <div class="col-3">
                           <label for="lotDepth" class="form-label">Lot Depth</label>
                         </div>
@@ -302,7 +302,7 @@
                                  style="border-width: 2px">
                         </div>
                       </div>
-                      <div *ngIf="isView" class="row">
+                      <div *ngIf="isView && propertyToView.numOfFloors" class="row">
                         <div class="col-5">
                           <label for="numOfFloors" class="form-label">Number of Floors:</label>
                         </div>
@@ -326,7 +326,7 @@
                                  style="border-width: 2px">
                         </div>
                       </div>
-                      <div *ngIf="isView" class="row">
+                      <div *ngIf="isView && propertyToView.subdivision" class="row">
                         <div class="col-3">
                           <label for="address" class="form-label">Subdivision: </label>
                         </div>
@@ -347,7 +347,7 @@
                                  style="border-width: 2px">
                         </div>
                       </div>
-                      <div *ngIf="isView" class="row">
+                      <div *ngIf="isView && propertyToView.unit" class="row">
                         <div class="col-5">
                           <label for="unit" class="form-label">Unit:</label>
                         </div>
@@ -371,7 +371,7 @@
                                  style="border-width: 2px">
                         </div>
                       </div>
-                      <div *ngIf="isView" class="row">
+                      <div *ngIf="isView && propertyToView.block" class="row">
                         <div class="col-3">
                           <label for="address" class="form-label">Block: </label>
                         </div>
@@ -392,7 +392,7 @@
                                  style="border-width: 2px">
                         </div>
                       </div>
-                      <div *ngIf="isView" class="row">
+                      <div *ngIf="isView && propertyToView.lot" class="row">
                         <div class="col-5">
                           <label for="lot" class="form-label">Lot:</label>
                         </div>

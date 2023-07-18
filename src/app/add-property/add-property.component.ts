@@ -83,8 +83,11 @@ export class AddPropertyComponent implements OnInit {
   form: FormGroup = this.fb.group({
     address: ['', Validators.required],
     lotArea: [''],
+    lotAreaUnit: [''],
     lotFrontage: [''],
+    lotFrontageUnit: [''],
     lotDepth: [''],
+    lotDepthUnit: [''],
     subdivision: [''],
     block: [''],
     zoning: [''],
@@ -105,12 +108,21 @@ export class AddPropertyComponent implements OnInit {
   get lotArea(): AbstractControl | null {
     return this.form.get('lotArea');
   }
+  get lotAreaUnit(): AbstractControl | null {
+    return this.form.get('lotAreaUnit');
+  }
 
   get lotFrontage(): AbstractControl | null {
     return this.form.get('lotFrontage');
   }
+  get lotFrontageUnit(): AbstractControl | null {
+    return this.form.get('lotFrontageUnit');
+  }
   get lotDepth(): AbstractControl | null {
     return this.form.get('lotDepth');
+  }
+  get lotDepthUnit(): AbstractControl | null {
+    return this.form.get('lotDepthUnit');
   }
   get subdivision(): AbstractControl | null {
     return this.form.get('subdivision');
@@ -163,9 +175,9 @@ export class AddPropertyComponent implements OnInit {
       if (this.form.valid) {
         this.isEditing();
         this.propertyToView.address = this.address!.value;
-        this.propertyToView.lotArea = this.lotArea!.value;
-        this.propertyToView.lotFrontage = this.lotFrontage!.value;
-        this.propertyToView.lotDepth = this.lotDepth!.value;
+        this.propertyToView.lotArea = `${this.lotArea!.value} ${this.lotAreaUnit!.value}`;
+        this.propertyToView.lotFrontage = `${this.lotFrontage!.value} ${this.lotFrontageUnit!.value}`;
+        this.propertyToView.lotDepth = `${this.lotDepth!.value} ${this.lotDepth!.value}`;
         this.propertyToView.subdivision = this.subdivision!.value;
         this.propertyToView.block = this.block!.value;
         this.propertyToView.zoning = this.zoning!.value;
@@ -192,9 +204,9 @@ export class AddPropertyComponent implements OnInit {
 
   onChange() {
     this.propertyInfo.address = this.address!.value;
-    this.propertyInfo.lotArea = this.lotArea!.value;
-    this.propertyInfo.lotFrontage = this.lotFrontage!.value;
-    this.propertyInfo.lotDepth = this.lotDepth!.value;
+    this.propertyInfo.lotArea = `${this.lotArea!.value} ${this.lotAreaUnit!.value}`;
+    this.propertyInfo.lotFrontage = `${this.lotFrontage!.value} ${this.lotFrontageUnit!.value}`;
+    this.propertyInfo.lotDepth = `${this.lotDepth!.value} ${this.lotDepth!.value}`;
     this.propertyInfo.subdivision = this.subdivision!.value;
     this.propertyInfo.block = this.block!.value;
     this.propertyInfo.zoning = this.zoning!.value;
@@ -288,8 +300,11 @@ export class AddPropertyComponent implements OnInit {
     if (this.editing) {
       this.address!.setValue(this.propertyToView.address);
       this.lotArea!.setValue(this.propertyToView.lotArea);
+      this.lotAreaUnit!.setValue(this.propertyToView.lotArea.split(' ')[1]);
       this.lotFrontage!.setValue(this.propertyToView.lotFrontage);
+      this.lotFrontage!.setValue(this.propertyToView.lotFrontage.split(' ')[1]);
       this.lotDepth!.setValue(this.propertyToView.lotDepth);
+      this.lotDepth!.setValue(this.propertyToView.lotDepth.split(' ')[1]);
       this.subdivision!.setValue(this.propertyToView.subdivision);
       this.block!.setValue(this.propertyToView.block);
       this.zoning!.setValue(this.propertyToView.zoning);

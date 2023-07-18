@@ -143,25 +143,25 @@
                   </div>
                 </div>
 
-                <div class="input-group mb-4">
-                  <input
-                    formControlName="memberId"
-                    (change)="log(memberId)"
-                    class="form-control shadow"
-                    type="text"
-                    placeholder="Member ID"
-                    style="background-color: #F5F5F5">
+<!--                <div class="input-group mb-4">-->
+<!--                  <input-->
+<!--                    formControlName="memberId"-->
+<!--                    (change)="log(memberId)"-->
+<!--                    class="form-control shadow"-->
+<!--                    type="text"-->
+<!--                    placeholder="Member ID"-->
+<!--                    style="background-color: #F5F5F5">-->
 
-                  <span *ngIf="!memberId?.touched || !memberId?.invalid"
-                        class="input-group-text shadow">
-                    <img src="assets/userIcon.svg" style="height: 28px" alt="">
-                  </span>
-                  <span *ngIf="memberId?.touched && memberId?.invalid"
-                        class="input-group-text shadow "
-                        style="border-width: 1px; border-color: #A73E40">
-                    <img src="assets/userIcon.svg" style="height: 28px" alt="">
-                  </span>
-                </div>
+<!--                  <span *ngIf="!memberId?.touched || !memberId?.invalid"-->
+<!--                        class="input-group-text shadow">-->
+<!--                    <img src="assets/userIcon.svg" style="height: 28px" alt="">-->
+<!--                  </span>-->
+<!--                  <span *ngIf="memberId?.touched && memberId?.invalid"-->
+<!--                        class="input-group-text shadow "-->
+<!--                        style="border-width: 1px; border-color: #A73E40">-->
+<!--                    <img src="assets/userIcon.svg" style="height: 28px" alt="">-->
+<!--                  </span>-->
+<!--                </div>-->
 
                 <div *ngIf="newEmail?.touched && newEmail?.invalid">
                   <div *ngIf="newEmail && newEmail.errors && newEmail.errors['required']"
