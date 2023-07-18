@@ -1,18 +1,48 @@
+//.container{
+//  position: absolute;
+//  left: 45px;
+//  top: 103px;
+//  min-width: 1335px;
+//  max-width: 1335px;
+//  height: 98px;
+//  border-radius: 10px;
+//  background-color: #828fa0;
+//  font-size: 20px;
+//  font-weight: 400;
+//}
+//.col{
+//  text-align: center;
+//}
+//.row{
+//  align-items: center;
+//}
+
+
+//---------------------------------------------------
 .container{
-  position: absolute;
   left: 45px;
   top: 103px;
   min-width: 1335px;
   max-width: 1335px;
-  height: 98px;
   border-radius: 10px;
   background-color: #828fa0;
   font-size: 20px;
   font-weight: 400;
+  max-height: fit-content;
 }
 .col{
   text-align: center;
 }
 .row{
+  margin: 20px 0 20px 0;
   align-items: center;
+}
+label{
+  color: white;
+}
+.invalid-message{
+  margin: 20px 0 20px 0;
+}
+input{
+  border-width: 0;
 }

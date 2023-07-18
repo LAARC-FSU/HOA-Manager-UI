@@ -2,38 +2,486 @@
   <ng-container class="pageTitle">Welcome, <b>Leandro Yabut</b></ng-container>
 </app-header>
 
-<module-frame>
-  <div class="heading">Add Property</div>
-  <button class="title" style="border-radius: 10px">Save</button>
-  <div class="heading2">Property Info</div>
-  <div class="content">
-    <div class="container">
-      <div class="row row1">
-        <div class="col col1">
-          <input-form></input-form>
+<!--<module-frame>-->
+<!--  <div class="heading">Add Property</div>-->
+<!--  <button class="title" style="border-radius: 10px">Save</button>-->
+<!--  <div class="heading2">Property Info</div>-->
+<!--  <div class="content">-->
+<!--    <div class="container">-->
+<!--      <div class="row row1">-->
+<!--        <div class="col col1">-->
+<!--          <input-form></input-form>-->
+<!--        </div>-->
+<!--        <div class="col col2" style="min-width: 388px;">-->
+<!--          <img [src]="image" style="max-height: 230px " atl="assets/location_color.png">-->
+<!--          <div class="row row2">-->
+<!--            <button class="btn btn-primary btn1" data-bs-toggle="modal" data-bs-target="#clockInOutModal">Upload Image-->
+<!--            </button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</module-frame>-->
+
+<!--&lt;!&ndash;<module-frame>&ndash;&gt;-->
+<!--&lt;!&ndash;  <div class="heading">Transaction History</div>&ndash;&gt;-->
+<!--&lt;!&ndash;  <button class="title" style="border-radius: 10px">Save</button>&ndash;&gt;-->
+<!--&lt;!&ndash;  <div class="content">&ndash;&gt;-->
+<!--&lt;!&ndash;    <transaction></transaction>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</module-frame>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<module-frame>&ndash;&gt;-->
+<!--&lt;!&ndash;  <div class="heading">Notes</div>&ndash;&gt;-->
+<!--&lt;!&ndash;  <button class="title" style="border-radius: 10px">Save</button>&ndash;&gt;-->
+<!--&lt;!&ndash;  <div class="content">&ndash;&gt;-->
+<!--&lt;!&ndash;    <notes></notes>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</module-frame>&ndash;&gt;-->
+
+<!--<photo-import-dialog (croppedImg)="getImage($event)"></photo-import-dialog>-->
+
+
+<div class="container" style="font-family: montserrat,serif">
+  <div class="row">
+    <div class="card title mt-5" style="background-color: #454E5C; color: white; min-width: 1200px">
+      <div class="row my-1">
+        <div class="col ms-5">
+          <span>New Property</span>
         </div>
-        <div class="col col2" style="min-width: 388px;">
-          <img [src]="image" style="max-height: 230px " atl="assets/location_color.png">
-          <div class="row row2">
-            <button class="btn btn-primary btn1" data-bs-toggle="modal" data-bs-target="#clockInOutModal">Upload Image
-            </button>
+
+      </div>
+      <div class="row">
+        <div class="card subtitle" style="background-color: #828FA0">
+          <div class="row my-1">
+            <div class="row">
+              <div class="col ms-5">
+                <span>Property Information</span>
+              </div>
+              <div class="col me-3" style="display: grid; place-items: end">
+                <button *ngIf="!isView" (click)="submitForm()" class="btn btn-primary btn-sm"
+                        data-bs-toggle="modal"
+                        [attr.data-bs-target]="form.invalid ? '#invalidMessage' : '#success'"
+                        style="background-color: #F5F5F5; color: black; width: 150px">
+                  Save Property
+                </button>
+                <button *ngIf="isView" (click)="isEditing()" class="btn btn-primary btn-sm"
+                        data-bs-toggle="modal"
+                        style="background-color: #F5F5F5; color: black; width: 150px">
+                  Edit
+                </button>
+                <div class="modal fade" #successModal id="success">
+                  <div class="modal-dialog modal-dialog-centered" style="width: 300px">
+                    <div class="modal-content shadow">
+                      <div class="modal-body row" style="background-color: #4A7E3B; color: white; border-radius: 10px">
+                        <div class="col d-flex justify-content-center">
+                          <img src="assets/check-mark.svg" alt="Image" class="img-fluid "
+                               style="aspect-ratio: 1; height: 80px; box-shadow: white">
+                        </div>
+                        <div class="col d-flex align-items-center justify-content-start">
+                          <h4>Property Saved</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal fade" id="invalidMessage">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content" style="color: black; background-color: #E1EBF6">
+                      <div class="modal-header">
+                        <div class="container">
+                          <div class="row">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    data-bs-target="invalidMessage"></button>
+                          </div>
+                          <div class="row text-center">
+                            <p>
+                              Please remember to fill
+                              the required fields before submitting
+                            </p>
+                          </div>
+                          <div class="row py-2">
+                            <img src="assets/infoIcon.svg" alt="" style="height: 40px">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mx-auto mt-1 mb-1">
+              <div class="col-9 me-2 p-4"
+                   style="background-color: #F5F5F5; color: black; ">
+                <form [formGroup]="form" (ngSubmit)="submitForm()" (change)="onChange()" >
+
+                  <div class="row text-nowrap mt-3">
+
+                    <div class="col">
+                      <div *ngIf="!isView" class="row">
+                        <div class="col-3">
+                          <label for="address" class="form-label">Address*</label>
+                        </div>
+                        <div class="col">
+                          <input class="form-control shadow" type="text" id="address" formControlName="address"
+                                 style="border-width: 2px">
+                        </div>
+                      </div>
+                      <div *ngIf="isView" class="row">
+                        <div class="col-3">
+                          <label for="address" class="form-label">Address</label>
+                        </div>
+                        <div class="col">
+                          <p class="form-control">{{propertyToView.address}}</p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div *ngIf="!isView" class="row">
+                        <div class="col-5">
+                          <label for="zoning" class="form-label">Zoning:</label>
+                        </div>
+                        <div class="col">
+                          <input class="form-control shadow" type="text" id="zoning" formControlName="zoning"
+                                 style="border-width: 2px">
+                        </div>
+                      </div>
+                      <div *ngIf="isView" class="row">
+                        <div class="col-5">
+                          <label for="zoning" class="form-label">Zoning</label>
+                        </div>
+                        <div class="col">
+                          <p class="form-control">{{propertyToView.zoning}}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row text-nowrap mt-3">
+
+                    <div class="col">
+                      <div *ngIf="!isView" class="row">
+                        <div class="col-3">
+                          <label for="lotArea" class="form-label">Lot Area:</label>
+                        </div>
+                        <div class="col">
+                          <input class="form-control shadow" type="text" id="lotArea" formControlName="lotArea"
+                                 style="border-width: 2px">
+                        </div>
+                        <div class="col-3">
+                          <select class="form-select shadow" >
+                            <option selected>Unit</option>
+                            <option *ngFor="let unit of unitsArea">{{unit}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div *ngIf="isView" class="row">
+                        <div class="col-3">
+                          <label for="lotArea" class="form-label">Lot Area</label>
+                        </div>
+                        <div class="col">
+                          <p class="form-control">{{propertyToView.lotArea}}</p>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="col">
+                      <div *ngIf="!isView" class="row">
+                        <div class="col-5">
+                          <label for="zoning" class="form-label">Zoning Map:</label>
+                        </div>
+                        <div class="col">
+                          <input class="form-control shadow" type="text" id="zoningMap" formControlName="zoningMap"
+                                 style="border-width: 2px">
+                        </div>
+                      </div>
+                      <div *ngIf="isView" class="row">
+                        <div class="col-5">
+                          <label for="zoningMap" class="form-label">Zoning Map:</label>
+                        </div>
+                        <div class="col">
+                          <p class="form-control">{{propertyToView.zoningMap}}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row text-nowrap mt-3">
+
+                    <div class="col">
+                      <div *ngIf="!isView" class="row">
+                        <div class="col-3">
+                          <label for="lotFrontage" class="form-label">Lot Frontage:</label>
+                        </div>
+                        <div class="col">
+                          <input class="form-control shadow" type="text" id="lotFrontage" formControlName="lotFrontage"
+                                 style="border-width: 2px">
+                        </div>
+                        <div class="col-3">
+                          <select class="form-select shadow" >
+                            <option selected>Unit</option>
+                            <option *ngFor="let unit of unitsLength">{{unit}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div *ngIf="isView" class="row">
+                        <div class="col-3">
+                          <label for="lotFrontage" class="form-label">Lot Frontage</label>
+                        </div>
+                        <div class="col">
+                          <p class="form-control">{{propertyToView.lotFrontage}}</p>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="col">
+                      <div *ngIf="!isView" class="row">
+                        <div class="col-5">
+                          <label for="numOfBuildings" class="form-label">Number of Buildings:</label>
+                        </div>
+                        <div class="col">
+                          <input class="form-control shadow" type="text" id="numOfBuildings" formControlName="numOfBuildings"
+                                 style="border-width: 2px">
+                        </div>
+                      </div>
+                      <div *ngIf="isView" class="row">
+                        <div class="col-5">
+                          <label for="numOfBuildings" class="form-label">Number of Buildings:</label>
+                        </div>
+                        <div class="col">
+                          <p class="form-control">{{propertyToView.numOfBuildings}}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row text-nowrap mt-3">
+
+                    <div class="col">
+                      <div *ngIf="!isView" class="row">
+                        <div class="col-3">
+                          <label for="lotDepth" class="form-label">Lot Depth:</label>
+                        </div>
+                        <div class="col">
+                          <input class="form-control shadow" type="text" id="lotDepth" formControlName="lotDepth"
+                                 style="border-width: 2px">
+                        </div>
+                        <div class="col-3">
+                          <select class="form-select shadow" >
+                            <option selected>Unit</option>
+                            <option *ngFor="let unit of unitsArea">{{unit}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div *ngIf="isView" class="row">
+                        <div class="col-3">
+                          <label for="lotDepth" class="form-label">Lot Depth</label>
+                        </div>
+                        <div class="col">
+                          <p class="form-control">{{propertyToView.lotDepth}}</p>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="col">
+                      <div *ngIf="!isView" class="row">
+                        <div class="col-5">
+                          <label for="numOfFloors" class="form-label">Number of Floors:</label>
+                        </div>
+                        <div class="col">
+                          <input class="form-control shadow" type="text" id="numOfFloors" formControlName="numOfFloors"
+                                 style="border-width: 2px">
+                        </div>
+                      </div>
+                      <div *ngIf="isView" class="row">
+                        <div class="col-5">
+                          <label for="numOfFloors" class="form-label">Number of Floors:</label>
+                        </div>
+                        <div class="col">
+                          <p class="form-control">{{propertyToView.numOfFloors}}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row text-nowrap mt-3">
+
+                    <div class="col">
+                      <div *ngIf="!isView" class="row">
+                        <div class="col-3">
+                          <label for="subdivision" class="form-label">Subdivision:</label>
+                        </div>
+                        <div class="col">
+                          <input class="form-control shadow" type="text" id="subdivision" formControlName="subdivision"
+                                 style="border-width: 2px">
+                        </div>
+                      </div>
+                      <div *ngIf="isView" class="row">
+                        <div class="col-3">
+                          <label for="address" class="form-label">Subdivision: </label>
+                        </div>
+                        <div class="col">
+                          <p class="form-control">{{propertyToView.subdivision}}</p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div *ngIf="!isView" class="row">
+                        <div class="col-5">
+                          <label for="unit" class="form-label">Unit:</label>
+                        </div>
+                        <div class="col">
+                          <input class="form-control shadow" type="text" id="unit" formControlName="unit"
+                                 style="border-width: 2px">
+                        </div>
+                      </div>
+                      <div *ngIf="isView" class="row">
+                        <div class="col-5">
+                          <label for="unit" class="form-label">Unit:</label>
+                        </div>
+                        <div class="col">
+                          <p class="form-control">{{propertyToView.unit}}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row text-nowrap my-3">
+
+                    <div class="col">
+                      <div *ngIf="!isView" class="row">
+                        <div class="col-3">
+                          <label for="block" class="form-label">Block:</label>
+                        </div>
+                        <div class="col">
+                          <input class="form-control shadow" type="text" id="block" formControlName="block"
+                                 style="border-width: 2px">
+                        </div>
+                      </div>
+                      <div *ngIf="isView" class="row">
+                        <div class="col-3">
+                          <label for="address" class="form-label">Block: </label>
+                        </div>
+                        <div class="col">
+                          <p class="form-control">{{propertyToView.block}}</p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div *ngIf="!isView" class="row">
+                        <div class="col-5">
+                          <label for="lot" class="form-label">Lot:</label>
+                        </div>
+                        <div class="col">
+                          <input class="form-control shadow" type="text" id="lot" formControlName="lot"
+                                 style="border-width: 2px">
+                        </div>
+                      </div>
+                      <div *ngIf="isView" class="row">
+                        <div class="col-5">
+                          <label for="lot" class="form-label">Lot:</label>
+                        </div>
+                        <div class="col">
+                          <p class="form-control">{{propertyToView.lot}}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </form>
+              </div>
+              <div class="col ms-1 p-4" style="background-color: #F5F5F5">
+                <div class="row-cols d-flex justify-content-center py-3">
+                  <img *ngIf="!isView" alt="" class="shadow" [src]="image"
+                       style="width: 200px; border: 5px solid #828FA0;">
+                  <img *ngIf="isView" alt="" class="shadow" [src]="propertyToView.photo"
+                       style="width: 200px; border: 5px solid #828FA0;">
+                </div>
+                <div class="row-1 d-grid  mt-3">
+                  <button *ngIf="!isView" class="btn btn-primary" data-bs-toggle="modal"
+                          data-bs-target="#photoImportDlg">Upload
+                    Image
+                  </button>
+                  <photo-import-dialog [circleCropper]="false" (croppedImg)=getImage($event)></photo-import-dialog>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="card title mt-5" style="background-color: #454E5C; color: white; min-width: 1200px">
+      <div class="row my-1">
+        <div class="col ms-5 mt-1">
+          <span>Notes</span>
+        </div>
+        <div class="col d-grid justify-content-end me-5">
+          <button *ngIf="!isView" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#add-note"
+                  style="background-color: #F5F5F5; width: 150px">Add
+          </button>
+          <add-note-dialog (note)="addNote($event)"></add-note-dialog>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card subtitle" style="background-color: #828FA0">
+          <div class="row my-1">
+            <div class="row mx-auto my-1">
+              <div class="col g-0"
+                   style="background-color: #F5F5F5; color: black;min-height: 45px">
+                <div class="content">
+                  <div class="row g-0">
+                    <div class="col-6">
+                      <reusable-list-member-add [items]="isView || editing ? propertyToView.notes : propertyInfo.notes"
+                                                [isNotes]="true" [objectMem]="0"
+                                                [height]="45"></reusable-list-member-add>
+                    </div>
+                    <div class="col text-center">
+                      <reusable-list-member-add [items]="isView || editing ? propertyToView.notes : propertyInfo.notes"
+                                                [isNotes]="true" [objectMem]="1"
+                                                [height]="45"></reusable-list-member-add>
+                    </div>
+                    <div class="col">
+                      <reusable-list-member-add [items]="isView || editing ? propertyToView.notes : propertyInfo.notes"
+                                                [isNotes]="true" [isView]="true" [height]="45"
+                                                (indexViewNote)="viewNote($event)"></reusable-list-member-add>
+
+                    </div>
+                    <div *ngIf="!isView" class="col">
+                      <reusable-list-member-add [items]="isView || editing ? propertyToView.notes : propertyInfo.notes"
+                                                [isNotes]="true" [isDeleteNote]="true"
+                                                [height]="45"
+                                                (indexProperty)="deleteNote($event)"></reusable-list-member-add>
+                    </div>
+                    <div>
+                      <view-note-dialog [note]="noteToView" [isView]="isView "></view-note-dialog>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</module-frame>
-
-<module-frame>
-  <div class="heading">Transaction History</div>
-  <button class="title" style="border-radius: 10px">Save</button>
-  <div class="content"><transaction></transaction></div>
-</module-frame>
-
-<module-frame>
-  <div class="heading">Notes</div>
-  <button class="title" style="border-radius: 10px">Save</button>
-  <div class="content"><notes></notes></div>
-</module-frame>
-
-<photo-import-dialog (croppedImg)="getImage($event)"></photo-import-dialog>
+</div>

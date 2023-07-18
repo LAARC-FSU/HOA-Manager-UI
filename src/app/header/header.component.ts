@@ -11,7 +11,6 @@ export class HeaderComponent {
   constructor(private router:Router) {
   }
 backToDash(){
-    debugger
   this.router.navigateByUrl('main-dashboard')
 }
 }

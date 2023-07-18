@@ -127,3 +127,28 @@ export interface searchQuery{
   phone: string,
   address: string
 }
+export interface searchQueryProperty{
+  address: string,
+  lot: string,
+  unit: string,
+  block: string,
+  numOfBuildings: string
+}
+
+ export interface propertyInfo{
+  id: number,
+  address: string,
+  lotArea: string,
+  lotFrontage: string,
+   lotDepth: string,
+   subdivision: string,
+   block: string,
+   zoning: string,
+   zoningMap: string,
+   numOfBuildings: string,
+   numOfFloors:string,
+   unit: string,
+   lot: string
+   photo: string,
+   notes: note[]
+ }

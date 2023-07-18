@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, Input} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, Input, OnDestroy} from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {empWorkTime} from "../interfaces";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
@@ -10,7 +10,7 @@ import {ClockInOutServiceService} from "../clock-in-out-service.service";
   styleUrls: ['./clock-in-out-dialog.component.scss']
 })
 
-export class ClockInOutDialogComponent implements OnInit {
+export class ClockInOutDialogComponent implements OnInit, OnDestroy {
   clockInStr = '';
   clockOutStr = '';
   lunchOutStr = '';
@@ -40,10 +40,12 @@ export class ClockInOutDialogComponent implements OnInit {
   empName: string = this.empWorkTime.empName;
 
   constructor(private datePipe: DatePipe, private http: HttpClient, private service: ClockInOutServiceService) {
-    this.service.saveState(this.currState, this.empWorkTime)
   }
 
   ngOnInit() {
+    let test1 = this.service.getState();
+    let test2 = this.service.getCurrEmp();
+
     this.currState = this.service.getState();
     this.empWorkTime = this.service.getCurrEmp();
     switch (this.currState) {
@@ -79,12 +81,14 @@ export class ClockInOutDialogComponent implements OnInit {
     this.currDateStr = this.formatDate(this.currDate)!;
   }
 
+  ngOnDestroy(){
+    this.service.saveState(this.currState, this.empWorkTime)
+  }
   formatDate(date: Date) {
     return this.datePipe.transform(date, 'EEEE, MMMM d, y')
   }
 
   clockIn() {
-    debugger
     this.empWorkTime.empClkIn = new Date();
     this.clockInStr = this.formatTime(this.empWorkTime.empClkIn)
 
@@ -130,28 +134,34 @@ export class ClockInOutDialogComponent implements OnInit {
   }
 
   clockOut() {
-    this.empWorkTime.empClkOut = new Date();
-    this.clockOutStr = this.formatTime(this.empWorkTime.empClkOut)
-    this.calculateHours();
-    this.endActive = false;
     if (this.lunchInActive) {
       this.lunchInActive = false;
+      this.lunchIn();
     }
     if (this.lunchOutActive) {
       this.lunchOutActive = false;
     }
+
+    this.empWorkTime.empClkOut = new Date();
+    this.clockOutStr = this.formatTime(this.empWorkTime.empClkOut)
+    this.calculateHours();
+    this.endActive = false;
+
     this.startActive = true;
     this.currState = State.clockedOut;
     this.service.saveState(this.currState, this.empWorkTime)
   }
 
   calculateHours() {
-    const lunchTime = this.empWorkTime.empLunchIn.getTime() - this.empWorkTime.empLunchOut.getTime();
-    const workedTime = this.empWorkTime.empClkOut.getTime() - this.empWorkTime.empClkIn.getTime();
+    let lIn = new Date(this.empWorkTime.empLunchIn);
+    let lOut = new Date(this.empWorkTime.empLunchOut)
 
-    // Test
-    // const lunchTime = 1920000 // 32min
-    // const workedTime = 28800000 // 8 hours
+    const lunchTime = lIn.getTime() - lOut.getTime();
+
+    let cOut = new Date(this.empWorkTime.empClkOut);
+    let cIn = new Date(this.empWorkTime.empClkIn);
+
+    const workedTime = cOut.getTime() - cIn.getTime();
 
     let totalTime;
     if (lunchTime > 0) {
@@ -160,27 +170,34 @@ export class ClockInOutDialogComponent implements OnInit {
       totalTime = workedTime;
     }
 
-    switch (this.empWorkTime.empClkIn.getDay()) {
+    switch (cIn.getDay()) {
       case 0:
         this.empWorkTime.empDayHours[0] = totalTime / (1000 * 3600);
+        this.timeWorked = this.empWorkTime.empDayHours[0].toFixed(2).toString()
         break
       case 1:
         this.empWorkTime.empDayHours[1] = totalTime / (1000 * 3600);
+        this.timeWorked = this.empWorkTime.empDayHours[1].toFixed(2).toString()
         break
       case 2:
         this.empWorkTime.empDayHours[2] = totalTime / (1000 * 3600);
+        this.timeWorked = this.empWorkTime.empDayHours[2].toFixed(2).toString()
         break
       case 3:
         this.empWorkTime.empDayHours[3] = totalTime / (1000 * 3600);
+        this.timeWorked = this.empWorkTime.empDayHours[3].toFixed(2).toString()
         break
       case 4:
         this.empWorkTime.empDayHours[4] = totalTime / (1000 * 3600);
+        this.timeWorked = this.empWorkTime.empDayHours[4].toFixed(2).toString()
         break
       case 5:
         this.empWorkTime.empDayHours[5] = totalTime / (1000 * 3600);
+        this.timeWorked = this.empWorkTime.empDayHours[5].toFixed(2).toString()
         break
       case 6:
         this.empWorkTime.empDayHours[6] = totalTime / (1000 * 3600);
+        this.timeWorked = this.empWorkTime.empDayHours[6].toFixed(2).toString()
         break
     }
     for (let day of this.empWorkTime.empDayHours) {

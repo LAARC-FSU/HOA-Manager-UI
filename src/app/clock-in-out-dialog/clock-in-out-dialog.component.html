@@ -45,6 +45,9 @@
                       <div class="row">
                         <label *ngIf="clockOutStr" for="clockOut">clocked out at: {{clockOutStr}}</label>
                       </div>
+                      <div class="row">
+                        <span *ngIf="timeWorked"><b>you worked: {{timeWorked}} hours</b></span>
+                      </div>
                     </div>
 
                     <div class="row-cols d-flex justify-content-center my-4">

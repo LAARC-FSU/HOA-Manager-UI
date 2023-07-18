@@ -15,6 +15,7 @@ import {FindPropertyComponent} from "./find-property/find-property.component";
 import {FindMemberComponent} from "./find-member/find-member.component";
 import {FindEmployeeComponent} from "./find-employee/find-employee.component";
 import {MemberAddComponent} from "./member-add/member-add.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 const routes: Routes = [
@@ -34,7 +35,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), NgForOf],
+  imports: [RouterModule.forRoot(routes), NgForOf, FormsModule, ReactiveFormsModule],
   declarations: [
     SearchBoxComponent,
     SearchResultComponent,
